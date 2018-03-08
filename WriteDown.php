@@ -3,6 +3,7 @@
 namespace WriteDown;
 
 use League\Container\Container;
+use League\Route\RouteCollection;
 
 class WriteDown
 {
@@ -14,6 +15,13 @@ class WriteDown
     private $container;
 
     /**
+     * The app's router.
+     *
+     * @var League\Route\RouteCollection
+     */
+    private $router;
+
+    /**
      * Start the app up.
      *
      * @rerurn void
@@ -21,6 +29,7 @@ class WriteDown
     public function __construct()
     {
         $this->container = new Container;
+        $this->router    = new RouteCollection($this->getContainer());
     }
 
     /**
@@ -34,13 +43,23 @@ class WriteDown
     }
 
     /**
+     * Return the app's router.
+     *
+     * @return League\Route\RouteCollection
+     */
+    public function &getRouter()
+    {
+        return $this->router;
+    }
+
+    /**
      * Run WriteDown!
      *
      * @return void
      */
     public function init()
     {
-        $response = $this->getContainer()->get('router')->dispatch(
+        $response = $this->getRouter()->dispatch(
             $this->getContainer()->get('request'),
             $this->getContainer()->get('response')
         );
