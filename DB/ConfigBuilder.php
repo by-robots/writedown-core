@@ -11,9 +11,15 @@ class ConfigBuilder
      */
     public function generate()
     {
+        switch (getenv('DB_DRIVER')) {
+            case 'sqlite':
+                $driver = 'pdo_sqlite';
+                break;
+        }
+
         return [
-            'database' => getenv('DB_DATABASE'),
-            'driver'   => getenv('DB_DRIVER'),
+            'driver' => $driver,
+            'path'   => getenv('DB_DATABASE'),
         ];
     }
 }
