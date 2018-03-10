@@ -8,14 +8,20 @@ use Mockery\Adapter\Phpunit\MockeryTestCase;
 abstract class TestCase extends MockeryTestCase
 {
     /**
+     * The WriteDown object.
+     *
+     * @var WriteDown\WriteDown
+     */
+    protected $writedown;
+
+    /**
      * Set-up for testing.
      *
      * @return void
      */
     public function setUp()
     {
-        $writedown = require_once __DIR__ . '/../boot/start.php';
-        return $writedown;
+        $this->writedown = require_once __DIR__ . '/../boot/start.php';
     }
 
     /**
