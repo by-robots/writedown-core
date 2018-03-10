@@ -32,11 +32,10 @@ class SQLite extends TestCase
      */
     public function testGeneratesConfig()
     {
-        $driver   = 'sqlite';
         $database = 'road-to-nowhere';
 
         // Set-up the environment
-        putenv('DB_DRIVER=' . $driver);
+        putenv('DB_DRIVER=sqlite');
         putenv('DB_DATABASE=' . $database);
 
         // Request the config
@@ -44,7 +43,7 @@ class SQLite extends TestCase
 
         // Check it's what we expected
         $this->assertEquals(
-            ['driver' => $driver, 'database' => $database],
+            ['driver' => 'pdo_sqlite', 'path' => $database],
             $config
         );
     }
