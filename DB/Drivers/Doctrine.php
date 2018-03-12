@@ -24,10 +24,8 @@ class Doctrine
      */
     public function __construct(array $config, $devMode = false)
     {
-        $setup         = Setup::createAnnotationMetadataConfiguration(__DIR__ . '/../Entities', $isDevMode);
-        $this->manager = EntityManager::create($setup, $config);
-
-        return $this->getManager();
+        $setup         = Setup::createAnnotationMetadataConfiguration([__DIR__ . '/../../Entities'], $devMode);
+        $this->manager = EntityManager::create($config, $setup);
     }
 
     /**

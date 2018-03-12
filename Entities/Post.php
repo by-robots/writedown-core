@@ -1,30 +1,34 @@
 <?php
 
-namespace WriteDown\Models;
+namespace WriteDown\Entities;
 
 /**
  * @Entity
  * @Table(name="posts")
  */
-class Post
+class Post extends Base
 {
-    /** @Column(type="integer") */
+    /**
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
     /** @Column(type="string") */
-    private $title;
+    protected $title;
 
-    /** @Column(type="text", unique="true") */
-    private $slug;
+    /** @Column(type="text", unique=true) */
+    protected $slug;
 
-    /** @Column(type="text", nullable="true") */
-    private $excerpt;
+    /** @Column(type="text", nullable=true) */
+    protected $excerpt;
 
     /** @Column(type="text") */
-    private $body;
+    protected $body;
 
-    /** @Column(type="datetime", nullable="true") */
-    private $publishAt;
+    /** @Column(type="datetime", nullable=true) */
+    protected $publishAt;
 
     /** @Column(type="datetime", name="created_at") */
     private $createdAt;
