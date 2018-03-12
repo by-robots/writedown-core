@@ -15,13 +15,26 @@ abstract class TestCase extends MockeryTestCase
     protected $writedown;
 
     /**
+     * Generate test entities.
+     *
+     * @var Tests\CreatesResources
+     */
+    protected $resources;
+
+    /**
      * Set-up for testing.
      *
      * @return void
      */
     public function setUp()
     {
+        // Start WriteDown
         $this->writedown = require_once __DIR__ . '/../boot/start.php';
+
+        // Set-up testing tools
+        $this->resources = new CreatesResources(
+            $this->writedown->getContainer()->get('db')->getManager()
+        );
     }
 
     /**
