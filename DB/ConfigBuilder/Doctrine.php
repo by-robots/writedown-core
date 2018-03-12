@@ -1,11 +1,11 @@
 <?php
 
-namespace WriteDown\DB;
+namespace WriteDown\DB\ConfigBuilder;
 
-class ConfigBuilder
+class Doctrine implements ConfigBuilder
 {
     /**
-     * Generate a database config array based on the environment.
+     * Generate a database config array based on the environment for Doctrine.
      *
      * @return array
      */
