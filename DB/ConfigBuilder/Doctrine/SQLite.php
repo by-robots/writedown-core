@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\DB\ConfigBuilder;
+namespace Tests\DB\ConfigBuilder\Doctrine;
 
 use Tests\TestCase;
-use WriteDown\DB\ConfigBuilder;
+use WriteDown\DB\ConfigBuilder\Doctrine;
 
 class SQLite extends TestCase
 {
     /**
      * The ConfigBuilder object.
      *
-     * @var WriteDown\DB\ConfigBuilder
+     * @var WriteDown\DB\ConfigBuilder\Doctrine
      */
     private $configBuilder;
 
@@ -22,7 +22,7 @@ class SQLite extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->configBuilder = new ConfigBuilder;
+        $this->configBuilder = new Doctrine;
     }
 
     /**
