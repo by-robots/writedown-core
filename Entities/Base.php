@@ -51,7 +51,17 @@ class Base
      */
     public function onPrePersist()
     {
-        $this->created_at = new \DateTime("now");
-        $this->updated_at = new \DateTime("now");
+        $this->created_at = new \DateTime('now');
+        $this->updated_at = new \DateTime('now');
+    }
+
+    /**
+     * Triggered on update.
+     *
+     * @PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime('now');
     }
 }
