@@ -37,7 +37,7 @@ class WriteDown
      *
      * @return League\Container\Container
      */
-    public function getContainer()
+    public function &getContainer()
     {
         return $this->container;
     }
@@ -47,7 +47,7 @@ class WriteDown
      *
      * @return League\Route\RouteCollection
      */
-    public function getRouter()
+    public function &getRouter()
     {
         return $this->router;
     }
@@ -62,10 +62,10 @@ class WriteDown
      * @return mixed
      * @throws BadMethodCallException
      */
-    public function __call($item, $args)
+    public function __call($method, $args)
     {
-        if ($this->getContainer()->has($item)) {
-            return $this->getContainer()->get($item);
+        if ($this->container->has($method)) {
+            return $this->container->get($method);
         }
 
         throw new \BadMethodCallException("Method $method is not a valid method.");
