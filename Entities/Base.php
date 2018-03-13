@@ -43,4 +43,15 @@ class Base
            $this->{$property} = $value;
        }
    }
+
+    /**
+     * Triggered on insert - set entity timestamps.
+     *
+     * @PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
+    }
 }

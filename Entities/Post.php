@@ -5,6 +5,7 @@ namespace WriteDown\Entities;
 /**
  * @Entity
  * @Table(name="posts")
+ * @HasLifecycleCallbacks
  */
 class Post extends Base
 {
