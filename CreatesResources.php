@@ -13,7 +13,7 @@ class CreatesResources
      *
      * @var Faker\Factory
      */
-    private $faker;
+    public $faker;
 
     /**
      * The database.
@@ -47,6 +47,7 @@ class CreatesResources
         $post->body       = $this->faker->paragraph;
         $this->publish_at = date("Y-m-d H:i:s");
         $this->db->persist($post);
+        $this->db->flush();
 
         return $post;
     }

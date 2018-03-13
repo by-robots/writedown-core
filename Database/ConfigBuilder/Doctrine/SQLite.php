@@ -15,18 +15,22 @@ class SQLite extends TestCase
     public function testGeneratesConfig()
     {
         $configBuilder = new Doctrine;
-        $database      = 'road-to-nowhere';
+        $newDatabase   = 'road-to-nowhere';
+        $oldDatabase   = getenv('DB_DATABASE');
 
         // Set-up the environment
         putenv('DB_DRIVER=sqlite');
-        putenv('DB_DATABASE=' . $database);
+        putenv('DB_DATABASE=' . $newDatabase);
 
         // Request the config
         $config = $configBuilder->generate();
 
-        // Check it's what we expected
+        // Reset the config
+        putenv('DB_DATABASE=' . $oldDatabase);
+
+        // Check the config is what we expected
         $this->assertEquals(
-            ['driver' => 'pdo_sqlite', 'path' => $database],
+            ['driver' => 'pdo_sqlite', 'path' => $newDatabase],
             $config
         );
     }

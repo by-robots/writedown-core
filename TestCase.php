@@ -39,6 +39,7 @@ abstract class TestCase extends MockeryTestCase
     public function setUp()
     {
         $this->makeWritedown();
+        shell_exec('cd ' . __DIR__ . '/../ && php ./vendor/bin/phinx migrate -e ' . getenv('ENVIRONMENT'));
         $this->resources = new CreatesResources($this->writedown->database());
     }
 
@@ -50,5 +51,7 @@ abstract class TestCase extends MockeryTestCase
     public function tearDown()
     {
         Mockery::close();
+        shell_exec('cd ' . __DIR__ . '/../ && php ./vendor/bin/phinx rollback -e ' . getenv('ENVIRONMENT') . ' -t 0');
+        parent::tearDown();
     }
 }
