@@ -37,7 +37,7 @@ class WriteDown
      *
      * @return League\Container\Container
      */
-    public function &getContainer()
+    public function getContainer()
     {
         return $this->container;
     }
@@ -47,10 +47,30 @@ class WriteDown
      *
      * @return League\Route\RouteCollection
      */
-    public function &getRouter()
+    public function getRouter()
     {
         return $this->router;
     }
+
+    /**
+     * When no WriteDown method is matched check to see if the container has an
+     * item of the same name, and return that.
+     *
+     * @param string $method
+     * @param array  $args
+     *
+     * @return mixed
+     * @throws BadMethodCallException
+     */
+    public function __call($item, $args)
+    {
+        if ($this->getContainer()->has($item)) {
+            return $this->getContainer()->get($item);
+        }
+
+        throw new \BadMethodCallException("Method $method is not a valid method.");
+    }
+
 
     /**
      * Run WriteDown!
@@ -59,11 +79,7 @@ class WriteDown
      */
     public function init()
     {
-        $response = $this->getRouter()->dispatch(
-            $this->getContainer()->get('request'),
-            $this->getContainer()->get('response')
-        );
-
-        $this->getContainer()->get('emitter')->emit($response);
+        $response = $this->getRouter()->dispatch($this->request(), $this->response());
+        $this->emitter()->emit($response);
     }
 }

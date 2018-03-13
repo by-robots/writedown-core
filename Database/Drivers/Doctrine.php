@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\DB\Drivers;
+namespace WriteDown\Database\Drivers;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -33,7 +33,7 @@ class Doctrine
      *
      * @return Doctrine\ORM\EntityManager
      */
-    public function &getManager()
+    public function getManager()
     {
         return $this->manager;
     }
