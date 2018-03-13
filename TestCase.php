@@ -22,19 +22,27 @@ abstract class TestCase extends MockeryTestCase
     protected $resources;
 
     /**
+     * Make WriteDown.
+     *
+     * @return WriteDown\WriteDown
+     */
+    protected function makeWritedown()
+    {
+        return require_once __DIR__ . '/../boot/start.php';
+    }
+
+    /**
      * Set-up for testing.
      *
      * @return void
      */
     public function setUp()
     {
-        // Start WriteDown
-        $this->writedown = require_once __DIR__ . '/../boot/start.php';
+        if (!$this->writedown) {
+            $this->writedown = $this->makeWritedown();
+        }
 
-        // Set-up testing tools
-        $this->resources = new CreatesResources(
-            $this->writedown->getContainer()->get('db')->getManager()
-        );
+        $this->resources = new CreatesResources($this->writedown->database());
     }
 
     /**
@@ -44,6 +52,7 @@ abstract class TestCase extends MockeryTestCase
      */
     public function tearDown()
     {
+        $this->writedown = null;
         Mockery::close();
     }
 }

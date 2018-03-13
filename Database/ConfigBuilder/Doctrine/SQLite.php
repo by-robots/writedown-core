@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\DB\ConfigBuilder\Doctrine;
+namespace Tests\Database\ConfigBuilder\Doctrine;
 
 use Tests\TestCase;
-use WriteDown\DB\ConfigBuilder\Doctrine;
+use WriteDown\Database\ConfigBuilder\Doctrine;
 
 class SQLite extends TestCase
 {
     /**
      * The ConfigBuilder object.
      *
-     * @var WriteDown\DB\ConfigBuilder\Doctrine
+     * @var WriteDown\Database\ConfigBuilder\Doctrine
      */
     private $configBuilder;
 
