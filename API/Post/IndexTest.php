@@ -9,7 +9,7 @@ class IndexTest extends TestCase
     public function testNoPosts()
     {
         // Request posts
-        $result = $this->writedown->api()->index();
+        $result = $this->writedown->api()->post()->index();
 
         // Check that an empty array is returned
         $this->assertEquals([], $result);
