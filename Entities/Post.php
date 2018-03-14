@@ -13,8 +13,8 @@ class Post extends TestCase
         $event     = $this->resources->post();
 
         // Make sure dates have been set correctly
-        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $event->created_at->format('Y-m-d H:i:s'));
-        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $event->updated_at->format('Y-m-d H:i:s'));
+        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $event->created_at);
+        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $event->updated_at);
     }
 
     public function testTimestampsOnUpdate()
@@ -29,6 +29,7 @@ class Post extends TestCase
         $this->writedown->database()->flush();
 
         // Make sure dates have been set and only updated_at has been changed
-        $this->assertGreaterThan($event->created_at->format('s'), $event->updated_at->format('s'));
+        $event = $this->writedown->database()->find('WriteDown\Entities\Post', $event->id);
+        $this->assertGreaterThan($event->created_at, $event->updated_at);
     }
 }

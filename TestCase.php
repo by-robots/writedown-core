@@ -32,6 +32,29 @@ abstract class TestCase extends MockeryTestCase
     }
 
     /**
+     * Deletes the test database if ti exists.
+     *
+     * @return void
+     */
+    public function tearDownDatabase()
+    {
+        if (file_exists(__DIR__ . '/../' . getenv('DB_DATABASE'))) {
+            unlink(__DIR__ . '/../' . getenv('DB_DATABASE'));
+        }
+    }
+
+    /**
+     * Sets up the test database.
+     *
+     * @return void
+     */
+    public function setUpDatabase()
+    {
+        $this->tearDownDatabase();
+        copy(__DIR__ . '/../db/writedown-test-clean', __DIR__ . '/../' . getenv('DB_DATABASE'));
+    }
+
+    /**
      * Set-up for testing.
      *
      * @return void
@@ -39,7 +62,7 @@ abstract class TestCase extends MockeryTestCase
     public function setUp()
     {
         $this->makeWritedown();
-        shell_exec('cd ' . __DIR__ . '/../ && php ./vendor/bin/phinx migrate -e ' . getenv('ENVIRONMENT'));
+        $this->setUpDatabase();
         $this->resources = new CreatesResources($this->writedown->database());
     }
 
@@ -50,8 +73,8 @@ abstract class TestCase extends MockeryTestCase
      */
     public function tearDown()
     {
+        $this->tearDownDatabase();
         Mockery::close();
-        shell_exec('cd ' . __DIR__ . '/../ && php ./vendor/bin/phinx rollback -e ' . getenv('ENVIRONMENT') . ' -t 0');
         parent::tearDown();
     }
 }

@@ -45,7 +45,7 @@ class CreatesResources
         $post->title      = $this->faker->sentence;
         $post->slug       = $this->faker->slug;
         $post->body       = $this->faker->paragraph;
-        $this->publish_at = date("Y-m-d H:i:s");
+        $this->publish_at = date('Y-m-d H:i:s');
         $this->db->persist($post);
         $this->db->flush();
 

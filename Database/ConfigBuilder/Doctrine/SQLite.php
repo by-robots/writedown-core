@@ -19,7 +19,8 @@ class SQLite extends TestCase
         $oldDatabase   = getenv('DB_DATABASE');
 
         // Set-up the environment
-        putenv('DB_DRIVER=sqlite');
+        // NOTE: In testing DB_DRIVER is already set so there's no need to
+        //       manually specify it here.
         putenv('DB_DATABASE=' . $newDatabase);
 
         // Request the config
@@ -29,9 +30,6 @@ class SQLite extends TestCase
         putenv('DB_DATABASE=' . $oldDatabase);
 
         // Check the config is what we expected
-        $this->assertEquals(
-            ['driver' => 'pdo_sqlite', 'path' => $newDatabase],
-            $config
-        );
+        $this->assertEquals(['driver' => 'pdo_sqlite', 'path' => $newDatabase], $config);
     }
 }
