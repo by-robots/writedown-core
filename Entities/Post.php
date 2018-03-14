@@ -21,8 +21,8 @@ class Post extends TestCase
     {
         // Create a new post
         $post = $this->resources->post();
-        usleep(1000000); // Allow one second to pass so the updated timestamp
-                         // will be different to created_at.
+        usleep(1100000); // Allow one and a bit seconds to pass so the updated
+                         // timestamp will be different to created_at.
 
         // Update it
         $post->title = $this->resources->faker->sentence();
