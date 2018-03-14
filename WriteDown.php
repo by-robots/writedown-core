@@ -65,7 +65,7 @@ class WriteDown
     public function __call($method, $args)
     {
         if ($this->container->has($method)) {
-            return $this->container->get($method);
+            return $this->getContainer()->get($method);
         }
 
         throw new \BadMethodCallException("Method $method is not a valid method.");

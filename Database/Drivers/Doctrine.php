@@ -20,7 +20,7 @@ class Doctrine
      * @param array   $config
      * @param boolean $devMode See Doctrine docs for details.
      *
-     * @return Doctrine\ORM\EntityManager
+     * @return void
      */
     public function __construct(array $config, $devMode = false)
     {
