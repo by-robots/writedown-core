@@ -29,7 +29,7 @@ class Base
     * Attempt to set a property. Uses an existing setter if available.
     *
     * @param string $property
-    * @param mixed $value
+    * @param mixed  $value
     *
     * @return void
     */
@@ -44,26 +44,18 @@ class Base
        }
    }
 
-    /**
-     * Triggered on insert - set entity timestamps.
-     *
-     * @PrePersist
-     */
+    /** @PrePersist */
     public function onPrePersist()
     {
-        $dateTime         = new \DateTime('now');
-        $this->created_at = $dateTime->format('Y-m-d H:i:s');
-        $this->updated_at = $dateTime->format('Y-m-d H:i:s');
+        $this->created_at = new \DateTime('now');
     }
 
     /**
-     * Triggered on update.
-     *
+     * @PrePersist
      * @PreUpdate
      */
     public function onPreUpdate()
     {
-        $dateTime         = new \DateTime('now');
-        $this->updated_at = $dateTime->format('Y-m-d H:i:s');
+        $this->updated_at = new \DateTime('now');
     }
 }

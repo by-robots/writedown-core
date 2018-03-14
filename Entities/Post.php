@@ -29,11 +29,11 @@ class Post extends Base
     protected $body;
 
     /** @Column(name="publish_at", type="datetime", nullable=true) */
-    protected $publishAt;
+    protected $publish_at;
 
     /** @Column(name="created_at", type="datetime") */
-    protected $createdAt;
+    protected $created_at;
 
     /** @Column(name="updated_at", type="datetime") */
-    protected $updatedAt;
+    protected $updated_at;
 }
