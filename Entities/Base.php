@@ -45,7 +45,7 @@ class Base
    }
 
     /** @PrePersist */
-    public function onPrePersist()
+    public function setCreatedAt()
     {
         $this->created_at = new \DateTime('now');
     }
@@ -54,7 +54,7 @@ class Base
      * @PrePersist
      * @PreUpdate
      */
-    public function onPreUpdate()
+    public function setUpdatedAt()
     {
         $this->updated_at = new \DateTime('now');
     }
