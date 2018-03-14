@@ -34,6 +34,28 @@ class CreatesResources
     }
 
     /**
+     * Persist an object.
+     *
+     * @param mixed $entity
+     *
+     * @return void
+     */
+    public function persist($entity)
+    {
+        $this->db->persist($entity);
+    }
+
+    /**
+     * Perform a flush operation on the EntityManager.
+     *
+     * @return void
+     */
+    public function flush()
+    {
+        $this->db->flush();
+    }
+
+    /**
      * Create a test post.
      *
      * @return WriteDown\Entities\Post
@@ -45,9 +67,9 @@ class CreatesResources
         $post->title      = $this->faker->sentence;
         $post->slug       = $this->faker->slug;
         $post->body       = $this->faker->paragraph;
-        $this->publish_at = date('Y-m-d H:i:s');
-        $this->db->persist($post);
-        $this->db->flush();
+        $this->publish_at = new \DateTime('now');
+        $this->persist($post);
+        $this->flush();
 
         return $post;
     }

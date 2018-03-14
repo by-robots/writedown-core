@@ -8,28 +8,30 @@ class Post extends TestCase
 {
     public function testTimestampsSetOnPersist()
     {
-        // Create a new event
+        // Create a new post
         $createdAt = new \DateTime('now');
-        $event     = $this->resources->post();
+        $post      = $this->resources->post();
 
         // Make sure dates have been set correctly
-        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $event->created_at);
-        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $event->updated_at);
+        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $post->created_at->format('Y-m-d H:i:s'));
+        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $post->updated_at->format('Y-m-d H:i:s'));
     }
 
     public function testTimestampsOnUpdate()
     {
-        // Create a new event
-        $event = $this->resources->post();
-        usleep(1000000); // Allow one second to pass so the updated timestamp
+        // Create a new post
+        $post = $this->resources->post();
+        usleep(2000000); // Allow one second to pass so the updated timestamp
                          // will be different to created_at.
 
         // Update it
-        $event->title = $this->resources->faker->sentence();
-        $this->writedown->database()->flush();
+        $post->title = $this->resources->faker->sentence();
+        $this->resources->flush();
 
         // Make sure dates have been set and only updated_at has been changed
-        $event = $this->writedown->database()->find('WriteDown\Entities\Post', $event->id);
-        $this->assertGreaterThan($event->created_at, $event->updated_at);
+        $this->assertGreaterThan(
+            $post->created_at->format('Y-m-d H:i:s'),
+            $post->updated_at->format('Y-m-d H:i:s')
+        );
     }
 }
