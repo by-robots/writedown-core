@@ -12,9 +12,9 @@ class Post extends Base
     /**
      * @Id
      * @Column(type="integer")
-     * @GeneratedValue(strategy="AUTO")
+     * @GeneratedValue
      */
-    private $id;
+    protected $id;
 
     /** @Column(type="string") */
     protected $title;
@@ -28,12 +28,12 @@ class Post extends Base
     /** @Column(type="text") */
     protected $body;
 
-    /** @Column(type="datetime", nullable=true) */
+    /** @Column(name="publish_at", type="datetime", nullable=true) */
     protected $publishAt;
 
-    /** @Column(type="datetime", name="created_at") */
-    private $createdAt;
+    /** @Column(name="created_at", type="datetime") */
+    protected $createdAt;
 
-    /** @Column(type="datetime", name="updated_at") */
-    private $updatedAt;
+    /** @Column(name="updated_at", type="datetime") */
+    protected $updatedAt;
 }

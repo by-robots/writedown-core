@@ -51,8 +51,9 @@ class Base
      */
     public function onPrePersist()
     {
-        $this->created_at = new \DateTime('now');
-        $this->updated_at = new \DateTime('now');
+        $dateTime         = new \DateTime('now');
+        $this->created_at = $dateTime->format('Y-m-d H:i:s');
+        $this->updated_at = $dateTime->format('Y-m-d H:i:s');
     }
 
     /**
@@ -62,6 +63,7 @@ class Base
      */
     public function onPreUpdate()
     {
-        $this->updated_at = new \DateTime('now');
+        $dateTime         = new \DateTime('now');
+        $this->updated_at = $dateTime->format('Y-m-d H:i:s');
     }
 }
