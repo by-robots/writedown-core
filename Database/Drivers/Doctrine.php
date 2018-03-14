@@ -5,7 +5,7 @@ namespace WriteDown\Database\Drivers;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-class Doctrine
+class Doctrine implements Driver
 {
     /**
      * The database manager.
@@ -31,7 +31,7 @@ class Doctrine
     /**
      * Return the manager.
      *
-     * @return Doctrine\ORM\EntityManager
+     * @return Doctrine\ORM\EntityManagerInterface
      */
     public function getManager()
     {

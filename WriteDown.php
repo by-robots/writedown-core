@@ -2,7 +2,7 @@
 
 namespace WriteDown;
 
-use League\Container\Container;
+use Interop\Container\ContainerInterface;
 use League\Route\RouteCollection;
 
 class WriteDown
@@ -10,14 +10,14 @@ class WriteDown
     /**
      * The service container.
      *
-     * @var League\Container\Container
+     * @var Interop\Container\ContainerInterface
      */
     private $container;
 
     /**
      * The app's router.
      *
-     * @var League\Route\RouteCollection
+     * @var League\Route\RouteCollectionInterface
      */
     private $router;
 
@@ -26,30 +26,10 @@ class WriteDown
      *
      * @rerurn void
      */
-    public function __construct()
+    public function __construct(ContainerInterface $container)
     {
-        $this->container = new Container;
+        $this->container = $container;
         $this->router    = new RouteCollection($this->getContainer());
-    }
-
-    /**
-     * Return the app's container.
-     *
-     * @return League\Container\Container
-     */
-    public function &getContainer()
-    {
-        return $this->container;
-    }
-
-    /**
-     * Return the app's router.
-     *
-     * @return League\Route\RouteCollection
-     */
-    public function &getRouter()
-    {
-        return $this->router;
     }
 
     /**
@@ -71,6 +51,69 @@ class WriteDown
         throw new \BadMethodCallException("Method $method is not a valid method.");
     }
 
+    /**
+     * Return the app's container.
+     *
+     * @return Interop\Container\ContainerInterface
+     */
+    public function &getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * Return the app's router.
+     *
+     * @return League\Route\RouteCollectionInterface
+     */
+    public function &getRouter()
+    {
+        return $this->router;
+    }
+
+    /**
+     * Get the Request service.
+     *
+     * @return Psr\Http\Message\RequestInterface
+     */
+    public function request()
+    {
+        return $this->getContainer()
+            ->get('Psr\Http\Message\RequestInterface');
+    }
+
+    /**
+     * Get the Response service.
+     *
+     * @return Psr\Http\Message\ResponseInterface
+     */
+    public function response()
+    {
+        return $this->getContainer()
+            ->get('Psr\Http\Message\ResponseInterface');
+    }
+
+    /**
+     * Get the Emitter service.
+     *
+     * @return Zend\Diactoros\Response\EmitterInterface
+     */
+    public function emitter()
+    {
+        return $this->getContainer()
+            ->get('Zend\Diactoros\Response\EmitterInterface');
+    }
+
+    /**
+     * Get the Entity Manager service.
+     *
+     * @return Doctrine\ORM\EntityManagerInterface
+     */
+    public function database()
+    {
+        return $this->getContainer()
+            ->get('Doctrine\ORM\EntityManagerInterface');
+    }
 
     /**
      * Run WriteDown!
