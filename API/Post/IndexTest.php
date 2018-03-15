@@ -25,5 +25,6 @@ class IndexTest extends TestCase
 
         // Check that the result contains one entry
         $this->assertEquals(1, count($result));
+        $this->assertEquals($post->id, $result[0]->id);
     }
 }
