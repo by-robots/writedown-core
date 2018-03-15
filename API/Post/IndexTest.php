@@ -14,4 +14,16 @@ class IndexTest extends TestCase
         // Check that an empty array is returned
         $this->assertEquals([], $result);
     }
+
+    public function testRetrievesOne()
+    {
+        // Create one post
+        $post = $this->resources->post();
+
+        // Request the post index
+        $result = $this->writedown->api()->post()->index();
+
+        // Check that the result contains one entry
+        $this->assertEquals(1, count($result));
+    }
 }
