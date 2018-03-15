@@ -33,6 +33,6 @@ class API
      */
     public function post()
     {
-        return new Post;
+        return new Post($this->db);
     }
 }
