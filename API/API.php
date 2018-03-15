@@ -3,6 +3,7 @@
 namespace WriteDown\API;
 
 use Doctrine\ORM\EntityManager;
+use WriteDown\API\Post\Post;
 
 class API
 {
@@ -23,5 +24,15 @@ class API
     public function __construct(EntityManager $database)
     {
         $this->db = $database;
+    }
+
+    /**
+     * Work with posts.
+     *
+     * @return WriteDown\API\Post\Post;
+     */
+    public function post()
+    {
+        return new Post;
     }
 }
