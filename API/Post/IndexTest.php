@@ -41,4 +41,27 @@ class IndexTest extends TestCase
         // Check that the result contains one entry
         $this->assertEquals($postCount, count($result));
     }
+
+    /**
+     * By default posts should be order by their publish_at value in descending
+     * order.
+     */
+    public function testDefaultOrdering()
+    {
+        // Make two posts
+        $secondPost = $this->resources->post();
+        $firstPost  = $this->resources->post();
+
+        // Set first post's publish_at value to be in the past
+        $thePast               = new \DateTime('-1 week');
+        $firstPost->publish_at = $thePast;
+        $this->resources->flush();
+
+        // Now grab the index
+        $result = $this->writedown->api()->post()->index();
+
+        // And check the order
+        $this->assertEquals($firstPost->id, $result[0]->id);
+        $this->assertEquals($secondPost->id, $result[1]->id);
+    }
 }
