@@ -30,9 +30,7 @@ class Post
      */
     public function index()
     {
-        $posts = $this->db->getRepository('WriteDown\Entities\Post')
-            ->findBy([], ['publish_at' => 'DESC']);
-
+        $posts = $this->db->getRepository('WriteDown\Entities\Post')->findAll();
         return $posts;
     }
 }

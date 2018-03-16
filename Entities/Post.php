@@ -3,7 +3,7 @@
 namespace WriteDown\Entities;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="WriteDown\Repositories\Post")
  * @Table(name="posts")
  * @HasLifecycleCallbacks
  */
