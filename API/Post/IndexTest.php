@@ -53,8 +53,7 @@ class IndexTest extends TestCase
         $firstPost  = $this->resources->post();
 
         // Set first post's publish_at value to be in the past
-        $thePast               = new \DateTime('-1 week');
-        $firstPost->publish_at = $thePast;
+        $firstPost->publish_at = new \DateTime('-1 week');
         $this->resources->flush();
 
         // Now grab the index
@@ -63,5 +62,27 @@ class IndexTest extends TestCase
         // And check the order
         $this->assertEquals($firstPost->id, $result[0]->id);
         $this->assertEquals($secondPost->id, $result[1]->id);
+    }
+
+    /**
+     * By default, only posts with publish_at dates in the future should be
+     * returned.
+     */
+    public function testDefaultPublishAtFiltering()
+    {
+        // Make two posts - one with a NULL publish_at value, one with a value
+        // in the future.
+        $noPublishAt     = $this->resources->post();
+        $publishInFuture = $this->resources->post();
+
+        $noPublishAt->publish_at = null;
+        $publishInFuture         = new \DateTime('+1 week');
+        $this->resources->flush();
+
+        // Grab the index
+        $result = $this->writedown->api()->post()->index();
+
+        // It should be empty
+        $this->assertEquals(0, count($result));
     }
 }
