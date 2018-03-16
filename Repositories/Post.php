@@ -8,6 +8,10 @@ class Post extends EntityRepository
 {
     public function findAll()
     {
-        return $this->findBy([], ['publish_at' => 'DESC']);
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT p FROM WriteDown\Entities\Post p
+                ORDER BY p.publish_at DESC');
+
+        return $query->getResult();
     }
 }
