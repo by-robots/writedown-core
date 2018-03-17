@@ -8,10 +8,12 @@ class Post extends EntityRepository
 {
     public function findAll()
     {
-        $query = $this->getEntityManager()
-            ->createQuery('SELECT p FROM WriteDown\Entities\Post p
-                ORDER BY p.publish_at DESC');
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('p')->from('WriteDown\Entities\Post', 'p')
+            ->where('p.publish_at IS NOT NULL AND p.publish_at <= :now')
+            ->orderBy('p.publish_at', 'DESC')
+            ->setParameter('now', new \DateTime('now'));
 
-        return $query->getResult();
+        return $query->getQuery()->getResult();
     }
 }
