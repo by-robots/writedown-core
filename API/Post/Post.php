@@ -33,4 +33,17 @@ class Post
         $posts = $this->db->getRepository('WriteDown\Entities\Post')->findAll();
         return $posts;
     }
+
+    /**
+     * Retrieve a single post.
+     *
+     * @param int $postID
+     *
+     * @return WriteDown\Entities\Post
+     */
+    public function read($postID)
+    {
+        return $this->db->getRepository('WriteDown\Entities\Post')
+            ->findOneBy(['id' => $postID]);
+    }
 }
