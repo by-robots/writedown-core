@@ -14,7 +14,10 @@ class Post extends TestCase
         // Make sure dates have been set correctly
         $this->assertNotNull($post->created_at);
         $this->assertNotNull($post->updated_at);
-        $this->assertEquals($post->created_at->format('Y-m-d H:i:s'), $post->updated_at->format('Y-m-d H:i:s'));
+        $this->assertEquals(
+            $post->created_at->format('Y-m-d H:i:s'),
+            $post->updated_at->format('Y-m-d H:i:s')
+        );
     }
 
     public function testTimestampsOnUpdate()

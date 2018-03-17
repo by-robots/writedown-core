@@ -48,20 +48,23 @@ class IndexTest extends TestCase
      */
     public function testDefaultOrdering()
     {
-        // Make two posts
-        $secondPost = $this->resources->post();
-        $firstPost  = $this->resources->post();
+        // Make three posts
+        $first  = $this->resources->post();
+        $second = $this->resources->post();
+        $third  = $this->resources->post();
 
-        // Set first post's publish_at value to be in the past
-        $firstPost->publish_at = new \DateTime('-1 week');
+        // Modify publish_at values so $third is most recent and $first last.
+        $second->publish_at = new \DateTime('-1 week');
+        $first->publish_at  = new \DateTime('-2 weeks');
         $this->resources->flush();
 
-        // Now grab the index
+        // Retrieve the posts
         $result = $this->writedown->api()->post()->index();
 
-        // And check the order
-        $this->assertEquals($firstPost->id, $result[0]->id);
-        $this->assertEquals($secondPost->id, $result[1]->id);
+        // Check the order is correct
+        $this->assertEquals($third->id, $result[0]->id);
+        $this->assertEquals($second->id, $result[1]->id);
+        $this->assertEquals($first->id, $result[2]->id);
     }
 
     /**
@@ -75,8 +78,8 @@ class IndexTest extends TestCase
         $noPublishAt     = $this->resources->post();
         $publishInFuture = $this->resources->post();
 
-        $noPublishAt->publish_at = null;
-        $publishInFuture         = new \DateTime('+1 week');
+        $noPublishAt->publish_at     = null;
+        $publishInFuture->publish_at = new \DateTime('+1 week');
         $this->resources->flush();
 
         // Grab the index
