@@ -9,12 +9,12 @@ class Post extends TestCase
     public function testTimestampsSetOnPersist()
     {
         // Create a new post
-        $createdAt = new \DateTime('now');
-        $post      = $this->resources->post();
+        $post = $this->resources->post();
 
         // Make sure dates have been set correctly
-        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $post->created_at->format('Y-m-d H:i:s'));
-        $this->assertEquals($createdAt->format('Y-m-d H:i:s'), $post->updated_at->format('Y-m-d H:i:s'));
+        $this->assertNotNull($post->created_at);
+        $this->assertNotNull($post->updated_at);
+        $this->assertEquals($post->created_at->format('Y-m-d H:i:s'), $post->updated_at->format('Y-m-d H:i:s'));
     }
 
     public function testTimestampsOnUpdate()
