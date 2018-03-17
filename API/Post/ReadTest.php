@@ -17,4 +17,13 @@ class ReadTest extends TestCase
         // Check it
         $this->assertEquals($post->id, $result->id);
     }
+
+    public function testPostNotFound()
+    {
+        // Attempt to retrieve a non-existent post
+        $result = $this->writedown->api()->post()->read(mt_rand(1000, 9999));
+
+        // It should be null
+        $this->assertNull($result);
+    }
 }
