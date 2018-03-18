@@ -30,10 +30,4 @@ class Post extends Base
 
     /** @Column(name="publish_at", type="datetime", nullable=true) */
     protected $publish_at;
-
-    /** @Column(name="created_at", type="datetime") */
-    protected $created_at;
-
-    /** @Column(name="updated_at", type="datetime") */
-    protected $updated_at;
 }

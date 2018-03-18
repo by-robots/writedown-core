@@ -4,6 +4,12 @@ namespace WriteDown\Entities;
 
 class Base
 {
+    /** @Column(name="created_at", type="datetime") */
+    protected $created_at;
+
+    /** @Column(name="updated_at", type="datetime") */
+    protected $updated_at;
+
     /**
      * Get a property if it's accessible. Additionally, if a getter has been
      * manually specified uses that instead.
