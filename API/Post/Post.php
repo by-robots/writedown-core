@@ -49,7 +49,7 @@ class Post
      *
      * @param int $postID
      *
-     * @return \WriteDown\Entities\Post
+     * @return array
      */
     public function read($postID)
     {
@@ -64,7 +64,7 @@ class Post
      *
      * @param array $attributes
      *
-     * @return \WriteDown\Entities\Post
+     * @return array
      */
     public function create(array $attributes)
     {
