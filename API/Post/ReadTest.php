@@ -24,6 +24,7 @@ class ReadTest extends TestCase
         $result = $this->writedown->api()->post()->read(mt_rand(1000, 9999));
 
         // It should be null
-        $this->assertNull($result);
+        $this->assertFalse($result['success']);
+        $this->assertNull($result['data']);
     }
 }

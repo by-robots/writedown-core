@@ -2,10 +2,9 @@
 
 namespace Tests;
 
-use Mockery;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
-abstract class TestCase extends MockeryTestCase
+abstract class TestCase extends BaseTestCase
 {
     /**
      * The WriteDown object.
@@ -74,7 +73,6 @@ abstract class TestCase extends MockeryTestCase
     public function tearDown()
     {
         $this->tearDownDatabase();
-        Mockery::close();
         parent::tearDown();
     }
 }

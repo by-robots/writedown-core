@@ -24,8 +24,8 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check that the result contains one entry
-        $this->assertEquals(1, count($result));
-        $this->assertEquals($post->id, $result[0]['data']->id); // Double check the ID. I'd be very confused if this failed, but y'know.
+        $this->assertEquals(1, count($result['data']));
+        $this->assertEquals($post->id, $result['data'][0]->id); // Double check the ID. I'd be very confused if this failed, but y'know.
     }
 
     public function testRetrievesMany()

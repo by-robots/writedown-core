@@ -26,7 +26,7 @@ class CreateTest extends TestCase
         // stored
         $result = $this->writedown->database()
             ->getRepository('WriteDown\Entities\Post')
-            ->findOneBy(['id' => $post->id]);
+            ->findOneBy(['id' => $post['data']->id]);
 
         // Check it
         $this->assertEquals($post['data']->id, $result->id);
