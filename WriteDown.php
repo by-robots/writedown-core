@@ -10,14 +10,14 @@ class WriteDown
     /**
      * The service container.
      *
-     * @var Interop\Container\ContainerInterface
+     * @var \Interop\Container\ContainerInterface
      */
     private $container;
 
     /**
      * The app's router.
      *
-     * @var League\Route\RouteCollectionInterface
+     * @var \League\Route\RouteCollectionInterface
      */
     private $router;
 
@@ -40,7 +40,7 @@ class WriteDown
      * @param array  $args
      *
      * @return mixed
-     * @throws BadMethodCallException
+     * @throws \BadMethodCallException
      */
     public function __call($method, $args)
     {
@@ -54,7 +54,7 @@ class WriteDown
     /**
      * Return the app's container.
      *
-     * @return Interop\Container\ContainerInterface
+     * @return \Interop\Container\ContainerInterface
      */
     public function &getContainer()
     {
@@ -64,7 +64,7 @@ class WriteDown
     /**
      * Return the app's router.
      *
-     * @return League\Route\RouteCollectionInterface
+     * @return \League\Route\RouteCollectionInterface
      */
     public function &getRouter()
     {
@@ -74,7 +74,7 @@ class WriteDown
     /**
      * Get the Request service.
      *
-     * @return Psr\Http\Message\RequestInterface
+     * @return \Psr\Http\Message\RequestInterface
      */
     public function request()
     {
@@ -85,7 +85,7 @@ class WriteDown
     /**
      * Get the Response service.
      *
-     * @return Psr\Http\Message\ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function response()
     {
@@ -96,7 +96,7 @@ class WriteDown
     /**
      * Get the Emitter service.
      *
-     * @return Zend\Diactoros\Response\EmitterInterface
+     * @return \Zend\Diactoros\Response\EmitterInterface
      */
     public function emitter()
     {
@@ -107,7 +107,7 @@ class WriteDown
     /**
      * Get the Entity Manager service.
      *
-     * @return Doctrine\ORM\EntityManagerInterface
+     * @return \Doctrine\ORM\EntityManagerInterface
      */
     public function database()
     {

@@ -10,14 +10,14 @@ class API
     /**
      * The EntityManager object.
      *
-     * @var Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     protected $db;
 
     /**
      * Set-up.
      *
-     * @param Doctrine\ORM\EntityManager $database
+     * @param \Doctrine\ORM\EntityManager $database
      *
      * @return void
      */
@@ -29,7 +29,7 @@ class API
     /**
      * Work with posts.
      *
-     * @return WriteDown\API\Post\Post;
+     * @return \WriteDown\API\Post\Post;
      */
     public function post()
     {

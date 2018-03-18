@@ -10,7 +10,7 @@ class Doctrine implements Driver
     /**
      * The database manager.
      *
-     * Doctrine\ORM\EntityManager
+     * \Doctrine\ORM\EntityManager
      */
     private $manager;
 
@@ -31,7 +31,7 @@ class Doctrine implements Driver
     /**
      * Return the manager.
      *
-     * @return Doctrine\ORM\EntityManagerInterface
+     * @return \Doctrine\ORM\EntityManagerInterface
      */
     public function getManager()
     {

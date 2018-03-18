@@ -10,7 +10,7 @@ class Post
     /**
      * The EntityManager.
      *
-     * @var Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     private $db;
 
@@ -40,7 +40,7 @@ class Post
      *
      * @param int $postID
      *
-     * @return WriteDown\Entities\Post
+     * @return \WriteDown\Entities\Post
      */
     public function read($postID)
     {
@@ -53,7 +53,7 @@ class Post
      *
      * @param array $attributes
      *
-     * @return WriteDown\Entities\Post
+     * @return \WriteDown\Entities\Post
      */
     public function create(array $attributes)
     {

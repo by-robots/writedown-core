@@ -7,7 +7,7 @@ interface Driver
     /**
      * Return the manager.
      *
-     * @return Doctrine\ORM\EntityManagerInterface
+     * @return \Doctrine\ORM\EntityManagerInterface
      */
     public function getManager();
 }
