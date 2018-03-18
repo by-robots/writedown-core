@@ -18,7 +18,7 @@ class Doctrine implements ConfigBuilder
                 break;
 
             default:
-                throw new \UnknownDatabaseDriverException('The provided database driver is not supported.');
+                throw new \Exception('The provided database driver is not supported.');
         }
 
         return [
