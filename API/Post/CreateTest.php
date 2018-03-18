@@ -20,7 +20,7 @@ class CreateTest extends TestCase
         ]);
 
         // Check we have something
-        $this->assertNotNull($post);
+        $this->assertTrue($post['success']);
 
         // Now attempt to retrieve it from the database to make sure it's been
         // stored
@@ -29,6 +29,6 @@ class CreateTest extends TestCase
             ->findOneBy(['id' => $post->id]);
 
         // Check it
-        $this->assertEquals($post->id, $result->id);
+        $this->assertEquals($post['data']->id, $result->id);
     }
 }

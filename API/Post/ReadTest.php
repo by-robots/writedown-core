@@ -15,7 +15,7 @@ class ReadTest extends TestCase
         $result = $this->writedown->api()->post()->read($post->id);
 
         // Check it
-        $this->assertEquals($post->id, $result->id);
+        $this->assertEquals($post->id, $result['data']->id);
     }
 
     public function testPostNotFound()

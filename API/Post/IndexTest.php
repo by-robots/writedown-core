@@ -12,7 +12,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check that an empty array is returned
-        $this->assertEquals([], $result);
+        $this->assertEquals(['success' => true, 'data' => []], $result);
     }
 
     public function testRetrievesOne()
@@ -25,7 +25,7 @@ class IndexTest extends TestCase
 
         // Check that the result contains one entry
         $this->assertEquals(1, count($result));
-        $this->assertEquals($post->id, $result[0]->id); // Double check the ID. I'd be very confused if this failed, but y'know.
+        $this->assertEquals($post->id, $result[0]['data']->id); // Double check the ID. I'd be very confused if this failed, but y'know.
     }
 
     public function testRetrievesMany()
@@ -39,7 +39,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check that the result contains one entry
-        $this->assertEquals($postCount, count($result));
+        $this->assertEquals($postCount, count($result['data']));
     }
 
     /**
@@ -62,9 +62,9 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check the order is correct
-        $this->assertEquals($third->id, $result[0]->id);
-        $this->assertEquals($second->id, $result[1]->id);
-        $this->assertEquals($first->id, $result[2]->id);
+        $this->assertEquals($third->id, $result['data'][0]->id);
+        $this->assertEquals($second->id, $result['data'][1]->id);
+        $this->assertEquals($first->id, $result['data'][2]->id);
     }
 
     /**
@@ -86,6 +86,6 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // It should be empty
-        $this->assertEquals(0, count($result));
+        $this->assertEquals(0, count($result['data']));
     }
 }
