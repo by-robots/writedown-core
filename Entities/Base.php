@@ -20,35 +20,35 @@ class Base
      */
     public function __get($property)
     {
-       $methodName = "get" . ucfirst($property);
+        $methodName = "get" . ucfirst($property);
 
-       if (method_exists($this, $methodName)) {
-          return call_user_func(array($this, $methodName));
-       } elseif (isset($this->{$property})) {
-           return $this->{$property};
-       }
+        if (method_exists($this, $methodName)) {
+            return call_user_func(array($this, $methodName));
+        } elseif (isset($this->{$property})) {
+            return $this->{$property};
+        }
 
-       return null;
-   }
+        return null;
+    }
 
-   /**
-    * Attempt to set a property. Uses an existing setter if available.
-    *
-    * @param string $property
-    * @param mixed  $value
-    *
-    * @return void
-    */
-   public function __set($property, $value)
-   {
-       $methodName = "set" . ucfirst($property);
+    /**
+     * Attempt to set a property. Uses an existing setter if available.
+     *
+     * @param string $property
+     * @param mixed  $value
+     *
+     * @return void
+     */
+    public function __set($property, $value)
+    {
+        $methodName = "set" . ucfirst($property);
 
-       if (method_exists($this, $methodName)) {
-           call_user_func_array(array($this, $methodName), array($value));
-       } else {
-           $this->{$property} = $value;
-       }
-   }
+        if (method_exists($this, $methodName)) {
+            call_user_func_array(array($this, $methodName), array($value));
+        } else {
+            $this->{$property} = $value;
+        }
+    }
 
     /** @PrePersist */
     public function setCreatedAt()
