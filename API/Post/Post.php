@@ -3,6 +3,7 @@
 namespace WriteDown\API\Post;
 
 use Doctrine\ORM\EntityManager;
+use WriteDown\Entities\Post as Entity;
 
 class Post
 {
@@ -45,5 +46,25 @@ class Post
     {
         return $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
+    }
+
+    /**
+     * Create a new post.
+     *
+     * @param array $attributes
+     *
+     * @return WriteDown\Entities\Post
+     */
+    public function create(array $attributes)
+    {
+        // Create the post, loop through the attributes and populate the entity
+        $post = new Entity;
+        foreach ($attributes as $column => $value) {
+            $post->$column = $value;
+        }
+
+        $this->db->persist($post);
+        $this->db->flush();
+        return $post;
     }
 }
