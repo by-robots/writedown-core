@@ -3,6 +3,7 @@
 namespace WriteDown\API\Post;
 
 use Doctrine\ORM\EntityManager;
+use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
 
 class Post
@@ -15,13 +16,21 @@ class Post
     private $db;
 
     /**
+     * Builds API responses.
+     *
+     * @var \WriteDown\API\ResponseBuilder
+     */
+    private $response;
+
+    /**
      * Set-up.
      *
      * @return void
      */
-    public function __construct(EntityManager $db)
+    public function __construct(EntityManager $db, ResponseBuilder $response)
     {
-        $this->db = $db;
+        $this->db       = $db;
+        $this->response = $response;
     }
 
     /**
@@ -32,7 +41,7 @@ class Post
     public function index()
     {
         $posts = $this->db->getRepository('WriteDown\Entities\Post')->findAll();
-        return $posts;
+        return $this->response->build($posts);
     }
 
     /**
@@ -44,8 +53,10 @@ class Post
      */
     public function read($postID)
     {
-        return $this->db->getRepository('WriteDown\Entities\Post')
+        $post = $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
+
+        return $this->response->build($post, !$post ? false : true);
     }
 
     /**
@@ -65,6 +76,6 @@ class Post
 
         $this->db->persist($post);
         $this->db->flush();
-        return $post;
+        return $this->response->build($post);
     }
 }

@@ -12,18 +12,27 @@ class API
      *
      * @var \Doctrine\ORM\EntityManager
      */
-    protected $db;
+    private $db;
+
+    /**
+     * Builds API responses.
+     *
+     * @var \WriteDown\API\ResponseBuilder
+     */
+    private $response;
 
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager $database
+     * @param \Doctrine\ORM\EntityManager    $database
+     * @param \WriteDown\API\ResponseBuilder $response
      *
      * @return void
      */
-    public function __construct(EntityManager $database)
+    public function __construct(EntityManager $database, ResponseBuilder $response)
     {
-        $this->db = $database;
+        $this->db       = $database;
+        $this->response = $response;
     }
 
     /**
@@ -33,6 +42,6 @@ class API
      */
     public function post()
     {
-        return new Post($this->db);
+        return new Post($this->db, $this->response);
     }
 }
