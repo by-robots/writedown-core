@@ -8,6 +8,7 @@ class Doctrine implements ConfigBuilder
      * Generate a database config array based on the environment for Doctrine.
      *
      * @return array
+     * @throws \UnknownDatabaseDriverException
      */
     public function generate()
     {
@@ -15,6 +16,9 @@ class Doctrine implements ConfigBuilder
             case 'sqlite':
                 $driver = 'pdo_sqlite';
                 break;
+
+            default:
+                thrown new \UnknownDatabaseDriverException('The provided database driver is not supported.');
         }
 
         return [
