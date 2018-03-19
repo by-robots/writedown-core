@@ -5,6 +5,7 @@ namespace WriteDown\API\Post;
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
+use WriteDown\Validator\Validator;
 
 class Post
 {
@@ -23,14 +24,22 @@ class Post
     private $response;
 
     /**
+     * Validates data.
+     *
+     * @var \WriteDown\Validator\Validator
+     */
+    private $validator;
+
+    /**
      * Set-up.
      *
      * @return void
      */
-    public function __construct(EntityManager $db, ResponseBuilder $response)
+    public function __construct(EntityManager $db, ResponseBuilder $response, Validator $validator)
     {
-        $this->db       = $db;
-        $this->response = $response;
+        $this->db        = $db;
+        $this->response  = $response;
+        $this->validator = $validator;
     }
 
     /**
@@ -74,6 +83,12 @@ class Post
             $post->$column = $value;
         }
 
+        // Validate it
+        if (!$this->validator->validate($post->rules, $post->validationArray())) {
+            return $this->response->build($this->validator->errors(), false);
+        }
+
+        // Save it
         $this->db->persist($post);
         $this->db->flush();
         return $this->response->build($post);

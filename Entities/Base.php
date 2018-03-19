@@ -50,6 +50,23 @@ class Base
         }
     }
 
+    /**
+     * Build an array of key => value pairs for validation.
+     *
+     * @return array
+     */
+    public function validationArray()
+    {
+        $data = [];
+        foreach ($this->fillable as $column) {
+            if (property_exists($this, $column)) {
+                $data[$column] = $this->$column;
+            }
+        }
+
+        return $data;
+    }
+
     /** @PrePersist */
     public function setCreatedAt()
     {

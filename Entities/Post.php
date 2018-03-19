@@ -10,6 +10,23 @@ namespace WriteDown\Entities;
 class Post extends Base
 {
     /**
+     * Contains the validation rules for the entity.
+     *
+     * @var array
+     */
+    public $rules = [
+        'title' => ['required'],
+        'body'  => ['required'],
+    ];
+
+    /**
+     * Columns that can be set by a user.
+     *
+     * @var array
+     */
+    public $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
+
+    /**
      * @Id
      * @Column(type="integer")
      * @GeneratedValue

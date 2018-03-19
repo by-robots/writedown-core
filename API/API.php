@@ -4,6 +4,7 @@ namespace WriteDown\API;
 
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\Post\Post;
+use WriteDown\Validator\Validator;
 
 class API
 {
@@ -22,17 +23,26 @@ class API
     private $response;
 
     /**
+     * Validates data.
+     *
+     * @var \WriteDown\Validator\Validator
+     */
+    private $validator;
+
+    /**
      * Set-up.
      *
      * @param \Doctrine\ORM\EntityManager    $database
      * @param \WriteDown\API\ResponseBuilder $response
+     * @param \WriteDown\Validator\Validator $validator
      *
      * @return void
      */
-    public function __construct(EntityManager $database, ResponseBuilder $response)
+    public function __construct(EntityManager $database, ResponseBuilder $response, Validator $validator)
     {
-        $this->db       = $database;
-        $this->response = $response;
+        $this->db        = $database;
+        $this->response  = $response;
+        $this->validator = $validator;
     }
 
     /**
@@ -42,6 +52,6 @@ class API
      */
     public function post()
     {
-        return new Post($this->db, $this->response);
+        return new Post($this->db, $this->response, $this->validator);
     }
 }

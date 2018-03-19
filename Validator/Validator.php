@@ -7,6 +7,12 @@ interface Validator
     /**
      * Set rules to validate against.
      *
+     * Format should be as follows:
+     * [
+     *     'column 1' => ['required', 'unique'],
+     *     'column x' => ['numeric'],
+     * ]
+     *
      * @param array $rules
      *
      * @return void
