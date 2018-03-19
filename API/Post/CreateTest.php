@@ -37,25 +37,25 @@ class CreateTest extends TestCase
         $faker = Factory::create();
 
         // Attempt to create a post without a title.
-        $result  = $this->writedown->api()->post()->create([
+        $result = $this->writedown->api()->post()->create([
             'slug' => $faker->slug,
             'body' => $faker->paragraph,
         ]);
 
         // Check the error was as expected
         $this->assertFalse($result['success']);
-        $this->assertObjectHasAttribute('title', $result['data']);
+        $this->assertArrayHasKey('title', $result['data']);
     }
 
     public function testValidationNoBody()
     {
-        $faker   = Factory::create();
-        $result  = $this->writedown->api()->post()->create([
+        $faker  = Factory::create();
+        $result = $this->writedown->api()->post()->create([
             'title' => $faker->sentence,
             'slug'  => $faker->slug,
         ]);
 
         $this->assertFalse($result['success']);
-        $this->assertObjectHasAttribute('body', $result['data']);
+        $this->assertArrayHasKey('body', $result['data']);
     }
 }
