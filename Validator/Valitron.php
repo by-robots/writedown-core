@@ -109,7 +109,7 @@ class Valitron implements Validator
      */
     public function success()
     {
-        if (is_null($this->success)) {
+        if (is_null($this->validator)) {
             throw new \Exception('No validation processed.');
         }
 
@@ -126,7 +126,7 @@ class Valitron implements Validator
      */
     public function errors()
     {
-        if (is_null($this->success)) {
+        if (is_null($this->validator)) {
             throw new \Exception('No validation processed.');
         }
 
