@@ -14,7 +14,7 @@ class Post extends Base
      *
      * @var array
      */
-    public $rules = [
+    protected $rules = [
         'title' => ['required'],
         'body'  => ['required'],
     ];
@@ -24,7 +24,7 @@ class Post extends Base
      *
      * @var array
      */
-    public $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
 
     /**
      * @Id

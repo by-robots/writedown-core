@@ -11,6 +11,20 @@ class Base
     protected $updated_at;
 
     /**
+     * Contains the validation rules for the entity.
+     *
+     * @var array
+     */
+    protected $rules = null;
+
+    /**
+     * Columns that can be set by a user.
+     *
+     * @var array
+     */
+    protected $fillable = null;
+
+    /**
      * Get a property if it's accessible. Additionally, if a getter has been
      * manually specified uses that instead.
      *
@@ -54,9 +68,14 @@ class Base
      * Build an array of key => value pairs for validation.
      *
      * @return array
+     * @throws \Exception
      */
     public function validationArray()
     {
+        if (!is_array($this->fillable)) {
+            throw new \Exception('Fillable columns array not set.');
+        }
+
         $data = [];
         foreach ($this->fillable as $column) {
             if (property_exists($this, $column)) {

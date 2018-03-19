@@ -23,7 +23,7 @@ class Valitron implements Validator
     /**
      * The validator provider.
      *
-     * @var Valitron\Validator
+     * @var \Valitron\Validator
      */
     private $validator;
 
@@ -84,11 +84,11 @@ class Valitron implements Validator
         }
 
         // Check we have both $rules and $data
-        if (!$this->rules) {
+        if (is_null($this->rules)) {
             throw new \Exception('No rules to validate against.');
         }
 
-        if (!$this->data) {
+        if (is_null($this->data)) {
             throw new \Exception('No data to validate.');
         }
 
