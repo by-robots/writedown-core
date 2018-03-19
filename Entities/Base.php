@@ -2,6 +2,10 @@
 
 namespace WriteDown\Entities;
 
+/**
+ * @property array $rules
+ * @property array $fillable
+ */
 class Base
 {
     /** @Column(name="created_at", type="datetime") */
@@ -15,14 +19,14 @@ class Base
      *
      * @var array
      */
-    protected $rules = null;
+    protected $rules = [];
 
     /**
      * Columns that can be set by a user.
      *
      * @var array
      */
-    protected $fillable = null;
+    protected $fillable = [];
 
     /**
      * Get a property if it's accessible. Additionally, if a getter has been
@@ -68,14 +72,9 @@ class Base
      * Build an array of key => value pairs for validation.
      *
      * @return array
-     * @throws \Exception
      */
     public function validationArray()
     {
-        if (!is_array($this->fillable)) {
-            throw new \Exception('Fillable columns array not set.');
-        }
-
         $data = [];
         foreach ($this->fillable as $column) {
             if (property_exists($this, $column)) {

@@ -28,6 +28,13 @@ class Valitron implements Validator
     private $validator;
 
     /**
+     * When a validation has occoured this will contain the result.
+     *
+     * @var boolean
+     */
+    private $success = null;
+
+    /**
      * Set rules to validate against.
      *
      * Format should be as follows:
@@ -70,7 +77,6 @@ class Valitron implements Validator
      * @param array $data
      *
      * @return bool
-     * @throws \Exception
      */
     public function validate($rules = null, $data = null)
     {
@@ -83,22 +89,14 @@ class Valitron implements Validator
             $this->data = $data;
         }
 
-        // Check we have both $rules and $data
-        if (is_null($this->rules)) {
-            throw new \Exception('No rules to validate against.');
-        }
-
-        if (is_null($this->data)) {
-            throw new \Exception('No data to validate.');
-        }
-
         // Run the validation
         $this->validator = new Provider($this->data);
         foreach ($this->generateRulesFromProvided() as $rule => $columns) {
             $this->validator->rule($rule, $columns);
         }
 
-        return $this->validator->validate() ? true : false;
+        $this->success = $this->validator->validate();
+        return $this->success();
     }
 
     /**
@@ -111,11 +109,11 @@ class Valitron implements Validator
      */
     public function success()
     {
-        if (!$this->validator) {
+        if (is_null($this->success)) {
             throw new \Exception('No validation processed.');
         }
 
-        return count($this->validator->errors()) < 1 ? true : false;
+        return $this->success;
     }
 
     /**
@@ -128,12 +126,8 @@ class Valitron implements Validator
      */
     public function errors()
     {
-        if (!$this->validator) {
+        if (is_null($this->success)) {
             throw new \Exception('No validation processed.');
-        }
-
-        if (count($this->validator->errors()) < 1) {
-            throw new \Exception('Validation passed, no errors.');
         }
 
         return $this->validator->errors();

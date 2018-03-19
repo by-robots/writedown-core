@@ -58,8 +58,6 @@ interface Validator
     /**
      * Retrieve errors.
      *
-     * Throws an exception when no errors are available.
-     *
      * @return array
      * @throws \Exception
      */
