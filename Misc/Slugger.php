@@ -82,4 +82,12 @@ class Slugger extends TestCase
 
         $this->assertEquals($expected, $this->slugger->slug($input));
     }
+
+    public function testCasing()
+    {
+        $input    = 'Word';
+        $expected = 'word';
+
+        $this->assertEquals($expected, $this->slugger->slug($input));
+    }
 }
