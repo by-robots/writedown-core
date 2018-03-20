@@ -48,4 +48,16 @@ class Post extends TestCase
 
         $this->assertNotNull($post->slug);
     }
+
+    public function testSLugNoOverwritten()
+    {
+        $slug        = 'ZG9lc24ndCBsb29rIGxpa2UgYW55dGhpbmcgdG8gbWU';
+        $post        = new Entity;
+        $post->title = $this->faker->sentence;
+        $post->body  = $this->faker->paragraph;
+        $post->slug  = $slug;
+        $this->writedown->database()->persist($post);
+
+        $this->assertEquals($slug, $post->slug);
+    }
 }
