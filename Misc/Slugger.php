@@ -2,10 +2,32 @@
 
 namespace WriteDown\Misc;
 
-/**
- * Takes a string and converts it into an URL friendly slug.
- */
 class Slugger
 {
-    //
+    /**
+     * Take a string and convert it to a URL friendly slug.
+     *
+     * @param $string $input
+     *
+     * @return string
+     */
+    public function slug($input)
+    {
+        // Remove punctuation, but leave hyphens
+        $input = preg_replace('/[^\w\s-]/', '', $input);
+
+        // Change underscores and spaces to hyphens
+        $input = str_replace([' ', '_'], '-', $input);
+
+        // Remove double hyphens
+        while (strpos($input, '--') !== false) {
+            $input = str_replace('--', '-', $input);
+        }
+
+        // Remove leading and trailing hyphens
+        $input = ltrim($input, '-');
+        $input = rtrim($input, '-');
+
+        return $input;
+    }
 }
