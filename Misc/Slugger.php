@@ -47,7 +47,29 @@ class Slugger extends TestCase
 
     public function testPunctuation()
     {
-        $input    = 'word!@£$%^&*()_-+={[}]:;"\'|\?/>.<,~`';
+        $input    = 'word±#!@£$%^&*(){}[]_-+="\'|\:;?/>.<,~`';
+        $expected = 'word';
+
+        $this->assertEquals($expected, $this->slugger->slug($input));
+    }
+
+    public function testDigits()
+    {
+        $input = '123word';
+        $this->assertEquals($input, $this->slugger->slug($input));
+    }
+
+    public function testTrailingHyphen()
+    {
+        $input    = 'word-';
+        $expected = 'word';
+
+        $this->assertEquals($expected, $this->slugger->slug($input));
+    }
+
+    public function testLeadingHyphen()
+    {
+        $input    = '-word';
         $expected = 'word';
 
         $this->assertEquals($expected, $this->slugger->slug($input));
