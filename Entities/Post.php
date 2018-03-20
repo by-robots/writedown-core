@@ -2,6 +2,8 @@
 
 namespace WriteDown\Entities;
 
+use WriteDown\Misc\Slugger;
+
 /**
  * @Entity(repositoryClass="WriteDown\Repositories\Post")
  * @Table(name="posts")
@@ -43,5 +45,21 @@ class Post extends Base
             'title' => ['required'],
             'body'  => ['required'],
         ];
+    }
+
+    /**
+     * Before the post is persisted set the slug assuming it's not been manually
+     * specified.
+     *
+     * @PrePersist
+     */
+    public function setSlug()
+    {
+        if (!empty($this->slug)) {
+            return;
+        }
+
+        $slugger = new Slugger;
+        $this->slug = $slugger->slug($this->title);
     }
 }
