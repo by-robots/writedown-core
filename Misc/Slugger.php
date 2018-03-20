@@ -53,6 +53,14 @@ class Slugger extends TestCase
         $this->assertEquals($expected, $this->slugger->slug($input));
     }
 
+    public function testLotsOfHyphens()
+    {
+        $input    = 'two-------words';
+        $expected = 'two-words';
+
+        $this->assertEquals($expected, $this->slugger->slug($input));
+    }
+
     public function testDigits()
     {
         $input = '123word';
