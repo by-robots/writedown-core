@@ -3,6 +3,7 @@
 namespace Tests\Entities;
 
 use Tests\TestCase;
+use WriteDown\Entities\Post as Entity;
 
 class Post extends TestCase
 {
@@ -36,5 +37,15 @@ class Post extends TestCase
             $post->created_at->format('Y-m-d H:i:s'),
             $post->updated_at->format('Y-m-d H:i:s')
         );
+    }
+
+    public function testSlugGenerated()
+    {
+        $post        = new Entity;
+        $post->title = $this->faker->sentence;
+        $post->body  = $this->faker->paragraph;
+        $this->writedown->database()->persist($post);
+
+        $this->assertNotNull($post->slug);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Faker\Factory;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -11,14 +12,21 @@ abstract class TestCase extends BaseTestCase
      *
      * @var WriteDown\WriteDown
      */
-    protected $writedown = null;
+    protected $writedown;
 
     /**
      * Generate test entities.
      *
      * @var Tests\CreatesResources
      */
-    protected $resources = null;
+    protected $resources;
+
+    /**
+     * Generate test data.
+     *
+     * @var Faker\Factory
+     */
+    protected $faker;
 
     /**
      * Make WriteDown.
@@ -62,7 +70,9 @@ abstract class TestCase extends BaseTestCase
     {
         $this->makeWritedown();
         $this->setUpDatabase();
-        $this->resources = new CreatesResources($this->writedown->database());
+
+        $this->faker     = Factory::create();
+        $this->resources = new CreatesResources($this->writedown->database(), $this->faker);
     }
 
     /**

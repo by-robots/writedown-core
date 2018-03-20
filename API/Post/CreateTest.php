@@ -2,7 +2,6 @@
 
 namespace Tests\API\Post;
 
-use Faker\Factory;
 use Tests\TestCase;
 use WriteDown\Entities\Post;
 
@@ -11,12 +10,11 @@ class CreateTest extends TestCase
     public function testCreated()
     {
         // Create a post
-        $faker = Factory::create();
-        $post  = $this->writedown->api()->post()->create([
-            'title'      => $faker->sentence,
-            'slug'       => $faker->slug,
-            'body'       => $faker->paragraph,
+        $post = $this->writedown->api()->post()->create([
+            'body'       => $this->faker->paragraph,
             'publish_at' => new \DateTime('now'),
+            'slug'       => $this->faker->slug,
+            'title'      => $this->faker->sentence,
         ]);
 
         // Check we have something
@@ -34,12 +32,10 @@ class CreateTest extends TestCase
 
     public function testValidationNoTitle()
     {
-        $faker = Factory::create();
-
         // Attempt to create a post without a title.
         $result = $this->writedown->api()->post()->create([
-            'slug' => $faker->slug,
-            'body' => $faker->paragraph,
+            'body' => $this->faker->paragraph,
+            'slug' => $this->faker->slug,
         ]);
 
         // Check the error was as expected
@@ -49,10 +45,9 @@ class CreateTest extends TestCase
 
     public function testValidationNoBody()
     {
-        $faker  = Factory::create();
         $result = $this->writedown->api()->post()->create([
-            'title' => $faker->sentence,
-            'slug'  => $faker->slug,
+            'slug'  => $this->faker->slug,
+            'title' => $this->faker->sentence,
         ]);
 
         $this->assertFalse($result['success']);

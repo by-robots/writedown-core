@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Doctrine\ORM\EntityManager;
-use Faker\Factory;
+use Faker\Generator;
 use WriteDown\Entities\Post;
 
 class CreatesResources
@@ -11,26 +11,29 @@ class CreatesResources
     /**
      * Fake data generator.
      *
-     * @var Faker\Factory
+     * @var \Faker\Generator
      */
     public $faker;
 
     /**
      * The database.
      *
-     * @var Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     private $db;
 
     /**
      * Set-up.
      *
+     * @param \Doctrine\ORM\EntityManager $db
+     * @param \Faker\Factory              $faker;
+     *
      * @return void
      */
-    public function __construct(EntityManager $db)
+    public function __construct(EntityManager $db, Generator $faker)
     {
         $this->db    = $db;
-        $this->faker = Factory::create();
+        $this->faker = $faker;
     }
 
     /**
@@ -58,7 +61,7 @@ class CreatesResources
     /**
      * Create a test post.
      *
-     * @return WriteDown\Entities\Post
+     * @return \WriteDown\Entities\Post
      */
     public function post()
     {
