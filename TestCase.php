@@ -10,21 +10,21 @@ abstract class TestCase extends BaseTestCase
     /**
      * The WriteDown object.
      *
-     * @var WriteDown\WriteDown
+     * @var \WriteDown\WriteDown
      */
     protected $writedown;
 
     /**
      * Generate test entities.
      *
-     * @var Tests\CreatesResources
+     * @var \Tests\CreatesResources
      */
     protected $resources;
 
     /**
      * Generate test data.
      *
-     * @var Faker\Factory
+     * @var \Faker\Generator
      */
     protected $faker;
 
