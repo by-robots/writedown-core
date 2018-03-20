@@ -28,6 +28,7 @@ class Slugger
         $input = ltrim($input, '-');
         $input = rtrim($input, '-');
 
-        return $input;
+        // Return the generated slug with all lower case letters
+        return strtolower($input);
     }
 }

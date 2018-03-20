@@ -53,13 +53,11 @@ class Post extends Base
      *
      * @PrePersist
      */
-    public function setSlug()
+    public function generateSlug()
     {
-        if (!empty($this->slug)) {
-            return;
+        if (empty($this->slug)) {
+            $slugger    = new Slugger;
+            $this->slug = $slugger->slug($this->title);
         }
-
-        $slugger = new Slugger;
-        $this->slug = $slugger->slug($this->title);
     }
 }
