@@ -107,6 +107,10 @@ class Post
         $post = $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
 
+        if (!$post) {
+            return $this->response->build(['Not found.'], false);
+        }
+
         foreach ($attributes as $column => $value) {
             $post->$column = $value;
         }
