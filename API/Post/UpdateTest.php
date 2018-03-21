@@ -23,4 +23,16 @@ class UpdateTest extends TestCase
         $this->assertTrue($result['success']);
         $this->assertEquals($newTitle, $post->title);
     }
+
+    public function testPostMissing()
+    {
+        // Attempt to update a post that doesn't exist
+        $result = $this->writedown->api()->post()->update(mt_rand(1000, 9999), [
+            'title' => $this->faker->sentence,
+        ]);
+
+        // Check the result
+        $this->assertFalse($result['success']);
+        $this->assertEquals('Not found.', $result['data']);
+    }
 }
