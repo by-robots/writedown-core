@@ -16,6 +16,9 @@ class ConfigBuilder extends TestCase
      */
     private $oldDriver = null;
 
+    /**
+     * When provided with an invalid driver and exception should be thrown.
+     */
     public function testHandlesBadDriver()
     {
         $configBuilder   = new Doctrine;

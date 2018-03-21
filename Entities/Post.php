@@ -7,6 +7,10 @@ use WriteDown\Entities\Post as Entity;
 
 class Post extends TestCase
 {
+    /**
+     * created_at and updated_at should both be set before the entity is
+     * persisted.
+     */
     public function testTimestampsSetOnPersist()
     {
         // Create a new post
@@ -21,6 +25,9 @@ class Post extends TestCase
         );
     }
 
+    /**
+     * The updated_at timestamp should be updated when the entity is updated.
+     */
     public function testTimestampsOnUpdate()
     {
         // Create a new post

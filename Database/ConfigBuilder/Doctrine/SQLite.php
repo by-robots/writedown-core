@@ -9,8 +9,6 @@ class SQLite extends TestCase
 {
     /**
      * Tests the config is generated from environment variables as expected.
-     *
-     * @return void
      */
     public function testGeneratesConfig()
     {

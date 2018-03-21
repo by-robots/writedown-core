@@ -6,6 +6,10 @@ use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
+    /**
+     * When there are no posts an empty array should be returned and success
+     * should be indicated.
+     */
     public function testNoPosts()
     {
         // Request posts
@@ -15,6 +19,10 @@ class IndexTest extends TestCase
         $this->assertEquals(['success' => true, 'data' => []], $result);
     }
 
+    /**
+     * When only one post is available it should still be returned in
+     * an array.
+     */
     public function testRetrievesOne()
     {
         // Create one post
@@ -28,6 +36,9 @@ class IndexTest extends TestCase
         $this->assertEquals($post->id, $result['data'][0]->id); // Double check the ID. I'd be very confused if this failed, but y'know.
     }
 
+    /**
+     * When there is more than one post they should be returned in an array.
+     */
     public function testRetrievesMany()
     {
         $postCount = 5;

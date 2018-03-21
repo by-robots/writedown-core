@@ -7,6 +7,9 @@ use WriteDown\Entities\Post;
 
 class CreateTest extends TestCase
 {
+    /**
+     * Tests that a post can be created when the data is valid.
+     */
     public function testCreated()
     {
         // Create a post
@@ -30,6 +33,9 @@ class CreateTest extends TestCase
         $this->assertEquals($post['data']->id, $result->id);
     }
 
+    /**
+     * Tests that a post can't be created without a title.
+     */
     public function testValidationNoTitle()
     {
         // Attempt to create a post without a title.
@@ -43,6 +49,9 @@ class CreateTest extends TestCase
         $this->assertArrayHasKey('title', $result['data']);
     }
 
+    /**
+     * Test a post can not be created with no body content.
+     */
     public function testValidationNoBody()
     {
         $result = $this->writedown->api()->post()->create([
@@ -54,6 +63,9 @@ class CreateTest extends TestCase
         $this->assertArrayHasKey('body', $result['data']);
     }
 
+    /**
+     * Test columns that aren't marked as fillable can't be populated.
+     */
     public function testOnlyFillable()
     {
         $result = $this->writedown->api()->post()->create([
