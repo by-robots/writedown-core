@@ -107,14 +107,17 @@ class Post
         $post = $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
 
+        // Check the post exists
         if (!$post) {
             return $this->response->build(['Not found.'], false);
         }
 
+        // Populate entity attributes
         foreach ($attributes as $column => $value) {
             $post->$column = $value;
         }
 
+        // Commit to the database and continue
         $this->db->flush();
         return $this->response->build($post);
     }
