@@ -97,7 +97,9 @@ class Post implements EndpointInterface
         } else {
             // A slug has been manually set so check it's unique
             if (!$this->slugIsUnique($post->slug)) {
-                return $this->response->build(['Duplicate slug.'], false);
+                return $this->response->build([
+                    'slug' => 'The slug value is not unique.'
+                ], false);
             }
         }
 
