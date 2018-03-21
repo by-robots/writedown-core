@@ -25,10 +25,8 @@ class HTTPServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->add(
-            'Psr\Http\Message\ResponseInterface',
-            Response::class
-        );
+        $this->getContainer()
+            ->add('Psr\Http\Message\ResponseInterface', Response::class);
 
         $this->getContainer()->add('Psr\Http\Message\RequestInterface', function() {
             return ServerRequestFactory::fromGlobals(
@@ -36,9 +34,7 @@ class HTTPServiceProvider extends AbstractServiceProvider
             );
         });
 
-        $this->getContainer()->add(
-            'Zend\Diactoros\Response\EmitterInterface',
-            SapiEmitter::class
-        );
+        $this->getContainer()
+            ->add('Zend\Diactoros\Response\EmitterInterface', SapiEmitter::class);
     }
 }

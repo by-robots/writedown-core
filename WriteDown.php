@@ -33,25 +33,6 @@ class WriteDown
     }
 
     /**
-     * When no WriteDown method is matched check to see if the container has an
-     * item of the same name, and return that.
-     *
-     * @param string $method
-     * @param array  $args
-     *
-     * @return mixed
-     * @throws \BadMethodCallException
-     */
-    public function __call($method, $args)
-    {
-        if ($this->container->has($method)) {
-            return $this->getContainer()->get($method);
-        }
-
-        throw new \BadMethodCallException("Method $method is not a valid method.");
-    }
-
-    /**
      * Return the app's container.
      *
      * @return \Interop\Container\ContainerInterface
@@ -124,6 +105,17 @@ class WriteDown
     {
         return $this->getContainer()
             ->get('WriteDown\API\APIInterface');
+    }
+
+    /**
+     * Get the Markdown converter.
+     *
+     * @return \WriteDown\Markdown\MarkdownInterface
+     */
+    public function markdown()
+    {
+        return $this->getContainer()
+            ->get('WriteDown\Markdown\MarkdownInterface');
     }
 
     /**

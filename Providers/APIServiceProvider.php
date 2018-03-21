@@ -4,6 +4,7 @@ namespace WriteDown\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use WriteDown\API\ResponseBuilder;
+use WriteDown\Markdown\Markdown;
 use WriteDown\Validator\Valitron;
 
 class APIServiceProvider extends AbstractServiceProvider
@@ -16,6 +17,7 @@ class APIServiceProvider extends AbstractServiceProvider
     protected $provides = [
         'WriteDown\API\APIInterface',
         'WriteDown\API\ResponseBuilder',
+        'WriteDown\Markdown\MarkdownInterface',
         'WriteDown\Validator\Validator',
     ];
 
@@ -24,13 +26,19 @@ class APIServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->add('WriteDown\API\APIInterface', 'WriteDown\API\API')
+        $this->getContainer()
+            ->add('WriteDown\API\APIInterface', 'WriteDown\API\API')
             ->withArgument('Doctrine\ORM\EntityManagerInterface')
             ->withArgument('WriteDown\API\ResponseBuilder')
             ->withArgument('WriteDown\Validator\Validator');
 
-        $this->getContainer()->add('WriteDown\API\ResponseBuilder', ResponseBuilder::class);
+        $this->getContainer()
+            ->add('WriteDown\API\ResponseBuilder', ResponseBuilder::class);
 
-        $this->getContainer()->add('WriteDown\Validator\Validator', Valitron::class);
+        $this->getContainer()
+            ->add('WriteDown\Markdown\MarkdownInterface', Markdown::class);
+
+        $this->getContainer()
+            ->add('WriteDown\Validator\Validator', Valitron::class);
     }
 }
