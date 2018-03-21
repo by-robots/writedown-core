@@ -5,6 +5,7 @@ namespace Tests;
 use Doctrine\ORM\EntityManager;
 use Faker\Generator;
 use WriteDown\Entities\Post;
+use WriteDown\Entities\User;
 
 class CreatesResources
 {
@@ -75,5 +76,22 @@ class CreatesResources
         $this->flush();
 
         return $post;
+    }
+
+    /**
+     * Create a test user.
+     *
+     * @return \WriteDown\Entities\User
+     */
+    public function user()
+    {
+        $user = new User;
+
+        $user->email    = $this->faker->email;
+        $user->password = password_hash($this->faker->word, PASSWORD_DEFAULT);
+        $this->persist($user);
+        $this->flush();
+
+        return $user;
     }
 }
