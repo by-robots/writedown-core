@@ -33,6 +33,6 @@ class UpdateTest extends TestCase
 
         // Check the result
         $this->assertFalse($result['success']);
-        $this->assertEquals('Not found.', $result['data']);
+        $this->assertEquals(['Not found.'], $result['data']);
     }
 }
