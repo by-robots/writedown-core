@@ -82,11 +82,11 @@ class Valitron implements Validator
     {
         // If $rules or $data is provided here then squirrel it away
         if (!is_null($rules)) {
-            $this->rules = $rules;
+            $this->setRules($rules);
         }
 
         if (!is_null($data)) {
-            $this->data = $data;
+            $this->setData($data);
         }
 
         // Run the validation
