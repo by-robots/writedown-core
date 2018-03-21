@@ -129,4 +129,26 @@ class Post
         $this->db->flush();
         return $this->response->build($post);
     }
+
+    /**
+     * Delete a post.
+     *
+     * @param int $postID
+     *
+     * @return array
+     */
+    public function delete($postID)
+    {
+        $post = $this->db->getRepository('WriteDown\Entities\Post')
+            ->findOneBy(['id' => $postID]);
+
+        // Check the post exists
+        if (!$post) {
+            return $this->response->build(['Not found.'], false);
+        }
+
+        $this->db->remove($post);
+        $this->db->flush();
+        return $this->response->build([]);
+    }
 }
