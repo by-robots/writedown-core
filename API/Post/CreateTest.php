@@ -76,4 +76,44 @@ class CreateTest extends TestCase
 
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
+
+    /**
+     * It must not be possible to create a post with a slug that's already in
+     * use. As such, the database will prevent this with a unique key but
+     * WriteDown should handle it elegantly.
+     */
+    public function testCantDuplicateSlugManually()
+    {
+        // Create a post
+        $post = $this->resources->post();
+
+        // Now try to create another post with the same slug
+        $result = $this->writedown->api()->post()->create([
+            'title' => $this->faker->sentence,
+            'body'  => $this->faker->paragraph,
+            'slug'  => $post->slug,
+        ]);
+
+        // Check that was rejected
+        $this->assertFalse($result['success']);
+        $this->assertEquals(['Duplicate slug.'], $result['data']);
+    }
+
+    /**
+     * A slug must not be duplicated when it's automatically generated.
+     */
+    public function testSlugDuplicationOnGeneration()
+    {
+        // Create a post
+        $post = $this->resources->post();
+
+        // Now try to create another post with the same title.
+        $result = $this->writedown->api()->post()->create([
+            'title' => $post->title,
+            'body'  => $this->faker->paragraph,
+        ]);
+
+        // Check the slugs are different
+        $this->assertNotEquals($result['data']->slug, $post->slug);
+    }
 }

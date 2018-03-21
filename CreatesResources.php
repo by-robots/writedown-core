@@ -69,7 +69,6 @@ class CreatesResources
         $post = new Post;
 
         $post->title      = $this->faker->sentence;
-        $post->slug       = $this->faker->slug;
         $post->body       = $this->faker->paragraph;
         $post->publish_at = new \DateTime('now');
         $this->persist($post);
