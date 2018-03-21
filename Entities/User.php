@@ -17,10 +17,10 @@ class User extends Base
     protected $id;
 
     /** @Column(type="string", unique=true) */
-    protected $email;
+    public $email;
 
     /** @Column(type="text") */
-    protected $password;
+    public $password;
 
     /**
      * Contains the validation rules for the entity.

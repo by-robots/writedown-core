@@ -179,12 +179,9 @@ class Post implements EndpointInterface
         $index   = 0;
 
         do {
-            // Generate a slug of the title
             $slug = $slugger->slug($title);
             $index++;
 
-            // If $index != 0 then this sin't the first attempt, so append it
-            // and check again
             if ($index > 1) {
                 $slug .= '-' . $index;
             }
@@ -202,13 +199,7 @@ class Post implements EndpointInterface
      */
     public function slugIsUnique($slug)
     {
-        $matches = $this->db->getRepository('WriteDown\Entities\Post')
+        return !$this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['slug' => $slug]) ? true : false;
-
-        if (!$matches) {
-            return true;
-        }
-
-        return false;
     }
 }

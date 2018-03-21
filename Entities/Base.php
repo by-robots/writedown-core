@@ -50,25 +50,6 @@ class Base
     }
 
     /**
-     * Attempt to set a property. Uses an existing setter if available.
-     *
-     * @param string $property
-     * @param mixed  $value
-     *
-     * @return void
-     */
-    public function __set($property, $value)
-    {
-        $methodName = "set" . ucfirst($property);
-
-        if (method_exists($this, $methodName)) {
-            call_user_func_array(array($this, $methodName), array($value));
-        } else {
-            $this->{$property} = $value;
-        }
-    }
-
-    /**
      * Build an array of key => value pairs for validation.
      *
      * @return array

@@ -17,19 +17,19 @@ class Post extends Base
     protected $id;
 
     /** @Column(type="string") */
-    protected $title;
+    public $title;
 
     /** @Column(type="text", unique=true) */
-    protected $slug;
+    public $slug;
 
     /** @Column(type="text", nullable=true) */
-    protected $excerpt;
+    public $excerpt;
 
     /** @Column(type="text") */
-    protected $body;
+    public $body;
 
     /** @Column(name="publish_at", type="datetime", nullable=true) */
-    protected $publish_at;
+    public $publish_at;
 
     /**
      * Contains the validation rules for the entity.
