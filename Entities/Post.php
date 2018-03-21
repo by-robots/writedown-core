@@ -34,18 +34,21 @@ class Post extends Base
     protected $publish_at;
 
     /**
-     * Set the validation fillable columns and validation rules for this entity.
+     * Contains the validation rules for the entity.
      *
-     * @return void
+     * @var array
      */
-    public function __construct()
-    {
-        $this->fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
-        $this->rules    = [
-            'title' => ['required'],
-            'body'  => ['required'],
-        ];
-    }
+    protected $rules = [
+        'title' => ['required'],
+        'body'  => ['required'],
+    ];
+
+    /**
+     * Columns that can be set by a user.
+     *
+     * @var array
+     */
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
 
     /**
      * Before the post is persisted set the slug assuming it's not been manually

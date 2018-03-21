@@ -80,7 +80,9 @@ class Post
         // Create the post, loop through the attributes and populate the entity
         $post = new Entity;
         foreach ($attributes as $column => $value) {
-            $post->$column = $value;
+            if (in_array($column, $post->fillable)) {
+                $post->$column = $value;
+            }
         }
 
         // Validate it
@@ -114,7 +116,9 @@ class Post
 
         // Populate entity attributes
         foreach ($attributes as $column => $value) {
-            $post->$column = $value;
+            if (in_array($column, $post->fillable)) {
+                $post->$column = $value;
+            }
         }
 
         // Commit to the database and continue
