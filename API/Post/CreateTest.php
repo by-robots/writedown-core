@@ -77,6 +77,28 @@ class CreateTest extends TestCase
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
 
+    public function testSlugGenerated()
+    {
+        $result = $this->writedown->api()->post()->create([
+            'title' => $this->faker->sentence,
+            'body'  => $this->faker->paragraph,
+        ]);
+
+        $this->assertNotNull($result['data']->slug);
+    }
+
+    public function testSlugNotOverwritten()
+    {
+        $expected = $this->faker->slug;
+        $result   = $this->writedown->api()->post()->create([
+            'title' => $this->faker->sentence,
+            'body'  => $this->faker->paragraph,
+            'slug'  => $expected,
+        ]);
+
+        $this->assertEquals($expected, $result['data']->slug);
+    }
+
     /**
      * It must not be possible to create a post with a slug that's already in
      * use. As such, the database will prevent this with a unique key but

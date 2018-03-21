@@ -3,7 +3,6 @@
 namespace Tests\Entities;
 
 use Tests\TestCase;
-use WriteDown\Entities\Post as Entity;
 
 class Post extends TestCase
 {
@@ -33,7 +32,7 @@ class Post extends TestCase
         // Create a new post
         $post = $this->resources->post();
         usleep(1100000); // Allow one and a bit seconds to pass so the updated
-                                         // timestamp will be different to created_at.
+        // timestamp will be different to created_at.
 
         // Update it
         $post->title = $this->resources->faker->sentence();
@@ -44,27 +43,5 @@ class Post extends TestCase
             $post->created_at->format('Y-m-d H:i:s'),
             $post->updated_at->format('Y-m-d H:i:s')
         );
-    }
-
-    public function testSlugGenerated()
-    {
-        $post        = new Entity;
-        $post->title = $this->faker->sentence;
-        $post->body  = $this->faker->paragraph;
-        $this->writedown->database()->persist($post);
-
-        $this->assertNotNull($post->slug);
-    }
-
-    public function testSlugNotOverwritten()
-    {
-        $post        = new Entity;
-        $expected    = $this->faker->slug;
-        $post->title = $this->faker->sentence;
-        $post->slug  = $expected;
-        $post->body  = $this->faker->paragraph;
-        $this->writedown->database()->persist($post);
-
-        $this->assertEquals($expected, $post->slug);
     }
 }

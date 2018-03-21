@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Faker\Generator;
 use WriteDown\Entities\Post;
 use WriteDown\Entities\User;
+use WriteDown\Misc\Slugger;
 
 class CreatesResources
 {
@@ -66,9 +67,11 @@ class CreatesResources
      */
     public function post()
     {
-        $post = new Post;
+        $post    = new Post;
+        $slugger = new Slugger;
 
         $post->title      = $this->faker->sentence;
+        $post->slug       = $slugger->slug($post->title);
         $post->body       = $this->faker->paragraph;
         $post->publish_at = new \DateTime('now');
         $this->persist($post);
