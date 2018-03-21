@@ -35,4 +35,15 @@ class UpdateTest extends TestCase
         $this->assertFalse($result['success']);
         $this->assertEquals(['Not found.'], $result['data']);
     }
+
+    public function testOnlyFillable()
+    {
+        $post     = $this->resources->post();
+        $newTitle = $this->faker->sentence;
+        $result   = $this->writedown->api()->post()->update($post->id, [
+            'not_fillable' => $this->faker->word,
+        ]);
+
+        $this->assertFalse(property_exists($result['data'], 'not_fillable'));
+    }
 }
