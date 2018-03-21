@@ -93,4 +93,25 @@ class Post
         $this->db->flush();
         return $this->response->build($post);
     }
+
+    /**
+     * Update a post.
+     *
+     * @param int   $postID
+     * @param array $attributes
+     *
+     * @return array
+     */
+    public function update($postID, array $attributes)
+    {
+        $post = $this->db->getRepository('WriteDown\Entities\Post')
+            ->findOneBy(['id' => $postID]);
+
+        foreach ($attributes as $column => $value) {
+            $post->$column = $value;
+        }
+
+        $this->db->flush();
+        return $this->response->build($post);
+    }
 }
