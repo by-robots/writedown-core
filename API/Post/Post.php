@@ -3,11 +3,12 @@
 namespace WriteDown\API\Post;
 
 use Doctrine\ORM\EntityManager;
+use WriteDown\API\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
 use WriteDown\Validator\Validator;
 
-class Post
+class Post implements EndpointInterface
 {
     /**
      * The EntityManager.

@@ -116,6 +116,17 @@ class WriteDown
     }
 
     /**
+     * Get the API.
+     *
+     * @return \WriteDown\API\APIInterface
+     */
+    public function api()
+    {
+        return $this->getContainer()
+            ->get('WriteDown\API\APIInterface');
+    }
+
+    /**
      * Run WriteDown!
      *
      * @return void

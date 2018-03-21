@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\Post\Post;
 use WriteDown\Validator\Validator;
 
-class API
+class API implements APIInterface
 {
     /**
      * The EntityManager object.
