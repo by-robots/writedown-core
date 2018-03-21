@@ -65,7 +65,11 @@ class Post
         $post = $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
 
-        return $this->response->build($post, !$post ? false : true);
+        if (!$post) {
+            return $this->response->build(['Not found.'], false);
+        }
+
+        return $this->response->build($post);
     }
 
     /**
