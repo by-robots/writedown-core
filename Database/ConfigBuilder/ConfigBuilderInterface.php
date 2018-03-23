@@ -2,7 +2,7 @@
 
 namespace WriteDown\Database\ConfigBuilder;
 
-interface ConfigBuilder
+interface ConfigBuilderInterface
 {
     /**
      * Generate a database config array based on the environment.

@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\Post\Post;
 use WriteDown\Slugs\GenerateSlug;
 use WriteDown\Slugs\GenerateSlugInterface;
-use WriteDown\Validator\Validator;
+use WriteDown\Validator\ValidatorInterface;
 
 class API implements APIInterface
 {
@@ -27,20 +27,20 @@ class API implements APIInterface
     /**
      * Validates data.
      *
-     * @var \WriteDown\Validator\Validator
+     * @var \WriteDown\Validator\ValidatorInterface
      */
     private $validator;
 
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager    $database
-     * @param \WriteDown\API\ResponseBuilder $response
-     * @param \WriteDown\Validator\Validator $validator
+     * @param \Doctrine\ORM\EntityManager             $database
+     * @param \WriteDown\API\ResponseBuilder          $response
+     * @param \WriteDown\Validator\ValidatorInterface $validator
      *
      * @return void
      */
-    public function __construct(EntityManager $database, ResponseBuilder $response, Validator $validator)
+    public function __construct(EntityManager $database, ResponseBuilder $response, ValidatorInterface $validator)
     {
         $this->db        = $database;
         $this->response  = $response;

@@ -5,7 +5,7 @@ namespace WriteDown\Database\Drivers;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-class Doctrine implements Driver
+class Doctrine implements DriverInterface
 {
     /**
      * The database manager.

@@ -7,7 +7,7 @@ use WriteDown\API\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
 use WriteDown\Slugs\GenerateSlugInterface;
-use WriteDown\Validator\Validator;
+use WriteDown\Validator\ValidatorInterface;
 
 class Post implements EndpointInterface
 {
@@ -28,7 +28,7 @@ class Post implements EndpointInterface
     /**
      * Validates data.
      *
-     * @var \WriteDown\Validator\Validator
+     * @var \WriteDown\Validator\ValidatorInterface
      */
     private $validator;
 
@@ -42,14 +42,14 @@ class Post implements EndpointInterface
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager            $db
-     * @param \WriteDown\API\ResponseBuilder         $response
-     * @param \WriteDown\Validator\Validator         $validator
-     * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug
+     * @param \Doctrine\ORM\EntityManager             $db
+     * @param \WriteDown\API\ResponseBuilder          $response
+     * @param \WriteDown\Validator\ValidatorInterface $validator
+     * @param \WriteDown\Slugs\GenerateSlugInterface  $generateSlug
      *
      * @return void
      */
-    public function __construct(EntityManager $db, ResponseBuilder $response, Validator $validator, GenerateSlugInterface $generateSlug)
+    public function __construct(EntityManager $db, ResponseBuilder $response, ValidatorInterface $validator, GenerateSlugInterface $generateSlug)
     {
         $this->db         = $db;
         $this->response   = $response;

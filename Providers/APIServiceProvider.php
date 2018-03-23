@@ -18,7 +18,7 @@ class APIServiceProvider extends AbstractServiceProvider
         'WriteDown\API\APIInterface',
         'WriteDown\API\ResponseBuilder',
         'WriteDown\Markdown\MarkdownInterface',
-        'WriteDown\Validator\Validator',
+        'WriteDown\Validator\ValidatorInterface',
     ];
 
     /**
@@ -30,7 +30,7 @@ class APIServiceProvider extends AbstractServiceProvider
             ->add('WriteDown\API\APIInterface', 'WriteDown\API\API')
             ->withArgument('Doctrine\ORM\EntityManagerInterface')
             ->withArgument('WriteDown\API\ResponseBuilder')
-            ->withArgument('WriteDown\Validator\Validator');
+            ->withArgument('WriteDown\Validator\ValidatorInterface');
 
         $this->getContainer()
             ->add('WriteDown\API\ResponseBuilder', ResponseBuilder::class);
@@ -39,6 +39,6 @@ class APIServiceProvider extends AbstractServiceProvider
             ->add('WriteDown\Markdown\MarkdownInterface', Markdown::class);
 
         $this->getContainer()
-            ->add('WriteDown\Validator\Validator', Valitron::class);
+            ->add('WriteDown\Validator\ValidatorInterface', Valitron::class);
     }
 }

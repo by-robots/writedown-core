@@ -2,7 +2,7 @@
 
 namespace WriteDown\Database\Drivers;
 
-interface Driver
+interface DriverInterface
 {
     /**
      * Return the manager.

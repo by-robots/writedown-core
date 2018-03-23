@@ -4,7 +4,7 @@ namespace WriteDown\Validator;
 
 use Valitron\Validator as Provider;
 
-class Valitron implements Validator
+class Valitron implements ValidatorInterface
 {
     /**
      * Contains the rules to validate against.

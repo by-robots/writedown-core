@@ -2,13 +2,13 @@
 
 namespace WriteDown\Database\ConfigBuilder;
 
-class Doctrine implements ConfigBuilder
+class Doctrine implements ConfigBuilderInterface
 {
     /**
      * Generate a database config array based on the environment for Doctrine.
      *
      * @return array
-     * @throws \UnknownDatabaseDriverException
+     * @throws \Exception
      */
     public function generate()
     {

@@ -2,7 +2,7 @@
 
 namespace WriteDown\Validator;
 
-interface Validator
+interface ValidatorInterface
 {
     /**
      * Set rules to validate against.
