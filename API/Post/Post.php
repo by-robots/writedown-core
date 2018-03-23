@@ -127,7 +127,6 @@ class Post implements EndpointInterface
         $post = $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
 
-        // Check the post exists
         if (!$post) {
             return $this->response->build(['Not found.'], false);
         }
@@ -156,7 +155,6 @@ class Post implements EndpointInterface
         $post = $this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['id' => $postID]);
 
-        // Check the post exists
         if (!$post) {
             return $this->response->build(['Not found.'], false);
         }
@@ -173,7 +171,7 @@ class Post implements EndpointInterface
      *
      * @return string
      */
-    public function generateSlug($title)
+    private function generateSlug($title)
     {
         $slugger = new Slugger;
         $index   = 0;
@@ -197,7 +195,7 @@ class Post implements EndpointInterface
      *
      * @return bool
      */
-    public function slugIsUnique($slug)
+    private function slugIsUnique($slug)
     {
         return !$this->db->getRepository('WriteDown\Entities\Post')
             ->findOneBy(['slug' => $slug]) ? true : false;
