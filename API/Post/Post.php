@@ -6,8 +6,8 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
-use WriteDown\Misc\Slugger;
-use WriteDown\Misc\UniqueSlug;
+use WriteDown\Slugs\Slugger;
+use WriteDown\Slugs\UniqueSlug;
 use WriteDown\Validator\Validator;
 
 class Post implements EndpointInterface
@@ -36,7 +36,7 @@ class Post implements EndpointInterface
     /**
      * Checks slugs are unique.
      *
-     * @var \WriteDown\Misc\UniqueSlug
+     * @var \WriteDown\Slugs\UniqueSlug
      */
     private $uniqueSlug;
 

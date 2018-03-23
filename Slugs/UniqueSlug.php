@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Misc;
+namespace WriteDown\Slugs;
 
 use Doctrine\ORM\EntityManager;
 
