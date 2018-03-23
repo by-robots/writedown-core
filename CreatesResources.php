@@ -28,7 +28,7 @@ class CreatesResources
      * Set-up.
      *
      * @param \Doctrine\ORM\EntityManager $db
-     * @param \Faker\Factory              $faker;
+     * @param \Faker\Generator            $faker;
      *
      * @return void
      */
