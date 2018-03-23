@@ -18,8 +18,8 @@ class Doctrine implements ConfigBuilderInterface
                 break;
 
             default:
-                $driverVal = is_string(getenv('DB_DRIVER')) ? getenv('DB_DRIVER') : 'Non-string value';
-                throw new \Exception('The provided database driver is not supported: ' . /** @scrutinizer ignore-type */ $driverVal);
+                throw new \Exception('The provided database driver is not supported: ' .
+                    /** @scrutinizer ignore-type */ getenv('DB_DRIVER'));
         }
 
         return [
