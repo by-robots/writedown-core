@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Make WriteDown.
      *
-     * @return WriteDown\WriteDown
+     * @return \WriteDown\WriteDown
      */
     protected function makeWritedown()
     {
