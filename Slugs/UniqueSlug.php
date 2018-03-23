@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Misc;
+namespace Tests\Slugs;
 
 use Tests\TestCase;
-use WriteDown\Slugs\UniqueSlug as Provider;
+use WriteDown\Slugs\Tools\UniqueSlug as Provider;
 
 class UniqueSlug extends TestCase
 {

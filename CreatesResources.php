@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Faker\Generator;
 use WriteDown\Entities\Post;
 use WriteDown\Entities\User;
-use WriteDown\Slugs\Slugger;
+use WriteDown\Slugs\Tools\Slugger;
 
 class CreatesResources
 {
