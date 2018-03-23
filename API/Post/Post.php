@@ -7,6 +7,7 @@ use WriteDown\API\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
 use WriteDown\Misc\Slugger;
+use WriteDown\Misc\UniqueSlug;
 use WriteDown\Validator\Validator;
 
 class Post implements EndpointInterface
@@ -33,15 +34,23 @@ class Post implements EndpointInterface
     private $validator;
 
     /**
+     * Checks slugs are unique.
+     *
+     * @var \WriteDown\Misc\UniqueSlug
+     */
+    private $uniqueSlug;
+
+    /**
      * Set-up.
      *
      * @return void
      */
     public function __construct(EntityManager $db, ResponseBuilder $response, Validator $validator)
     {
-        $this->db        = $db;
-        $this->response  = $response;
-        $this->validator = $validator;
+        $this->db         = $db;
+        $this->response   = $response;
+        $this->validator  = $validator;
+        $this->uniqueSlug = new UniqueSlug($db);
     }
 
     /**
@@ -96,7 +105,7 @@ class Post implements EndpointInterface
             $post->slug = $this->generateSlug($post->title);
         } else {
             // A slug has been manually set so check it's unique
-            if (!$this->slugIsUnique($post->slug)) {
+            if (!$this->uniqueSlug->isUnique($post->slug)) {
                 return $this->response->build([
                     'slug' => 'The slug value is not unique.'
                 ], false);
@@ -183,21 +192,8 @@ class Post implements EndpointInterface
             if ($index > 1) {
                 $slug .= '-' . $index;
             }
-        } while (!$this->slugIsUnique($slug));
+        } while (!$this->uniqueSlug->isUnique($slug));
 
         return $slug;
-    }
-
-    /**
-     * Check a slug is unique.
-     *
-     * @param string $slug
-     *
-     * @return bool
-     */
-    private function slugIsUnique($slug)
-    {
-        return !$this->db->getRepository('WriteDown\Entities\Post')
-            ->findOneBy(['slug' => $slug]) ? true : false;
     }
 }
