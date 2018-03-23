@@ -3,7 +3,7 @@
 namespace Tests\Misc;
 
 use Tests\TestCase;
-use WriteDown\Misc\UniqueSlug as Provider;
+use WriteDown\Slugs\UniqueSlug as Provider;
 
 class UniqueSlug extends TestCase
 {

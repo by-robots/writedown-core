@@ -3,14 +3,14 @@
 namespace Tests\Misc;
 
 use Tests\TestCase;
-use WriteDown\Misc\Slugger as Provider;
+use WriteDown\Slugs\Slugger as Provider;
 
 class Slugger extends TestCase
 {
     /**
      * The slugger interface.
      *
-     * @var \WriteDown\Misc\Slugger
+     * @var \WriteDown\Slugs\Slugger
      */
     private $slugger;
 
