@@ -4,6 +4,7 @@ namespace WriteDown\API;
 
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\Post\Post;
+use WriteDown\API\User\User;
 use WriteDown\Slugs\GenerateSlug;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
@@ -52,7 +53,7 @@ class API implements APIInterface
      *
      * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug
      *
-     * @return \WriteDown\API\Post\Post;
+     * @return \WriteDown\API\Post\Post
      */
     public function post(GenerateSlugInterface $generateSlug = null)
     {
@@ -61,5 +62,15 @@ class API implements APIInterface
         }
 
         return new Post($this->db, $this->response, $this->validator, $generateSlug);
+    }
+
+    /**
+     * Work with users.
+     *
+     * @return \WriteDown\API\User\User
+     */
+    public function user()
+    {
+        return new User($this->db, $this->response, $this->validator);
     }
 }

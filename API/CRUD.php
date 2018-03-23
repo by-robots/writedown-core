@@ -2,8 +2,6 @@
 
 namespace WriteDown\API;
 
-use WriteDown\Entities\Post as Entity;
-
 class CRUD implements EndpointInterface
 {
     /**
@@ -80,7 +78,8 @@ class CRUD implements EndpointInterface
     {
         // Create the entity by looping through the attributes and populating
         // fillable ones
-        $entity = new $this->entity;
+        $entity = 'WriteDown\Entities\\' . $this->entity;
+        $entity = new $entity;
         foreach ($attributes as $column => $value) {
             if (in_array($column, $entity->fillable)) {
                 $entity->$column = $value;
