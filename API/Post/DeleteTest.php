@@ -26,7 +26,7 @@ class DeleteTest extends TestCase
     /**
      * A post that does not exist can not be deleted.
      */
-    public function testPostMissing()
+    public function testMissing()
     {
         $result = $this->writedown->api()->post()->delete(mt_rand(1000, 9999));
 

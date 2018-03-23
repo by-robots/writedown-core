@@ -3,7 +3,6 @@
 namespace Tests\API\Post;
 
 use Tests\TestCase;
-use WriteDown\Entities\Post;
 
 class CreateTest extends TestCase
 {

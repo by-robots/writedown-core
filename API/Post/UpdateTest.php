@@ -30,7 +30,7 @@ class UpdateTest extends TestCase
     /**
      * When a post is not found this should be indicated in the response.
      */
-    public function testPostMissing()
+    public function testMissing()
     {
         // Attempt to update a post that doesn't exist
         $result = $this->writedown->api()->post()->update(mt_rand(1000, 9999), [
