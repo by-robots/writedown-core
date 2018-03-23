@@ -6,8 +6,7 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Entities\Post as Entity;
-use WriteDown\Slugs\Slugger;
-use WriteDown\Slugs\UniqueSlug;
+use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\Validator;
 
 class Post implements EndpointInterface
@@ -36,21 +35,26 @@ class Post implements EndpointInterface
     /**
      * Checks slugs are unique.
      *
-     * @var \WriteDown\Slugs\UniqueSlug
+     * @var \WriteDown\Slugs\GenerateSlugInterface
      */
-    private $uniqueSlug;
+    private $slug;
 
     /**
      * Set-up.
      *
+     * @param \Doctrine\ORM\EntityManager            $db
+     * @param \WriteDown\API\ResponseBuilder         $response
+     * @param \WriteDown\Validator\Validator         $validator
+     * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug
+     *
      * @return void
      */
-    public function __construct(EntityManager $db, ResponseBuilder $response, Validator $validator)
+    public function __construct(EntityManager $db, ResponseBuilder $response, Validator $validator, GenerateSlugInterface $generateSlug)
     {
         $this->db         = $db;
         $this->response   = $response;
         $this->validator  = $validator;
-        $this->uniqueSlug = new UniqueSlug($db);
+        $this->slug       = $generateSlug;
     }
 
     /**
@@ -102,10 +106,10 @@ class Post implements EndpointInterface
 
         // Ensure a slug has been generated
         if (is_null($post->slug)) {
-            $post->slug = $this->generateSlug($post->title);
+            $post->slug = $this->slug->uniqueSlug($post->title);
         } else {
             // A slug has been manually set so check it's unique
-            if (!$this->uniqueSlug->isUnique($post->slug)) {
+            if (!$this->slug->isUnique($post->slug)) {
                 return $this->response->build([
                     'slug' => 'The slug value is not unique.'
                 ], false);
@@ -171,29 +175,5 @@ class Post implements EndpointInterface
         $this->db->remove($post);
         $this->db->flush();
         return $this->response->build([]);
-    }
-
-    /**
-     * Generate a unique slug
-     *
-     * @param string $title
-     *
-     * @return string
-     */
-    private function generateSlug($title)
-    {
-        $slugger = new Slugger;
-        $index   = 0;
-
-        do {
-            $slug = $slugger->slug($title);
-            $index++;
-
-            if ($index > 1) {
-                $slug .= '-' . $index;
-            }
-        } while (!$this->uniqueSlug->isUnique($slug));
-
-        return $slug;
     }
 }

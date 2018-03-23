@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Slugs;
+namespace WriteDown\Slugs\Tools;
 
 class Slugger
 {
