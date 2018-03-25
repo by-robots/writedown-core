@@ -5,6 +5,8 @@ namespace WriteDown\API;
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\Post\Post;
 use WriteDown\API\User\User;
+use WriteDown\Emails\EmailInterface;
+use WriteDown\Emails\Emails;
 use WriteDown\Slugs\GenerateSlug;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
@@ -67,10 +69,16 @@ class API implements APIInterface
     /**
      * Work with users.
      *
+     * @param \WriteDown\Emails\EmailInterface $emails
+     *
      * @return \WriteDown\API\User\User
      */
-    public function user()
+    public function user(EmailInterface $emails = null)
     {
-        return new User($this->db, $this->response, $this->validator);
+        if (!$emails) {
+            $emails = new Emails($this->db);
+        }
+
+        return new User($this->db, $this->response, $this->validator, $emails);
     }
 }
