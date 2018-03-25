@@ -3,6 +3,7 @@
 namespace Tests\Auth;
 
 use Tests\TestCase;
+use WriteDown\Auth\Auth;
 
 class Verify extends TestCase
 {
@@ -21,6 +22,7 @@ class Verify extends TestCase
     public function setUp()
     {
         parent::setUp();
+        $this->auth = new Auth($this->writedown->database());
     }
 
     /**
@@ -36,7 +38,7 @@ class Verify extends TestCase
         ]);
 
         // Attempt to login with the correct details and check that it passes
-        $this->assertTrue($this->auth->verify($user->email, $password));
+        $this->assertTrue($this->auth->verify($user['data']->email, $password));
     }
 
     /**
@@ -50,7 +52,7 @@ class Verify extends TestCase
         ]);
 
         // Attempt to login with the correct details and check that it passes
-        $this->assertFalse($this->auth->verify($user->email, $this->faker->word));
+        $this->assertFalse($this->auth->verify($user['data']->email, $this->faker->word));
     }
 
     /**
@@ -75,10 +77,7 @@ class Verify extends TestCase
     public function testEmailAndPasswordBad()
     {
         // Create a new user
-        $this->writedown->api()->user()->create([
-            'email'    => $this->faker->email,
-            'password' => password_hash($this->faker->word, PASSWORD_DEFAULT),
-        ]);
+        $this->resources->user();
 
         // Attempt to login with the correct details and check that it passes
         $this->assertFalse($this->auth->verify($this->faker->email, $this->faker->word));
