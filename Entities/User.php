@@ -13,7 +13,7 @@ class User extends TestCase
      */
     public function testTimestampsSetOnPersist()
     {
-        // Create a new post
+        // Create a new user
         $user = $this->resources->user();
 
         // Make sure dates have been set correctly

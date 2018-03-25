@@ -46,12 +46,30 @@ class UpdateTest extends TestCase
      */
     public function testOnlyFillable()
     {
-        $user     = $this->resources->user();
-        $newTitle = $this->faker->sentence;
-        $result   = $this->writedown->api()->user()->update($user->id, [
+        $user   = $this->resources->user();
+        $result = $this->writedown->api()->user()->update($user->id, [
             'not_fillable' => $this->faker->word,
         ]);
 
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
+    }
+
+    /**
+     * The user's email must be unique.
+     */
+    public function testEmailUnique()
+    {
+        // Create twi users
+        $firstUser  = $this->resources->user();
+        $secondUser = $this->resources->user();
+
+        // Try to set $secondUser's email to $firstUser's
+        $result = $this->writedown->api()->user()->update($secondUser->id, [
+            'email' => $firstUser->email,
+        ]);
+
+        // Check that the errors expected are returned
+        $this->assertFalse($result['success']);
+        $this->assertEquals(['email' => 'The email value is not unique.'], $result['data']);
     }
 }

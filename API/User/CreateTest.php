@@ -71,4 +71,23 @@ class CreateTest extends TestCase
 
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
+
+    /**
+     * The user's email must be unique.
+     */
+    public function testEmailUnique()
+    {
+        // Create a user
+        $user = $this->resources->user();
+
+        // Try to create another user with the same email
+        $result = $this->writedown->api()->user()->create([
+            'email'    => $user->email,
+            'password' => $this->faker->word,
+        ]);
+
+        // Check that the errors expected are returned
+        $this->assertFalse($result['success']);
+        $this->assertEquals(['email' => 'The email value is not unique.'], $result['data']);
+    }
 }
