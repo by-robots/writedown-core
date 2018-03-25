@@ -81,4 +81,28 @@ class Post extends CRUD implements EndpointInterface
         $this->db->flush();
         return $this->response->build($post);
     }
+
+    /**
+     * Update an entity.
+     *
+     * @param int   $entityID
+     * @param array $attributes
+     *
+     * @return array
+     */
+    public function update($entityID, array $attributes)
+    {
+        // First up, check the slug is unique.
+        // A slug has been manually set so check it's unique
+        if (
+            array_key_exists('slug', $attributes) and
+            !$this->slug->isUniqueExcept($attributes['slug'], $entityID)
+        ) {
+            return $this->response->build([
+                'slug' => 'The slug value is not unique.'
+            ], false);
+        }
+
+        return parent::update($entityID, $attributes);
+    }
 }

@@ -81,4 +81,17 @@ class GenerateSlug implements GenerateSlugInterface
 
         return $slug;
     }
+
+    /**
+     * Check if the given slug is unique, or that it belongs to the given Post ID.
+     *
+     * @param string  $slug
+     * @param integer $postID
+     *
+     * @return boolean
+     */
+    public function isUniqueExcept($slug, $postID)
+    {
+        return $this->uniqueSlug->isUniqueExcept($slug, $postID);
+    }
 }
