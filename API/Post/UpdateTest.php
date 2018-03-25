@@ -47,12 +47,32 @@ class UpdateTest extends TestCase
      */
     public function testOnlyFillable()
     {
-        $post     = $this->resources->post();
-        $newTitle = $this->faker->sentence;
-        $result   = $this->writedown->api()->post()->update($post->id, [
+        $post   = $this->resources->post();
+        $result = $this->writedown->api()->post()->update($post->id, [
             'not_fillable' => $this->faker->word,
         ]);
 
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
+    }
+
+    /**
+     * When updating a post the slug can not be set to a slug that already
+     * exists.
+     */
+    public function testUniqueSlug()
+    {
+        // Create two posts
+        $firstPost  = $this->resources->post();
+        $secondPost = $this->resources->post();
+
+        // Attempt to update $secondPost via the API, setting it's slug to that
+        // to that of $firstPost
+        $result = $this->writedown->api()->post()->update($secondPost->id, [
+            'slug' => $firstPost->slug,
+        ]);
+
+        // Check that fails
+        $this->assertFalse($result['success']);
+        $this->assertEquals(['slug' => 'The slug value is not unique.'], $result['data']);
     }
 }
