@@ -51,35 +51,26 @@ class Post extends CRUD implements EndpointInterface
      */
     public function create(array $attributes)
     {
-        // Create the post, loop through the attributes and populate the entity
-        $post = new Entity;
-        foreach ($attributes as $column => $value) {
-            if (in_array($column, $post->fillable)) {
-                $post->$column = $value;
-            }
+        // If a slug has been manually set check that it's unique
+        if (
+            array_key_exists('slug', $attributes) and
+            !$this->slug->isUnique($attributes['slug'])
+        ) {
+            return $this->response->build([
+                'slug' => 'The slug value is not unique.'
+            ], false);
         }
 
-        // Ensure a slug has been generated
-        if (is_null($post->slug)) {
-            $post->slug = $this->slug->uniqueSlug($post->title);
-        } else {
-            // A slug has been manually set so check it's unique
-            if (!$this->slug->isUnique($post->slug)) {
-                return $this->response->build([
-                    'slug' => 'The slug value is not unique.'
-                ], false);
-            }
+        // If no slug has been set generate it with the post's title
+        if (
+            !array_key_exists('slug', $attributes) and
+            array_key_exists('title', $attributes)
+        ) {
+            $attributes['slug'] = $this->slug->uniqueSlug($attributes['title']);
         }
 
-        // Validate it
-        if (!$this->validator->validate($post->rules, $post->validationArray())) {
-            return $this->response->build($this->validator->errors(), false);
-        }
-
-        // Save it
-        $this->db->persist($post);
-        $this->db->flush();
-        return $this->response->build($post);
+        // Let the parent finish off the validation and creation
+        return parent::create($attributes);
     }
 
     /**
