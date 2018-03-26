@@ -29,6 +29,13 @@ class Base
     protected $fillable = [];
 
     /**
+     * Attributes that should not be accessible to the object.
+     *
+     * @var array
+     */
+    protected $hidden = [];
+
+    /**
      * Get a property if it's accessible. Additionally, if a getter has been
      * manually specified uses that instead.
      *
@@ -42,7 +49,10 @@ class Base
 
         if (method_exists($this, $methodName)) {
             return call_user_func(array($this, $methodName));
-        } elseif (isset($this->{$property})) {
+        } else if (
+            !in_array($property, $this->hidden) and
+            isset($this->{$property})
+        ) {
             return $this->{$property};
         }
 

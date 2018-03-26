@@ -23,6 +23,7 @@ class User extends Base
     public $password;
 
     /** @Column(type="text", unique=true, nullable=true) */
+    public $token;
 
     /**
      * Contains the validation rules for the entity.
@@ -39,5 +40,12 @@ class User extends Base
      *
      * @var array
      */
-    protected $fillable = ['email', 'password'];
+    protected $fillable = ['email', 'password', 'token'];
+
+    /**
+     * Attributes that should not be accessible to the object.
+     *
+     * @var array
+     */
+    protected $hidden = ['token'];
 }
