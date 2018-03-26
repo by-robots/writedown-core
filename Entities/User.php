@@ -22,6 +22,8 @@ class User extends Base
     /** @Column(type="text") */
     public $password;
 
+    /** @Column(type="text", unique=true, nullable=true) */
+
     /**
      * Contains the validation rules for the entity.
      *
