@@ -3,14 +3,14 @@
 namespace Tests\Auth;
 
 use Tests\TestCase;
-use WriteDown\Auth\Auth;
+use WriteDown\Auth\VerifyCredentials as Provider;
 
-class Verify extends TestCase
+class VerifyCredentials extends TestCase
 {
     /**
      * The Auth class.
      *
-     * @var \WriteDown\Auth\AuthInterface
+     * @var \WriteDown\Auth\VerifyCredentialsInterface
      */
     private $auth;
 
@@ -22,7 +22,7 @@ class Verify extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->auth = new Auth($this->writedown->database());
+        $this->auth = new Provider($this->writedown->database());
     }
 
     /**
