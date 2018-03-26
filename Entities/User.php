@@ -45,4 +45,13 @@ class User extends TestCase
             $user->updated_at->format('Y-m-d H:i:s')
         );
     }
+
+    /**
+     * The user's token attribute should not be retrievable.
+     */
+    public function testTokenNotRetrievable()
+    {
+        $user = $this->resources->user();
+        $this->assertNull($user->token);
+    }
 }

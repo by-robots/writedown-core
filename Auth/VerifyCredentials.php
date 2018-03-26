@@ -8,7 +8,7 @@ use WriteDown\Auth\VerifyCredentials as Provider;
 class VerifyCredentials extends TestCase
 {
     /**
-     * The Auth class.
+     * Validates user credentials.
      *
      * @var \WriteDown\Auth\VerifyCredentialsInterface
      */
