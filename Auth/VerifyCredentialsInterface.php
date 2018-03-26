@@ -2,7 +2,7 @@
 
 namespace WriteDown\Auth;
 
-interface AuthInterface
+interface VerifyCredentialsInterface
 {
     /**
      * Verify an email and password match.

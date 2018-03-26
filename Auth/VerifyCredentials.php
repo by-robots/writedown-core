@@ -4,7 +4,7 @@ namespace WriteDown\Auth;
 
 use Doctrine\ORM\EntityManager;
 
-class Auth implements AuthInterface
+class VerifyCredentials implements VerifyCredentialsInterface
 {
     /**
      * The EntityManager object.
