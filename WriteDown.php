@@ -24,7 +24,7 @@ class WriteDown
     /**
      * Start the app up.
      *
-     * @rerurn void
+     * @return void
      */
     public function __construct(ContainerInterface $container)
     {

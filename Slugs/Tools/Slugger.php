@@ -7,7 +7,7 @@ class Slugger
     /**
      * Take a string and convert it to a URL friendly slug.
      *
-     * @param $string $input
+     * @param string $input
      *
      * @return string
      */

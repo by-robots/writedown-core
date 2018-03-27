@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
 use WriteDown\API\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
-use WriteDown\Entities\Post as Entity;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
 
