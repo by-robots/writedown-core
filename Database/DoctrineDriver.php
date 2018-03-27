@@ -1,11 +1,12 @@
 <?php
 
-namespace WriteDown\Database\Drivers;
+namespace WriteDown\Database;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use WriteDown\Database\Interfaces\DriverInterface;
 
-class Doctrine implements DriverInterface
+class DoctrineDriver implements DriverInterface
 {
     /**
      * The database manager.

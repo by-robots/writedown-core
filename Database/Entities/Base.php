@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Entities;
+namespace WriteDown\Database\Entities;
 
 /**
  * @property array $rules

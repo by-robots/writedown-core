@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Database\Drivers;
+namespace WriteDown\Database\Interfaces;
 
 interface DriverInterface
 {

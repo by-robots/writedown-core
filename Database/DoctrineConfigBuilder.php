@@ -1,8 +1,10 @@
 <?php
 
-namespace WriteDown\Database\ConfigBuilder;
+namespace WriteDown\Database;
 
-class Doctrine implements ConfigBuilderInterface
+use WriteDown\Database\Interfaces\ConfigBuilderInterface;
+
+class DoctrineConfigBuilder implements ConfigBuilderInterface
 {
     /**
      * Generate a database config array based on the environment for Doctrine.

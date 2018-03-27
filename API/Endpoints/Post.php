@@ -1,10 +1,10 @@
 <?php
 
-namespace WriteDown\API\Post;
+namespace WriteDown\API\Endpoints;
 
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
-use WriteDown\API\EndpointInterface;
+use WriteDown\API\Interfaces\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
@@ -36,7 +36,7 @@ class Post extends CRUD implements EndpointInterface
         $this->slug       = $generateSlug;
 
         // Set additional CRUD settings
-        $this->entityRepo = 'WriteDown\Entities\Post';
+        $this->entityRepo = 'WriteDown\Database\Entities\Post';
         $this->entity     = 'Post';
     }
 

@@ -15,7 +15,7 @@ class APIServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
-        'WriteDown\API\APIInterface',
+        'WriteDown\API\Interfaces\APIInterface',
         'WriteDown\API\ResponseBuilder',
         'WriteDown\Markdown\MarkdownInterface',
         'WriteDown\Validator\ValidatorInterface',
@@ -27,7 +27,7 @@ class APIServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->getContainer()
-            ->add('WriteDown\API\APIInterface', 'WriteDown\API\API')
+            ->add('WriteDown\API\Interfaces\APIInterface', 'WriteDown\API\API')
             ->withArgument('Doctrine\ORM\EntityManagerInterface')
             ->withArgument('WriteDown\API\ResponseBuilder')
             ->withArgument('WriteDown\Validator\ValidatorInterface');

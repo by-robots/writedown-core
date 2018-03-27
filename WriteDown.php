@@ -24,6 +24,8 @@ class WriteDown
     /**
      * Start the app up.
      *
+     * @param \Interop\Container\ContainerInterface $container
+     *
      * @return void
      */
     public function __construct(ContainerInterface $container)
@@ -99,12 +101,12 @@ class WriteDown
     /**
      * Get the API.
      *
-     * @return \WriteDown\API\APIInterface
+     * @return \WriteDown\API\Interfaces\APIInterface
      */
     public function api()
     {
         return $this->getContainer()
-            ->get('WriteDown\API\APIInterface');
+            ->get('WriteDown\API\Interfaces\APIInterface');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Slugs\Tools;
+namespace WriteDown\Slugs;
 
 use Doctrine\ORM\EntityManager;
 
@@ -34,7 +34,7 @@ class UniqueSlug
      */
     public function isUnique($slug)
     {
-        return !$this->db->getRepository('WriteDown\Entities\Post')
+        return !$this->db->getRepository('WriteDown\Database\Entities\Post')
             ->findOneBy(['slug' => $slug]) ? true : false;
     }
 
@@ -48,7 +48,7 @@ class UniqueSlug
      */
     public function isUniqueExcept($slug, $postID)
     {
-        $result = $this->db->getRepository('WriteDown\Entities\Post')
+        $result = $this->db->getRepository('WriteDown\Database\Entities\Post')
             ->findOneBy(['slug' => $slug]);
 
         if (!$result) {

@@ -1,9 +1,9 @@
 <?php
 
-namespace WriteDown\Entities;
+namespace WriteDown\Database\Entities;
 
 /**
- * @Entity(repositoryClass="WriteDown\Repositories\Post")
+ * @Entity(repositoryClass="WriteDown\Database\Repositories\Post")
  * @Table(name="posts")
  * @HasLifecycleCallbacks
  */

@@ -1,10 +1,10 @@
 <?php
 
-namespace WriteDown\API\User;
+namespace WriteDown\API\Endpoints;
 
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
-use WriteDown\API\EndpointInterface;
+use WriteDown\API\Interfaces\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Emails\EmailInterface;
 use WriteDown\Validator\ValidatorInterface;
@@ -36,7 +36,7 @@ class User extends CRUD implements EndpointInterface
         $this->emails     = $emails;
 
         // Set additional CRUD settings
-        $this->entityRepo = 'WriteDown\Entities\User';
+        $this->entityRepo = 'WriteDown\Database\Entities\User';
         $this->entity     = 'User';
     }
 

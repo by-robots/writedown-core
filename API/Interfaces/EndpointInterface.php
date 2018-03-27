@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\API;
+namespace WriteDown\API\Interfaces;
 
 interface EndpointInterface
 {

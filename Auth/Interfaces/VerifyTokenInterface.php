@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Auth;
+namespace WriteDown\Auth\Interfaces;
 
 interface VerifyTokenInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Repositories;
+namespace WriteDown\Database\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 

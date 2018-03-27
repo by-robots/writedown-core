@@ -3,6 +3,7 @@
 namespace WriteDown\Auth;
 
 use Doctrine\ORM\EntityManager;
+use WriteDown\Auth\Interfaces\VerifyTokenInterface;
 
 class VerifyToken implements VerifyTokenInterface
 {
@@ -35,7 +36,7 @@ class VerifyToken implements VerifyTokenInterface
     public function verify($token)
     {
         // Get the user by the email address
-        $user = $this->db->getRepository('WriteDown\Entities\User')
+        $user = $this->db->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['token' => $token]);
 
         return !$user ? false : true;

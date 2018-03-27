@@ -2,6 +2,8 @@
 
 namespace WriteDown\Auth;
 
+use WriteDown\Auth\Interfaces\TokenInterface;
+
 class Token implements TokenInterface
 {
     /**

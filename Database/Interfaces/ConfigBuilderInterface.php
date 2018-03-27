@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Database\ConfigBuilder;
+namespace WriteDown\Database\Interfaces;
 
 interface ConfigBuilderInterface
 {

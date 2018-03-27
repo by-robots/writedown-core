@@ -3,22 +3,20 @@
 namespace WriteDown\Slugs;
 
 use Doctrine\ORM\EntityManager;
-use WriteDown\Slugs\Tools\Slugger;
-use WriteDown\Slugs\Tools\UniqueSlug;
 
 class GenerateSlug implements GenerateSlugInterface
 {
     /**
      * Generate slug.
      *
-     * @var \WriteDown\Slugs\Tools\Slugger
+     * @var \WriteDown\Slugs\Slugger
      */
     private $slugger;
 
     /**
      * Check slugs are unique.
      *
-     * @var \WriteDown\Slugs\Tools\UniqueSlug
+     * @var \WriteDown\Slugs\UniqueSlug
      */
     private $uniqueSlug;
 

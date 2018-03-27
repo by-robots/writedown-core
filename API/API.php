@@ -3,8 +3,9 @@
 namespace WriteDown\API;
 
 use Doctrine\ORM\EntityManager;
-use WriteDown\API\Post\Post;
-use WriteDown\API\User\User;
+use WriteDown\API\Endpoints\Post;
+use WriteDown\API\Endpoints\User;
+use WriteDown\API\Interfaces\APIInterface;
 use WriteDown\Emails\EmailInterface;
 use WriteDown\Emails\Emails;
 use WriteDown\Slugs\GenerateSlug;
@@ -55,7 +56,7 @@ class API implements APIInterface
      *
      * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug
      *
-     * @return \WriteDown\API\Post\Post
+     * @return \WriteDown\API\Endpoints\Post
      */
     public function post(GenerateSlugInterface $generateSlug = null)
     {
@@ -71,7 +72,7 @@ class API implements APIInterface
      *
      * @param \WriteDown\Emails\EmailInterface $emails
      *
-     * @return \WriteDown\API\User\User
+     * @return \WriteDown\API\Endpoints\User
      */
     public function user(EmailInterface $emails = null)
     {
