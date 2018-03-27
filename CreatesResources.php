@@ -4,9 +4,9 @@ namespace Tests;
 
 use Doctrine\ORM\EntityManager;
 use Faker\Generator;
-use WriteDown\Entities\Post;
-use WriteDown\Entities\User;
-use WriteDown\Slugs\Tools\Slugger;
+use WriteDown\Database\Entities\Post;
+use WriteDown\Database\Entities\User;
+use WriteDown\Slugs\Slugger;
 
 class CreatesResources
 {
@@ -63,7 +63,7 @@ class CreatesResources
     /**
      * Create a test post.
      *
-     * @return \WriteDown\Entities\Post
+     * @return \WriteDown\Database\Entities\Post
      */
     public function post()
     {
@@ -83,7 +83,7 @@ class CreatesResources
     /**
      * Create a test user.
      *
-     * @return \WriteDown\Entities\User
+     * @return \WriteDown\Database\Entities\User
      */
     public function user()
     {

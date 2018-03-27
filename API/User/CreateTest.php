@@ -23,7 +23,7 @@ class CreateTest extends TestCase
         // Now attempt to retrieve it from the database to make sure it's been
         // stored
         $result = $this->writedown->database()
-            ->getRepository('WriteDown\Entities\User')
+            ->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['id' => $user['data']->id]);
 
         // Check it

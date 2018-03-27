@@ -3,7 +3,7 @@
 namespace Tests\Database\ConfigBuilder;
 
 use Tests\TestCase;
-use WriteDown\Database\ConfigBuilder\Doctrine;
+use WriteDown\Database\DoctrineConfigBuilder;
 
 class ConfigBuilder extends TestCase
 {
@@ -21,7 +21,7 @@ class ConfigBuilder extends TestCase
      */
     public function testHandlesBadDriver()
     {
-        $configBuilder   = new Doctrine;
+        $configBuilder   = new DoctrineConfigBuilder;
         $this->oldDriver = getenv('DB_DRIVER');
 
         // We'll expect an exception to be thrown
@@ -29,7 +29,7 @@ class ConfigBuilder extends TestCase
 
         // Set the driver to be nonsense and try to generate the config
         putenv('DB_DRIVER=Zmx5aW5nIHByaW5jZXNzIGxlaWE=');
-        $config = $configBuilder->generate();
+        $configBuilder->generate();
     }
 
     /**

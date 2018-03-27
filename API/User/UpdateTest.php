@@ -19,7 +19,7 @@ class UpdateTest extends TestCase
         ]);
 
         // Re-retrieve the user from the database and check the change was saved
-        $user = $this->writedown->database()->getRepository('WriteDown\Entities\User')
+        $user = $this->writedown->database()->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['id' => $user->id]);
 
         $this->assertTrue($result['success']);

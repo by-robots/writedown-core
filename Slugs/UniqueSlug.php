@@ -3,14 +3,14 @@
 namespace Tests\Slugs;
 
 use Tests\TestCase;
-use WriteDown\Slugs\Tools\UniqueSlug as Provider;
+use WriteDown\Slugs\UniqueSlug as Provider;
 
 class UniqueSlug extends TestCase
 {
     /**
      * The UniqueSlug class.
      *
-     * @var \WriteDown\Slugs\Tools\UniqueSlug
+     * @var \WriteDown\Slugs\UniqueSlug
      */
     private $uniqueSlug;
 

@@ -3,7 +3,7 @@
 namespace Tests\Database\ConfigBuilder\Doctrine;
 
 use Tests\TestCase;
-use WriteDown\Database\ConfigBuilder\Doctrine;
+use WriteDown\Database\DoctrineConfigBuilder;
 
 class SQLite extends TestCase
 {
@@ -12,7 +12,7 @@ class SQLite extends TestCase
      */
     public function testGeneratesConfig()
     {
-        $configBuilder = new Doctrine;
+        $configBuilder = new DoctrineConfigBuilder;
         $newDatabase   = 'road-to-nowhere';
         $oldDatabase   = getenv('DB_DATABASE');
 

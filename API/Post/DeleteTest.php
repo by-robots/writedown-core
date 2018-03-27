@@ -16,7 +16,7 @@ class DeleteTest extends TestCase
         $result = $this->writedown->api()->post()->delete($post->id);
 
         // Test that the response is correct and the post is no longer in the database
-        $databaseResult = $this->writedown->database()->getRepository('WriteDown\Entities\Post')
+        $databaseResult = $this->writedown->database()->getRepository('WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post->id]);
 
         $this->assertTrue($result['success']);

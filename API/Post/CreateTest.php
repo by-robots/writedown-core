@@ -25,7 +25,7 @@ class CreateTest extends TestCase
         // Now attempt to retrieve it from the database to make sure it's been
         // stored
         $result = $this->writedown->database()
-            ->getRepository('WriteDown\Entities\Post')
+            ->getRepository('WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post['data']->id]);
 
         // Check it
