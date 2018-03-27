@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Make WriteDown.
      *
-     * @return \WriteDown\WriteDown
+     * @return void
      */
     protected function makeWritedown()
     {
@@ -39,7 +39,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Deletes the test database if ti exists.
+     * Deletes the test database if it exists.
      *
      * @return void
      */

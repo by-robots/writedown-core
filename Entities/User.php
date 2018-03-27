@@ -3,7 +3,6 @@
 namespace Tests\Entities;
 
 use Tests\TestCase;
-use WriteDown\Entities\User as Entity;
 
 class User extends TestCase
 {
