@@ -18,6 +18,11 @@ abstract class Controller implements ControllerInterface
     protected $response;
 
     /**
+     * @var \Slim\Views\PhpRenderer
+     */
+    protected $view;
+
+    /**
      * Set the request object.
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
@@ -39,5 +44,17 @@ abstract class Controller implements ControllerInterface
     public function setResponse(ResponseInterface $response)
     {
         $this->response = $response;
+    }
+
+    /**
+     * Set the view generation object.
+     *
+     * @param \Slim\Views\PhpRenderer $view
+     *
+     * @return void
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
     }
 }

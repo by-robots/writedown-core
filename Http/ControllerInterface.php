@@ -24,4 +24,13 @@ interface ControllerInterface
      * @return void
      */
     public function setResponse(ResponseInterface $response);
+
+    /**
+     * Set the view generation object.
+     *
+     * @param \Slim\Views\PhpRenderer $view
+     *
+     * @return void
+     */
+    public function setView($view);
 }
