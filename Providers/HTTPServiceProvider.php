@@ -3,6 +3,7 @@
 namespace WriteDown\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use WriteDown\Sessions\AuraSession;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Response\SapiEmitter;
@@ -17,6 +18,7 @@ class HTTPServiceProvider extends AbstractServiceProvider
     protected $provides = [
         'Psr\Http\Message\ResponseInterface',
         'Psr\Http\Message\RequestInterface',
+        'WriteDown\Sessions\SessionInterface',
         'Zend\Diactoros\Response\EmitterInterface'
     ];
 
@@ -36,5 +38,8 @@ class HTTPServiceProvider extends AbstractServiceProvider
 
         $this->getContainer()
             ->add('Zend\Diactoros\Response\EmitterInterface', SapiEmitter::class);
+
+        $this->getContainer()
+            ->add('WriteDown\Sessions\SessionInterface', AuraSession::class);
     }
 }

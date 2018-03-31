@@ -5,6 +5,9 @@ namespace WriteDown\Http;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 abstract class Controller implements ControllerInterface
 {
     /**

@@ -54,7 +54,7 @@ class API implements APIInterface
     /**
      * Work with posts.
      *
-     * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug
+     * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug (optional)
      *
      * @return \WriteDown\API\Endpoints\Post
      */
