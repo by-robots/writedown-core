@@ -52,7 +52,7 @@ class AuraSession implements SessionInterface
      */
     public function set($key, $val)
     {
-        $this->segment->set($key, $alt);
+        $this->segment->set($key, $val);
     }
 
     /**
