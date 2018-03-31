@@ -4,6 +4,7 @@ namespace WriteDown\Http;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\Sessions\SessionInterface;
 
 interface ControllerInterface
 {
@@ -24,6 +25,15 @@ interface ControllerInterface
      * @return void
      */
     public function setResponse(ResponseInterface $response);
+
+    /**
+     * Set the session management object.
+     *
+     * @param \WriteDown\Sessions\SessionInterface $sessions
+     *
+     * @return void
+     */
+    public function setSessions(SessionInterface $sessions);
 
     /**
      * Set the view generation object.
