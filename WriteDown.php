@@ -121,6 +121,28 @@ class WriteDown
     }
 
     /**
+     * Get the session manager.
+     *
+     * @return \WriteDown\Sessions\SessionInterface
+     */
+    public function session()
+    {
+        return $this->getContainer()
+            ->get('WriteDown\Sessions\SessionInterface');
+    }
+
+    /**
+     * Get the CSRF manager.
+     *
+     * @return \WriteDown\CSRF\CSRFInterface
+     */
+    public function csrf()
+    {
+        return $this->getContainer()
+            ->get('WriteDown\CSRF\CSRFInterface');
+    }
+
+    /**
      * Run WriteDown!
      *
      * @return void
