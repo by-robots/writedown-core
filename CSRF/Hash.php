@@ -73,7 +73,7 @@ class Hash implements CSRFInterface
     /**
      * Get the generated token.
      *
-     * @return string
+     * @return string|null
      */
     public function get()
     {
