@@ -83,6 +83,7 @@ abstract class TestCase extends BaseTestCase
     public function tearDown()
     {
         $this->tearDownDatabase();
+        \Mockery::close();
         parent::tearDown();
     }
 }
