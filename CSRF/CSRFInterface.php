@@ -25,7 +25,6 @@ interface CSRFInterface
      * Get the generated token.
      *
      * @return string
-     * @throws \Exception
      */
     public function get();
 }

@@ -3,6 +3,8 @@
 namespace WriteDown\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use WriteDown\Auth\Token;
+use WriteDown\CSRF\Hash;
 use WriteDown\Sessions\AuraSession;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
@@ -18,8 +20,9 @@ class HTTPServiceProvider extends AbstractServiceProvider
     protected $provides = [
         'Psr\Http\Message\ResponseInterface',
         'Psr\Http\Message\RequestInterface',
+        'WriteDown\CSRF\CSRFInterface',
         'WriteDown\Sessions\SessionInterface',
-        'Zend\Diactoros\Response\EmitterInterface'
+        'Zend\Diactoros\Response\EmitterInterface',
     ];
 
     /**
@@ -38,6 +41,11 @@ class HTTPServiceProvider extends AbstractServiceProvider
 
         $this->getContainer()
             ->add('Zend\Diactoros\Response\EmitterInterface', SapiEmitter::class);
+
+        $this->getContainer()
+            ->share('WriteDown\CSRF\CSRFInterface', Hash::class)
+            ->withArgument('WriteDown\Sessions\SessionInterface')
+            ->withArgument(new Token);
 
         $this->getContainer()
             ->add('WriteDown\Sessions\SessionInterface', AuraSession::class);
