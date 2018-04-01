@@ -56,4 +56,5 @@ class SessionStub implements SessionInterface
     public function getFlash($key, $alt = null) {}
     public function clearFlash() {}
     public function keepFlash() {}
+    public function csrf() {}
 }

@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Faker\Generator;
 use WriteDown\Database\Entities\Post;
 use WriteDown\Database\Entities\User;
@@ -27,12 +27,12 @@ class CreatesResources
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager $db
-     * @param \Faker\Generator            $faker;
+     * @param \Doctrine\ORM\EntityManagerInterface $db
+     * @param \Faker\Generator                     $faker;
      *
      * @return void
      */
-    public function __construct(EntityManager $db, Generator $faker)
+    public function __construct(EntityManagerInterface $db, Generator $faker)
     {
         $this->db    = $db;
         $this->faker = $faker;
