@@ -1,9 +1,11 @@
 <?php
 
-namespace Tests\CSRF;
+namespace Tests\CSRF\Hash;
 
 use Tests\Stubs\SessionStub;
 use Tests\TestCase;
+use WriteDown\Auth\Token;
+use WriteDown\CSRF\Hash;
 
 class Generates extends TestCase
 {
@@ -13,10 +15,7 @@ class Generates extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->writedown->getContainer()
-            ->add('WriteDown\Sessions\SessionInterface', SessionStub::class);
-
-        $this->csrf = $this->writedown->csrf();
+        $this->csrf = new Hash(new SessionStub, new Token);
     }
 
     /**

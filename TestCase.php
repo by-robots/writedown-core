@@ -3,7 +3,10 @@
 namespace Tests;
 
 use Faker\Factory;
+use League\Container\Container;
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use Tests\Stubs\SessionStub;
+use WriteDown\WriteDown;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -35,6 +38,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function makeWritedown()
     {
+        // Start WriteDown
         $this->writedown = require __DIR__ . '/../boot/start.php';
     }
 
