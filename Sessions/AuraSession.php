@@ -5,8 +5,9 @@ namespace WriteDown\Sessions;
 use Aura\Session\SessionFactory;
 
 /**
- * No need to include this class in code coverage for now,
- * Aura Sessions has it's own tests.
+ * No need to include this class in code coverage for now, Aura Sessions has
+ * it's own tests. Plus, we can't really write to sessions in PHPUnit so a
+ * stub we'll be used where needed.
  *
  * @codeCoverageIgnore
  */
