@@ -39,7 +39,7 @@ class AuraSession implements SessionInterface
      */
     public function get($key, $alt = null)
     {
-        $this->segment->get($key, $alt);
+        return $this->segment->get($key, $alt);
     }
 
     /**

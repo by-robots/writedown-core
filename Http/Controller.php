@@ -33,6 +33,11 @@ abstract class Controller implements ControllerInterface
     protected $view;
 
     /**
+     * @var \WriteDown\CSRF\CSRFInterface
+     */
+    protected $csrf;
+
+    /**
      * Set the request object.
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
