@@ -149,7 +149,9 @@ class WriteDown
      */
     public function init()
     {
-        $response = $this->getRouter()->dispatch($this->request(), $this->response());
+        $response = $this->getRouter()
+            ->dispatch($this->request(), $this->response());
+
         $this->emitter()->emit($response);
     }
 }

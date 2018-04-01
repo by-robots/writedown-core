@@ -4,6 +4,7 @@ namespace WriteDown\Http;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Sessions\SessionInterface;
 
 interface ControllerInterface
@@ -43,4 +44,13 @@ interface ControllerInterface
      * @return void
      */
     public function setView($view);
+
+    /**
+     * Set the CSRF manager.
+     *
+     * @param \WriteDown\CSRF\CSRFInterface $csrf
+     *
+     * @return void
+     */
+    public function setCSRF(CSRFInterface $csrf);
 }

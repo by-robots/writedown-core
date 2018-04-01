@@ -4,6 +4,7 @@ namespace WriteDown\Http;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Sessions\SessionInterface;
 
 /**
@@ -77,5 +78,21 @@ abstract class Controller implements ControllerInterface
     public function setView($view)
     {
         $this->view = $view;
+    }
+
+    /**
+     * Set the CSRF manager.
+     *
+     * @param \WriteDown\CSRF\CSRFInterface $csrf
+     *
+     * @return void
+     */
+    public function setCSRF(CSRFInterface $csrf)
+    {
+        $this->csrf = $csrf;
+
+        if (is_null($this->csrf->get())) {
+            $this->csrf->generate();
+        }
     }
 }

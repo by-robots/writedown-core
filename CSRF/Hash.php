@@ -2,7 +2,6 @@
 
 namespace WriteDown\CSRF;
 
-
 use WriteDown\Auth\Interfaces\TokenInterface;
 use WriteDown\Sessions\SessionInterface;
 
