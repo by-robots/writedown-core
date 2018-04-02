@@ -10,6 +10,9 @@ use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Response\SapiEmitter;
 
+/**
+ * @codeCoverageIgnore
+ */
 class HTTPServiceProvider extends AbstractServiceProvider
 {
     /**
