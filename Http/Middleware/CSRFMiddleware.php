@@ -44,7 +44,7 @@ class CSRFMiddleware
             !array_key_exists('csrf', $request->getParsedBody()) or
             !$this->csrf->isValid($request->getParsedBody()['csrf'])
         ) {
-            throw new \Exception('Bad CSRF.');
+            throw new \Exception('Invalid CSRF.');
         }
 
         return $next($request, $response);
