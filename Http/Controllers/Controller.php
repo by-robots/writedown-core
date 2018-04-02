@@ -1,10 +1,11 @@
 <?php
 
-namespace WriteDown\Http;
+namespace WriteDown\Http\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WriteDown\CSRF\CSRFInterface;
+use WriteDown\Http\Interfaces\ControllerInterface;
 use WriteDown\Sessions\SessionInterface;
 
 /**

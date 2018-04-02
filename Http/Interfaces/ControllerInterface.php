@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Http;
+namespace WriteDown\Http\Interfaces;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
