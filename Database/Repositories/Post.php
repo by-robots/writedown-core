@@ -4,9 +4,12 @@ namespace WriteDown\Database\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 
-class Post extends EntityRepository
+class Post extends EntityRepository implements RepositoryInterface
 {
-    public function findAll()
+    /**
+     * @inheritDoc
+     */
+    public function all(array $filters = [])
     {
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('p')->from('WriteDown\Database\Entities\Post', 'p')

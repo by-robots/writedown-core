@@ -7,11 +7,11 @@ interface EndpointInterface
     /**
      * List all entities.
      *
-     * @param array $modifiers
+     * @param array $filters
      *
      * @return array
      */
-    public function index(array $modifiers = []);
+    public function index(array $filters = []);
 
     /**
      * Retrieve a single entity by it's ID.

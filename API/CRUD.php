@@ -44,9 +44,9 @@ class CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function index(array $modifiers = [])
+    public function index(array $filters = [])
     {
-        $entities = $this->db->getRepository($this->entityRepo)->findAll();
+        $entities = $this->db->getRepository($this->entityRepo)->all($filters);
         return $this->response->build($entities);
     }
 
