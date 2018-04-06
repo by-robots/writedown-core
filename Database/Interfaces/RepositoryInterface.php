@@ -1,6 +1,6 @@
 <?php
 
-namespace WriteDown\Database\Repositories;
+namespace WriteDown\Database\Interfaces;
 
 
 interface RepositoryInterface

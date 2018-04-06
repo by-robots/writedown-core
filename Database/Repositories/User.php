@@ -2,9 +2,9 @@
 
 namespace WriteDown\Database\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use WriteDown\Database\Interfaces\RepositoryInterface;
 
-class User extends EntityRepository implements RepositoryInterface
+class User extends BaseRepository implements RepositoryInterface
 {
     /**
      * @inheritDoc

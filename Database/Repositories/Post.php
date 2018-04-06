@@ -2,21 +2,50 @@
 
 namespace WriteDown\Database\Repositories;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use WriteDown\Database\Interfaces\RepositoryInterface;
 
-class Post extends EntityRepository implements RepositoryInterface
+class Post extends BaseRepository implements RepositoryInterface
 {
+    /**
+     * Lock S-Foils in attack position.
+     *
+     * @param \Doctrine\ORM\EntityManager         $em
+     * @param \Doctrine\ORM\Mapping\ClassMetadata $class
+     *
+     * @return void
+     */
+    public function __construct(EntityManager $em, ClassMetadata $class)
+    {
+        parent::__construct($em, $class);
+
+        // Set default filters for this repository
+        $this->defaultFilters = [
+            'orderBy' => ['p.publish_at' => 'DESC'],
+            'where'   => [
+                'p.publish_at IS NOT NULL AND p.publish_at <= :now' => [
+                    'now' => new \DateTime('now'),
+                ],
+            ],
+        ];
+    }
+
     /**
      * @inheritDoc
      */
     public function all(array $filters = [])
     {
-        $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('p')->from('WriteDown\Database\Entities\Post', 'p')
-            ->where('p.publish_at IS NOT NULL AND p.publish_at <= :now')
-            ->orderBy('p.publish_at', 'DESC')
-            ->setParameter('now', new \DateTime('now'));
+        // Combine $filters with the default, overriding the default ones with
+        // those that have been passed directly.
+        $filters = array_merge($this->defaultFilters, $filters);
 
-        return $query->getQuery()->getResult();
+        // Build the start of the query
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('p')
+            ->from('WriteDown\Database\Entities\Post', 'p');
+
+        // Apply filters
+        return $this->filter->build($query, $filters)->getQuery()->getResult();
     }
 }
