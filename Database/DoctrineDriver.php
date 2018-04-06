@@ -22,6 +22,7 @@ class DoctrineDriver implements DriverInterface
      * @param boolean $devMode See Doctrine docs for details.
      *
      * @return void
+     * @throws \Doctrine\ORM\ORMException
      */
     public function __construct(array $config, $devMode = false)
     {
@@ -30,9 +31,7 @@ class DoctrineDriver implements DriverInterface
     }
 
     /**
-     * Return the manager.
-     *
-     * @return \Doctrine\ORM\EntityManagerInterface
+     * @inheritDoc
      */
     public function getManager()
     {

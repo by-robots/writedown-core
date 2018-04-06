@@ -51,6 +51,7 @@ interface ControllerInterface
      * @param \WriteDown\CSRF\CSRFInterface $csrf
      *
      * @return void
+     * @throws \Exception
      */
     public function setCSRF(CSRFInterface $csrf);
 }

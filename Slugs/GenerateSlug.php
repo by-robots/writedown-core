@@ -34,11 +34,7 @@ class GenerateSlug implements GenerateSlugInterface
     }
 
     /**
-     * Take a string and convert it to a URL friendly slug.
-     *
-     * @param string $input
-     *
-     * @return string
+     * @inheritDoc
      */
     public function slug($input)
     {
@@ -46,11 +42,7 @@ class GenerateSlug implements GenerateSlugInterface
     }
 
     /**
-     * Check if the given slug is unique.
-     *
-     * @param string $slug
-     *
-     * @return boolean
+     * @inheritDoc
      */
     public function isUnique($slug)
     {
@@ -58,11 +50,7 @@ class GenerateSlug implements GenerateSlugInterface
     }
 
     /**
-     * Generate a unique slug based on the post's title.
-     *
-     * @param string $title
-     *
-     * @return string
+     * @inheritDoc
      */
     public function uniqueSlug($title)
     {
@@ -81,12 +69,7 @@ class GenerateSlug implements GenerateSlugInterface
     }
 
     /**
-     * Check if the given slug is unique, or that it belongs to the given Post ID.
-     *
-     * @param string  $slug
-     * @param integer $postID
-     *
-     * @return boolean
+     * @inheritDoc
      */
     public function isUniqueExcept($slug, $postID)
     {

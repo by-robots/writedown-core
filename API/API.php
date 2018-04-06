@@ -52,11 +52,7 @@ class API implements APIInterface
     }
 
     /**
-     * Work with posts.
-     *
-     * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug (optional)
-     *
-     * @return \WriteDown\API\Endpoints\Post
+     * @inheritDoc
      */
     public function post(GenerateSlugInterface $generateSlug = null)
     {
@@ -68,11 +64,7 @@ class API implements APIInterface
     }
 
     /**
-     * Work with users.
-     *
-     * @param \WriteDown\Emails\EmailInterface $emails
-     *
-     * @return \WriteDown\API\Endpoints\User
+     * @inheritDoc
      */
     public function user(EmailInterface $emails = null)
     {

@@ -42,22 +42,16 @@ class CRUD implements EndpointInterface
     protected $validator;
 
     /**
-     * List all entities.
-     *
-     * @return array
+     * @inheritDoc
      */
-    public function index()
+    public function index(array $modifiers = [])
     {
         $entities = $this->db->getRepository($this->entityRepo)->findAll();
         return $this->response->build($entities);
     }
 
     /**
-     * Retrieve a single entity.
-     *
-     * @param int $entityID
-     *
-     * @return array
+     * @inheritDoc
      */
     public function read($entityID)
     {
@@ -70,11 +64,7 @@ class CRUD implements EndpointInterface
     }
 
     /**
-     * Create a new entity.
-     *
-     * @param array $attributes
-     *
-     * @return array
+     * @inheritDoc
      */
     public function create(array $attributes)
     {
@@ -100,12 +90,7 @@ class CRUD implements EndpointInterface
     }
 
     /**
-     * Update an entity.
-     *
-     * @param int   $entityID
-     * @param array $attributes
-     *
-     * @return array
+     * @inheritDoc
      */
     public function update($entityID, array $attributes)
     {
@@ -127,11 +112,7 @@ class CRUD implements EndpointInterface
     }
 
     /**
-     * Delete an entity.
-     *
-     * @param int $entityID
-     *
-     * @return array
+     * @inheritDoc
      */
     public function delete($entityID)
     {

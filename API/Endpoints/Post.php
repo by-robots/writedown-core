@@ -41,12 +41,7 @@ class Post extends CRUD implements EndpointInterface
     }
 
     /**
-     * Create a new post. The CRUD::create() method has to be over-ridden in
-     * order to work with slugs.
-     *
-     * @param array $attributes
-     *
-     * @return array
+     * @inheritDoc
      */
     public function create(array $attributes)
     {
@@ -73,12 +68,7 @@ class Post extends CRUD implements EndpointInterface
     }
 
     /**
-     * Update an entity.
-     *
-     * @param int   $entityID
-     * @param array $attributes
-     *
-     * @return array
+     * @inheritDoc
      */
     public function update($entityID, array $attributes)
     {

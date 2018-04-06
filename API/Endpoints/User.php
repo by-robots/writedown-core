@@ -41,11 +41,7 @@ class User extends CRUD implements EndpointInterface
     }
 
     /**
-     * Create a new entity.
-     *
-     * @param array $attributes
-     *
-     * @return array
+     * @inheritDoc
      */
     public function create(array $attributes)
     {
@@ -62,12 +58,7 @@ class User extends CRUD implements EndpointInterface
     }
 
     /**
-     * Update an entity.
-     *
-     * @param int   $entityID
-     * @param array $attributes
-     *
-     * @return array
+     * @inheritDoc
      */
     public function update($entityID, array $attributes)
     {

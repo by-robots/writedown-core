@@ -8,11 +8,7 @@ use League\HTMLToMarkdown\HtmlConverter;
 class Markdown implements MarkdownInterface
 {
     /**
-     * Take HTML, make Markdown.
-     *
-     * @param string $html
-     *
-     * @return string
+     * @inheritDoc
      */
     public function htmlToMarkdown($html)
     {
@@ -21,11 +17,7 @@ class Markdown implements MarkdownInterface
     }
 
     /**
-     * Take Markdown, make HTML.
-     *
-     * @param string $markdown
-     *
-     * @return string
+     * @inheritDoc
      */
     public function markdownToHtml($markdown)
     {

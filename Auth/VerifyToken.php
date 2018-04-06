@@ -27,11 +27,7 @@ class VerifyToken implements VerifyTokenInterface
     }
 
     /**
-     * Verify an email and password match.
-     *
-     * @param string $token
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function verify($token)
     {

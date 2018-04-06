@@ -39,11 +39,7 @@ abstract class Controller implements ControllerInterface
     protected $csrf;
 
     /**
-     * Set the request object.
-     *
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     *
-     * @return void
+     * @inheritDoc
      */
     public function setRequest(ServerRequestInterface $request)
     {
@@ -51,11 +47,7 @@ abstract class Controller implements ControllerInterface
     }
 
     /**
-     * Set the response object.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *
-     * @return void
+     * @inheritDoc
      */
     public function setResponse(ResponseInterface $response)
     {
@@ -63,11 +55,7 @@ abstract class Controller implements ControllerInterface
     }
 
     /**
-     * Set the session management object.
-     *
-     * @param \WriteDown\Sessions\SessionInterface $sessions
-     *
-     * @return void
+     * @inheritDoc
      */
     public function setSessions(SessionInterface $sessions)
     {
@@ -75,11 +63,7 @@ abstract class Controller implements ControllerInterface
     }
 
     /**
-     * Set the view generation object.
-     *
-     * @param \Slim\Views\PhpRenderer $view
-     *
-     * @return void
+     * @inheritDoc
      */
     public function setView($view)
     {
@@ -87,11 +71,7 @@ abstract class Controller implements ControllerInterface
     }
 
     /**
-     * Set the CSRF manager.
-     *
-     * @param \WriteDown\CSRF\CSRFInterface $csrf
-     *
-     * @return void
+     * @inheritDoc
      */
     public function setCSRF(CSRFInterface $csrf)
     {

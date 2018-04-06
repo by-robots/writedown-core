@@ -26,11 +26,7 @@ class Emails implements EmailInterface
     }
 
     /**
-     * Check the email address is unique.
-     *
-     * @param string $email
-     *
-     * @return boolean
+     * @inheritDoc
      */
     public function isUnique($email)
     {
@@ -39,12 +35,7 @@ class Emails implements EmailInterface
     }
 
     /**
-     * Check that the email is unique, unless it matches the given User ID.
-     *
-     * @param string  $email
-     * @param integer $userID
-     *
-     * @return boolean
+     * @inheritDoc
      */
     public function isUniqueExcept($email, $userID)
     {

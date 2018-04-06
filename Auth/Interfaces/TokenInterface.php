@@ -10,6 +10,7 @@ interface TokenInterface
      * @param int $length
      *
      * @return string
+     * @throws \Exception
      */
     public function generate($length = 64);
 }

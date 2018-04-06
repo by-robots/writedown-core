@@ -31,12 +31,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Returns the value of a key.
-     *
-     * @param string $key The key to retrieve.
-     * @param mixed  $alt If $key is not set, return this.
-     *
-     * @return mixed
+     * @inheritDoc
      */
     public function get($key, $alt = null)
     {
@@ -44,12 +39,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Sets the value of a key in the segment.
-     *
-     * @param string $key The key to set.
-     * @param mixed  $val The value to set it to.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function set($key, $val)
     {
@@ -57,9 +47,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Clear all session data.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function clear()
     {
@@ -67,12 +55,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Sets a flash value for the next request.
-     *
-     * @param string $key
-     * @param mixed  $val
-     *
-     * @return void
+     * @inheritDoc
      */
     public function setFlash($key, $val)
     {
@@ -80,12 +63,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Gets the flash value for a key in the current request.
-     *
-     * @param string $key
-     * @param mixed  $alt
-     *
-     * @return mixed
+     * @inheritDoc
      */
     public function getFlash($key, $alt = null)
     {
@@ -93,9 +71,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Clears any set flash data.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function clearFlash()
     {
@@ -103,10 +79,7 @@ class AuraSession implements SessionInterface
     }
 
     /**
-     * Retains all the current flash values for the next request; values that
-     * already exist for the next request take precedence.
-     *
-     * @return null
+     * @inheritDoc
      */
     public function keepFlash()
     {

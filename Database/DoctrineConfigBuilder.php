@@ -7,10 +7,7 @@ use WriteDown\Database\Interfaces\ConfigBuilderInterface;
 class DoctrineConfigBuilder implements ConfigBuilderInterface
 {
     /**
-     * Generate a database config array based on the environment for Doctrine.
-     *
-     * @return array
-     * @throws \Exception
+     * @inheritDoc
      */
     public function generate()
     {

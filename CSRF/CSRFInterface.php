@@ -18,6 +18,7 @@ interface CSRFInterface
      * Generate a token.
      *
      * @return void
+     * @throws \Exception
      */
     public function generate();
 

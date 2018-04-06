@@ -43,12 +43,7 @@ class Hash implements CSRFInterface
     }
 
     /**
-     * Checks whether a CSRF token is valid.
-     *
-     * @param string $value The token value.
-     *
-     * @return bool
-     * @throws \Exception
+     * @inheritDoc
      */
     public function isValid($value)
     {
@@ -60,9 +55,7 @@ class Hash implements CSRFInterface
     }
 
     /**
-     * Generate a token.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function generate()
     {
@@ -71,9 +64,7 @@ class Hash implements CSRFInterface
     }
 
     /**
-     * Get the generated token.
-     *
-     * @return string|null
+     * @inheritDoc
      */
     public function get()
     {
