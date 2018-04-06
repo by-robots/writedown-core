@@ -30,7 +30,7 @@ class ReadTest extends TestCase
         // Attempt to retrieve a non-existent post
         $result = $this->writedown->api()->post()->read(mt_rand(1000, 9999));
 
-        // It should be null
+        // An error should be returned
         $this->assertEquals(['Not found.'], $result['data']);
     }
 }
