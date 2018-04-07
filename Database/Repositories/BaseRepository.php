@@ -15,6 +15,13 @@ class BaseRepository extends EntityRepository
     protected $filter;
 
     /**
+     * The entity the repository contains.
+     *
+     * @var string
+     */
+    protected $entity;
+
+    /**
      * Contains default filters.
      *
      * @var array
@@ -33,5 +40,18 @@ class BaseRepository extends EntityRepository
     {
         parent::__construct($em, $class);
         $this->filter = new Filter;
+    }
+
+    /**
+     * Get the total rows for the repository.
+     *
+     * @return int
+     * @throws \Exception
+     */
+    public function getCount() : int
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select('count(e.id)')->from($this->entity, 'e')
+            ->getQuery()->getSingleScalarResult();
     }
 }

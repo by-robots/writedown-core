@@ -20,7 +20,7 @@ class Post extends BaseRepository implements RepositoryInterface
     {
         parent::__construct($em, $class);
 
-        // Set default filters for this repository
+        $this->entity         = 'WriteDown\Database\Entities\Post';
         $this->defaultFilters = [
             'orderBy' => ['p.publish_at' => 'DESC'],
             'where'   => [
@@ -43,7 +43,7 @@ class Post extends BaseRepository implements RepositoryInterface
         // Build the start of the query
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('p')
-            ->from('WriteDown\Database\Entities\Post', 'p');
+            ->from($this->entity, 'p');
 
         // Apply filters
         return $this->filter->build($query, $filters)->getQuery()->getResult();

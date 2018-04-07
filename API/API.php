@@ -15,22 +15,16 @@ use WriteDown\Validator\ValidatorInterface;
 class API implements APIInterface
 {
     /**
-     * The EntityManager object.
-     *
      * @var \Doctrine\ORM\EntityManager
      */
     private $db;
 
     /**
-     * Builds API responses.
-     *
      * @var \WriteDown\API\ResponseBuilder
      */
     private $response;
 
     /**
-     * Validates data.
-     *
      * @var \WriteDown\Validator\ValidatorInterface
      */
     private $validator;
@@ -44,11 +38,14 @@ class API implements APIInterface
      *
      * @return void
      */
-    public function __construct(EntityManager $database, ResponseBuilder $response, ValidatorInterface $validator)
-    {
-        $this->db        = $database;
-        $this->response  = $response;
-        $this->validator = $validator;
+    public function __construct(
+        EntityManager $database,
+        ResponseBuilder $response,
+        ValidatorInterface $validator
+    ) {
+        $this->db          = $database;
+        $this->response    = $response;
+        $this->validator   = $validator;
     }
 
     /**

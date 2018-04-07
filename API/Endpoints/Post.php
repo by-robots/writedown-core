@@ -5,6 +5,7 @@ namespace WriteDown\API\Endpoints;
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
 use WriteDown\API\Interfaces\EndpointInterface;
+use WriteDown\API\MetaBuilder;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
@@ -28,12 +29,16 @@ class Post extends CRUD implements EndpointInterface
      *
      * @return void
      */
-    public function __construct(EntityManager $db, ResponseBuilder $response, ValidatorInterface $validator, GenerateSlugInterface $generateSlug)
-    {
-        $this->db         = $db;
-        $this->response   = $response;
-        $this->validator  = $validator;
-        $this->slug       = $generateSlug;
+    public function __construct(
+        EntityManager $db,
+        ResponseBuilder $response,
+        ValidatorInterface $validator,
+        GenerateSlugInterface $generateSlug
+    ) {
+        $this->db          = $db;
+        $this->response    = $response;
+        $this->validator   = $validator;
+        $this->slug        = $generateSlug;
 
         // Set additional CRUD settings
         $this->entityRepo = 'WriteDown\Database\Entities\Post';

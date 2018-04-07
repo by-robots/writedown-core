@@ -14,29 +14,28 @@ class CRUD implements EndpointInterface
     protected $entityRepo;
 
     /**
-     * The entity class name.
+     * The fully qualified entity class name.
      *
      * @var string
      */
     protected $entity;
 
     /**
-     * The EntityManager.
-     *
      * @var \Doctrine\ORM\EntityManager
      */
     protected $db;
 
     /**
-     * Builds API responses.
-     *
      * @var \WriteDown\API\ResponseBuilder
      */
     protected $response;
 
     /**
-     * Validates data.
-     *
+     * @var \WriteDown\API\MetaBuilder
+     */
+    protected $metaBuilder;
+
+    /**
      * @var \WriteDown\Validator\ValidatorInterface
      */
     protected $validator;
@@ -47,7 +46,12 @@ class CRUD implements EndpointInterface
     public function index(array $filters = [])
     {
         $entities = $this->db->getRepository($this->entityRepo)->all($filters);
-        return $this->response->build($entities);
+        return $this->response->build(
+            $entities,
+            true,
+            $this->db->getRepository($this->entityRepo),
+            $filters
+        );
     }
 
     /**
@@ -60,7 +64,7 @@ class CRUD implements EndpointInterface
             return $this->response->build(['Not found.'], false);
         }
 
-        return $this->response->build($entity);
+        return $this->response->build($entity, $this->db->getRepository($this->entityRepo));
     }
 
     /**

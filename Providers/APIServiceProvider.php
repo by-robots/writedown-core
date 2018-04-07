@@ -3,6 +3,7 @@
 namespace WriteDown\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use WriteDown\API\MetaBuilder;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Markdown\Markdown;
 use WriteDown\Validator\Valitron;
@@ -16,6 +17,7 @@ class APIServiceProvider extends AbstractServiceProvider
      */
     protected $provides = [
         'WriteDown\API\Interfaces\APIInterface',
+        'WriteDown\API\MetaBuilder',
         'WriteDown\API\ResponseBuilder',
         'WriteDown\Markdown\MarkdownInterface',
         'WriteDown\Validator\ValidatorInterface',
@@ -33,7 +35,11 @@ class APIServiceProvider extends AbstractServiceProvider
             ->withArgument('WriteDown\Validator\ValidatorInterface');
 
         $this->getContainer()
-            ->add('WriteDown\API\ResponseBuilder', ResponseBuilder::class);
+            ->add('WriteDown\API\MetaBuilder', MetaBuilder::class);
+
+        $this->getContainer()
+            ->add('WriteDown\API\ResponseBuilder', ResponseBuilder::class)
+            ->withArgument('WriteDown\API\MetaBuilder');
 
         $this->getContainer()
             ->add('WriteDown\Markdown\MarkdownInterface', Markdown::class);
