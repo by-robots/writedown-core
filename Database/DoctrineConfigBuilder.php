@@ -9,7 +9,7 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
     /**
      * @inheritDoc
      */
-    public function generate()
+    public function generate() : array
     {
         switch (getenv('DB_DRIVER')) {
             case 'sqlite':

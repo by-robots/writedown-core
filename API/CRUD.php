@@ -43,7 +43,7 @@ class CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function index(array $filters = [])
+    public function index(array $filters = []) : array
     {
         $entities = $this->db->getRepository($this->entityRepo)->all($filters);
         return $this->response->build(
@@ -57,7 +57,7 @@ class CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function read($entityID)
+    public function read($entityID) : array
     {
         $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['id' => $entityID]);
         if (!$entity) {
@@ -70,7 +70,7 @@ class CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes)
+    public function create(array $attributes) : array
     {
         // Create the entity by looping through the attributes and populating
         // fillable ones
@@ -96,7 +96,7 @@ class CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function update($entityID, array $attributes)
+    public function update($entityID, array $attributes) : array
     {
         $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['id' => $entityID]);
         if (!$entity) {
@@ -118,7 +118,7 @@ class CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function delete($entityID)
+    public function delete($entityID) : array
     {
         $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['id' => $entityID]);
         if (!$entity) {

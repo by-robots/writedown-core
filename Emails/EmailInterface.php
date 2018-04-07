@@ -11,7 +11,7 @@ interface EmailInterface
      *
      * @return boolean
      */
-    public function isUnique($email);
+    public function isUnique($email) : bool;
 
     /**
      * Check that the email is unique, unless it matches the given User ID.
@@ -21,5 +21,5 @@ interface EmailInterface
      *
      * @return boolean
      */
-    public function isUniqueExcept($email, $userID);
+    public function isUniqueExcept($email, $userID) : bool;
 }

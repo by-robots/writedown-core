@@ -29,7 +29,7 @@ class VerifyToken implements VerifyTokenInterface
     /**
      * @inheritDoc
      */
-    public function verify($token)
+    public function verify($token) : bool
     {
         // Get the user by the email address
         $user = $this->db->getRepository('WriteDown\Database\Entities\User')

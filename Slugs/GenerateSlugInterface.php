@@ -11,7 +11,7 @@ interface GenerateSlugInterface
      *
      * @return string
      */
-    public function slug($input);
+    public function slug($input) : string;
 
     /**
      * Check if the given slug is unique.
@@ -20,7 +20,7 @@ interface GenerateSlugInterface
      *
      * @return boolean
      */
-    public function isUnique($slug);
+    public function isUnique($slug) : bool;
 
     /**
      * Generate a unique slug based on the post's title.
@@ -29,7 +29,7 @@ interface GenerateSlugInterface
      *
      * @return string
      */
-    public function uniqueSlug($title);
+    public function uniqueSlug($title) : string;
 
     /**
      * Check if the given slug is unique, or that it belongs to the given Post ID.
@@ -39,5 +39,5 @@ interface GenerateSlugInterface
      *
      * @return boolean
      */
-    public function isUniqueExcept($slug, $postID);
+    public function isUniqueExcept($slug, $postID) : bool;
 }

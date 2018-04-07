@@ -11,7 +11,7 @@ interface EndpointInterface
      *
      * @return array
      */
-    public function index(array $filters = []);
+    public function index(array $filters = []) : array;
 
     /**
      * Retrieve a single entity by it's ID.
@@ -20,7 +20,7 @@ interface EndpointInterface
      *
      * @return array
      */
-    public function read($entityID);
+    public function read($entityID) : array;
 
     /**
      * Create a new entity.
@@ -29,7 +29,7 @@ interface EndpointInterface
      *
      * @return array
      */
-    public function create(array $attributes);
+    public function create(array $attributes) : array;
 
     /**
      * Update an entity.
@@ -39,7 +39,7 @@ interface EndpointInterface
      *
      * @return array
      */
-    public function update($entityID, array $attributes);
+    public function update($entityID, array $attributes) : array;
 
     /**
      * Delete an entity.
@@ -48,5 +48,5 @@ interface EndpointInterface
      *
      * @return array
      */
-    public function delete($entityID);
+    public function delete($entityID) : array;
 }

@@ -43,7 +43,7 @@ interface ValidatorInterface
      * @return bool
      * @throws \Exception
      */
-    public function validate($rules = null, $data = null);
+    public function validate($rules = null, $data = null) : bool;
 
     /**
      * Check if the last validation was successful.
@@ -53,7 +53,7 @@ interface ValidatorInterface
      * @return boolean
      * @throws \Exception
      */
-    public function success();
+    public function success() : bool;
 
     /**
      * Retrieve errors.
@@ -61,5 +61,5 @@ interface ValidatorInterface
      * @return array
      * @throws \Exception
      */
-    public function errors();
+    public function errors() : array;
 }

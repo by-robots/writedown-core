@@ -11,5 +11,5 @@ interface VerifyTokenInterface
      *
      * @return bool
      */
-    public function verify($token);
+    public function verify($token) : bool;
 }

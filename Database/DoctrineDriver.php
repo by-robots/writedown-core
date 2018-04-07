@@ -2,6 +2,7 @@
 
 namespace WriteDown\Database;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use WriteDown\Database\Interfaces\DriverInterface;
@@ -33,7 +34,7 @@ class DoctrineDriver implements DriverInterface
     /**
      * @inheritDoc
      */
-    public function getManager()
+    public function getManager() : EntityManagerInterface
     {
         return $this->manager;
     }

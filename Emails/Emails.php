@@ -28,7 +28,7 @@ class Emails implements EmailInterface
     /**
      * @inheritDoc
      */
-    public function isUnique($email)
+    public function isUnique($email) : bool
     {
         return !$this->db->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['email' => $email]) ? true : false;
@@ -37,7 +37,7 @@ class Emails implements EmailInterface
     /**
      * @inheritDoc
      */
-    public function isUniqueExcept($email, $userID)
+    public function isUniqueExcept($email, $userID) : bool
     {
         $result = $this->db->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['email' => $email]);

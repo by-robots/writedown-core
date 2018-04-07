@@ -46,7 +46,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function all(array $filters = [])
+    public function all(array $filters = []) : array
     {
         // Combine $filters with the default, overriding the default ones with
         // those that have been passed directly.
@@ -62,10 +62,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
     }
 
     /**
-     * Get the total rows for the repository.
-     *
-     * @return int
-     * @throws \Exception
+     * @inheritDoc
      */
     public function getCount() : int
     {

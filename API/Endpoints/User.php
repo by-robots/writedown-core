@@ -43,7 +43,7 @@ class User extends CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes)
+    public function create(array $attributes) : array
     {
         if (
             array_key_exists('email', $attributes) and
@@ -60,7 +60,7 @@ class User extends CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function update($entityID, array $attributes)
+    public function update($entityID, array $attributes) : array
     {
         if (
             array_key_exists('email', $attributes) and

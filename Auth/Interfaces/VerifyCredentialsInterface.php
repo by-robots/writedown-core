@@ -12,5 +12,5 @@ interface VerifyCredentialsInterface
      *
      * @return bool
      */
-    public function verify($email, $password);
+    public function verify($email, $password) : bool;
 }

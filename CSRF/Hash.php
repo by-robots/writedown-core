@@ -45,7 +45,7 @@ class Hash implements CSRFInterface
     /**
      * @inheritDoc
      */
-    public function isValid($value)
+    public function isValid($value) : bool
     {
         if (is_null($this->session->get($this->tokenName))) {
             throw new \Exception('No CSRF token set.');

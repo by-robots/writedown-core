@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\Endpoints\Post;
 use WriteDown\API\Endpoints\User;
 use WriteDown\API\Interfaces\APIInterface;
+use WriteDown\API\Interfaces\EndpointInterface;
 use WriteDown\Emails\EmailInterface;
 use WriteDown\Emails\Emails;
 use WriteDown\Slugs\GenerateSlug;
@@ -51,7 +52,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function post(GenerateSlugInterface $generateSlug = null)
+    public function post(GenerateSlugInterface $generateSlug = null) : EndpointInterface
     {
         if (!$generateSlug) {
             $generateSlug = new GenerateSlug($this->db);
@@ -63,7 +64,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function user(EmailInterface $emails = null)
+    public function user(EmailInterface $emails = null) : EndpointInterface
     {
         if (!$emails) {
             $emails = new Emails($this->db);

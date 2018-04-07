@@ -29,7 +29,7 @@ class VerifyCredentials implements VerifyCredentialsInterface
     /**
      * @inheritDoc
      */
-    public function verify($email, $password)
+    public function verify($email, $password) : bool
     {
         // Get the user by the email address
         $user = $this->db->getRepository('WriteDown\Database\Entities\User')

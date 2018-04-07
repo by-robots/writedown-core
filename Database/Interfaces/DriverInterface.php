@@ -2,6 +2,8 @@
 
 namespace WriteDown\Database\Interfaces;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 interface DriverInterface
 {
     /**
@@ -9,5 +11,5 @@ interface DriverInterface
      *
      * @return \Doctrine\ORM\EntityManagerInterface
      */
-    public function getManager();
+    public function getManager() : EntityManagerInterface;
 }

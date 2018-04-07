@@ -2,6 +2,7 @@
 
 namespace WriteDown\API\Interfaces;
 
+use WriteDown\Emails\EmailInterface;
 use WriteDown\Slugs\GenerateSlugInterface;
 
 interface APIInterface
@@ -13,5 +14,14 @@ interface APIInterface
      *
      * @return \WriteDown\API\Interfaces\EndpointInterface;
      */
-    public function post(GenerateSlugInterface $generateSlug);
+    public function post(GenerateSlugInterface $generateSlug = null) : EndpointInterface;
+
+    /**
+     * Work with users.
+     *
+     * @param \WriteDown\Emails\EmailInterface $emails
+     *
+     * @return \WriteDown\API\Interfaces\EndpointInterface
+     */
+    public function user(EmailInterface $emails = null) : EndpointInterface;
 }

@@ -47,7 +47,7 @@ class Post extends CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes)
+    public function create(array $attributes) : array
     {
         // If a slug has been manually set check that it's unique
         if (
@@ -74,7 +74,7 @@ class Post extends CRUD implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function update($entityID, array $attributes)
+    public function update($entityID, array $attributes) : array
     {
         // First up, check the slug is unique.
         // A slug has been manually set so check it's unique

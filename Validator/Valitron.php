@@ -53,7 +53,7 @@ class Valitron implements ValidatorInterface
     /**
      * @inheritDoc
      */
-    public function validate($rules = null, $data = null)
+    public function validate($rules = null, $data = null) : bool
     {
         // If $rules or $data is provided here then squirrel it away
         if (!is_null($rules)) {
@@ -77,7 +77,7 @@ class Valitron implements ValidatorInterface
     /**
      * @inheritDoc
      */
-    public function success()
+    public function success() : bool
     {
         if (is_null($this->validator)) {
             throw new \Exception('No validation processed.');
@@ -89,7 +89,7 @@ class Valitron implements ValidatorInterface
     /**
      * @inheritDoc
      */
-    public function errors()
+    public function errors() : array
     {
         if (is_null($this->validator)) {
             throw new \Exception('No validation processed.');
