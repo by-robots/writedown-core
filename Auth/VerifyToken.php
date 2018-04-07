@@ -12,7 +12,7 @@ class VerifyToken implements VerifyTokenInterface
      *
      * @var \Doctrine\ORM\EntityManager
      */
-    private $db;
+    private $database;
 
     /**
      * Set-up.
@@ -23,16 +23,20 @@ class VerifyToken implements VerifyTokenInterface
      */
     public function __construct(EntityManager $database)
     {
-        $this->db = $database;
+        $this->database = $database;
     }
 
     /**
-     * @inheritDoc
+     * Verify a token is valid.
+     *
+     * @param string $token
+     *
+     * @return bool
      */
     public function verify($token) : bool
     {
         // Get the user by the email address
-        $user = $this->db->getRepository('WriteDown\Database\Entities\User')
+        $user = $this->database->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['token' => $token]);
 
         return !$user ? false : true;

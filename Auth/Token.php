@@ -7,7 +7,12 @@ use WriteDown\Auth\Interfaces\TokenInterface;
 class Token implements TokenInterface
 {
     /**
-     * @inheritDoc
+     * Generate a secure token.
+     *
+     * @param int $length
+     *
+     * @return string
+     * @throws \Exception
      */
     public function generate($length = 64) : string
     {

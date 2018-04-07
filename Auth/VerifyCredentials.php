@@ -12,7 +12,7 @@ class VerifyCredentials implements VerifyCredentialsInterface
      *
      * @var \Doctrine\ORM\EntityManager
      */
-    private $db;
+    private $database;
 
     /**
      * Set-up.
@@ -23,16 +23,21 @@ class VerifyCredentials implements VerifyCredentialsInterface
      */
     public function __construct(EntityManager $database)
     {
-        $this->db = $database;
+        $this->database = $database;
     }
 
     /**
-     * @inheritDoc
+     * Verify an email and password match.
+     *
+     * @param string $email
+     * @param string $password
+     *
+     * @return bool
      */
     public function verify($email, $password) : bool
     {
         // Get the user by the email address
-        $user = $this->db->getRepository('WriteDown\Database\Entities\User')
+        $user = $this->database->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['email' => $email]);
 
         if (!$user) {
