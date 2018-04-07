@@ -2,15 +2,7 @@
 
 namespace WriteDown\Database\Repositories;
 
-use WriteDown\Database\Interfaces\RepositoryInterface;
-
-class User extends BaseRepository implements RepositoryInterface
+class User extends BaseRepository
 {
-    /**
-     * @inheritDoc
-     */
-    public function all(array $filters = [])
-    {
-        return $this->findAll();
-    }
+    //
 }

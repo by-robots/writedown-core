@@ -6,8 +6,9 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use WriteDown\Database\Filter;
+use WriteDown\Database\Interfaces\RepositoryInterface;
 
-class BaseRepository extends EntityRepository
+class BaseRepository extends EntityRepository implements RepositoryInterface
 {
     /**
      * @var \WriteDown\Database\Interfaces\FilterInterface
@@ -40,6 +41,14 @@ class BaseRepository extends EntityRepository
     {
         parent::__construct($em, $class);
         $this->filter = new Filter;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function all(array $filters = [])
+    {
+        return $this->findAll();
     }
 
     /**

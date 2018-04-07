@@ -4,9 +4,8 @@ namespace WriteDown\Database\Repositories;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use WriteDown\Database\Interfaces\RepositoryInterface;
 
-class Post extends BaseRepository implements RepositoryInterface
+class Post extends BaseRepository
 {
     /**
      * Lock S-Foils in attack position.

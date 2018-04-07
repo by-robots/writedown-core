@@ -5,7 +5,6 @@ namespace WriteDown\API\Endpoints;
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
 use WriteDown\API\Interfaces\EndpointInterface;
-use WriteDown\API\MetaBuilder;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
