@@ -10,13 +10,16 @@ class IndexTest extends TestCase
      * When there are no users an empty array should be returned and success
      * should be indicated.
      */
-    public function testNoPosts()
+    public function testNoUsers()
     {
         // Request users
         $result = $this->writedown->api()->user()->index();
 
         // Check that an empty array is returned
-        $this->assertEquals(['success' => true, 'data' => []], $result);
+        $this->assertEquals(
+            ['success' => true, 'data' => [], 'meta' => []],
+            $result
+        );
     }
 
     /**

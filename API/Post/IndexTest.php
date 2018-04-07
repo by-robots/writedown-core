@@ -16,7 +16,10 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check that an empty array is returned
-        $this->assertEquals(['success' => true, 'data' => []], $result);
+        $this->assertEquals(
+            ['success' => true, 'data' => [], 'meta' => []],
+            $result
+        );
     }
 
     /**
