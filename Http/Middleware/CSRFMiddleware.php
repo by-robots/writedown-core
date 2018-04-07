@@ -6,9 +6,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WriteDown\CSRF\CSRFInterface;
 
-/**
- * @codeCoverageIgnore
- */
 class CSRFMiddleware
 {
     /**
