@@ -21,30 +21,12 @@ class Post extends BaseRepository
 
         $this->entity         = 'WriteDown\Database\Entities\Post';
         $this->defaultFilters = [
-            'orderBy' => ['p.publish_at' => 'DESC'],
+            'orderBy' => ['e.publish_at' => 'DESC'],
             'where'   => [
-                'p.publish_at IS NOT NULL AND p.publish_at <= :now' => [
+                'e.publish_at IS NOT NULL AND e.publish_at <= :now' => [
                     'now' => new \DateTime('now'),
                 ],
             ],
         ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function all(array $filters = [])
-    {
-        // Combine $filters with the default, overriding the default ones with
-        // those that have been passed directly.
-        $filters = array_merge($this->defaultFilters, $filters);
-
-        // Build the start of the query
-        $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('p')
-            ->from($this->entity, 'p');
-
-        // Apply filters
-        return $this->filter->build($query, $filters)->getQuery()->getResult();
     }
 }

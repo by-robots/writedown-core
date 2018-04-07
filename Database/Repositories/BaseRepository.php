@@ -27,7 +27,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      *
      * @var array
      */
-    protected $defaultFilters;
+    protected $defaultFilters = [];
 
     /**
      * Lock S-Foils in attack position.
@@ -48,7 +48,17 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      */
     public function all(array $filters = [])
     {
-        return $this->findAll();
+        // Combine $filters with the default, overriding the default ones with
+        // those that have been passed directly.
+        $filters = array_merge($this->defaultFilters, $filters);
+
+        // Build the start of the query
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('e')
+            ->from($this->entity, 'e');
+
+        // Apply filters
+        return $this->filter->build($query, $filters)->getQuery()->getResult();
     }
 
     /**
