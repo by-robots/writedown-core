@@ -62,7 +62,10 @@ abstract class TestCase extends BaseTestCase
     public function setUpDatabase()
     {
         $this->tearDownDatabase();
-        copy(__DIR__ . '/../db/writedown-test-clean', __DIR__ . '/../' . getenv('DB_DATABASE'));
+        copy(
+            __DIR__ . '/../db/writedown-test-clean',
+            __DIR__ . '/../' . getenv('DB_DATABASE')
+        );
     }
 
     /**
