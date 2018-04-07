@@ -4,6 +4,7 @@ namespace WriteDown\Http\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\Auth\Interfaces\AuthInterface;
 use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Http\Interfaces\ControllerInterface;
 use WriteDown\Sessions\SessionInterface;
@@ -37,6 +38,11 @@ abstract class Controller implements ControllerInterface
      * @var \WriteDown\CSRF\CSRFInterface
      */
     protected $csrf;
+
+    /**
+     * @var \WriteDown\Auth\Interfaces\AuthInterface
+     */
+    protected $auth;
 
     /**
      * @inheritDoc
@@ -80,5 +86,13 @@ abstract class Controller implements ControllerInterface
         if (is_null($this->csrf->get())) {
             $this->csrf->generate();
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setAuth(AuthInterface $auth)
+    {
+        $this->auth = $auth;
     }
 }

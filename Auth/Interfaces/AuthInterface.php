@@ -22,7 +22,7 @@ interface AuthInterface
      *
      * @return bool
      */
-    public function verifyCredential($email, $password) : bool;
+    public function verifyCredentials($email, $password) : bool;
 
     /**
      * Verify a token is valid.

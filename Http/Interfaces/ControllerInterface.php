@@ -4,6 +4,7 @@ namespace WriteDown\Http\Interfaces;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\Auth\Interfaces\AuthInterface;
 use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Sessions\SessionInterface;
 
@@ -54,4 +55,13 @@ interface ControllerInterface
      * @throws \Exception
      */
     public function setCSRF(CSRFInterface $csrf);
+
+    /**
+     * Set the auth verifier.
+     *
+     * @param \WriteDown\Auth\Interfaces\AuthInterface $auth
+     *
+     * @return void
+     */
+    public function setAuth(AuthInterface $auth);
 }
