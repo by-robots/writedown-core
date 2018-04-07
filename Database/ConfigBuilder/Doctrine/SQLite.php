@@ -28,10 +28,17 @@ class SQLite extends TestCase
         putenv('DB_DATABASE=' . $newDatabase);
 
         // Request the config
-        $config = $configBuilder->generate();
+        $config       = $configBuilder->generate();
+        $expectedPath = explode('/', $newDatabase);
+        $dbFile       = array_pop($expectedPath);
+        $expectedPath = realpath(__DIR__ . '/../../../../' . implode('/', $expectedPath));
+        $expectedPath = $expectedPath . '/' . $dbFile;
 
         // Check the config is what we expected
-        $this->assertEquals(['driver' => 'pdo_sqlite', 'path' => $newDatabase], $config);
+        $this->assertEquals([
+            'driver' => 'pdo_sqlite',
+            'path'   => $expectedPath,
+        ], $config);
     }
 
     /**
