@@ -28,12 +28,7 @@ class VerifyCredentials implements VerifyCredentialsInterface
     }
 
     /**
-     * Verify an email and password match.
-     *
-     * @param string $email
-     * @param string $password
-     *
-     * @return \WriteDown\Database\Entities\User|bool
+     * @inheritdoc
      */
     public function verify($email, $password)
     {
