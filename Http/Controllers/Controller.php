@@ -4,6 +4,7 @@ namespace WriteDown\Http\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\API\Interfaces\APIInterface;
 use WriteDown\Auth\Interfaces\AuthInterface;
 use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Http\Interfaces\ControllerInterface;
@@ -28,6 +29,11 @@ abstract class Controller implements ControllerInterface
      * @var \WriteDown\Sessions\SessionInterface
      */
     protected $sessions;
+
+    /**
+     * @var \WriteDown\API\Interfaces\APIInterface
+     */
+    protected $api;
 
     /**
      * @var \Slim\Views\PhpRenderer
@@ -66,6 +72,14 @@ abstract class Controller implements ControllerInterface
     public function setSessions(SessionInterface $sessions)
     {
         $this->sessions = $sessions;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setAPI(APIInterface $api)
+    {
+        $this->api = $api;
     }
 
     /**

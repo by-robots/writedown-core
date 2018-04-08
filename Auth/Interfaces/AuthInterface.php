@@ -20,9 +20,9 @@ interface AuthInterface
      * @param string $email
      * @param string $password
      *
-     * @return bool
+     * @return \WriteDown\Database\Entities\User|bool
      */
-    public function verifyCredentials($email, $password) : bool;
+    public function verifyCredentials($email, $password);
 
     /**
      * Verify a token is valid.

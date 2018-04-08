@@ -4,6 +4,7 @@ namespace WriteDown\Auth;
 
 use Doctrine\ORM\EntityManager;
 use WriteDown\Auth\Interfaces\VerifyCredentialsInterface;
+use WriteDown\Database\Entities\User;
 
 class VerifyCredentials implements VerifyCredentialsInterface
 {
@@ -32,18 +33,19 @@ class VerifyCredentials implements VerifyCredentialsInterface
      * @param string $email
      * @param string $password
      *
-     * @return bool
+     * @return \WriteDown\Database\Entities\User|bool
      */
-    public function verify($email, $password) : bool
+    public function verify($email, $password)
     {
         // Get the user by the email address
-        $user = $this->database->getRepository('WriteDown\Database\Entities\User')
+        $user = $this->database
+            ->getRepository('WriteDown\Database\Entities\User')
             ->findOneBy(['email' => $email]);
 
-        if (!$user) {
+        if (!$user or !password_verify($password, $user->password)) {
             return false;
         }
 
-        return password_verify($password, $user->password);
+        return $user;
     }
 }

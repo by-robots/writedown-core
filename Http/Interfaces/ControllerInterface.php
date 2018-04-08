@@ -4,6 +4,7 @@ namespace WriteDown\Http\Interfaces;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use WriteDown\API\Interfaces\APIInterface;
 use WriteDown\Auth\Interfaces\AuthInterface;
 use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Sessions\SessionInterface;
@@ -36,6 +37,15 @@ interface ControllerInterface
      * @return void
      */
     public function setSessions(SessionInterface $sessions);
+
+    /**
+     * Set the API object.
+     *
+     * @param \WriteDown\API\Interfaces\APIInterface $api
+     *
+     * @return void
+     */
+    public function setAPI(APIInterface $api);
 
     /**
      * Set the view generation object.

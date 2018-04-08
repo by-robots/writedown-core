@@ -10,7 +10,7 @@ interface VerifyCredentialsInterface
      * @param string $email
      * @param string $password
      *
-     * @return bool
+     * @return \WriteDown\Database\Entities\User
      */
-    public function verify($email, $password) : bool;
+    public function verify($email, $password);
 }

@@ -53,7 +53,7 @@ class Auth implements AuthInterface
     /**
      * @inheritDoc
      */
-    public function verifyCredentials($email, $password) : bool
+    public function verifyCredentials($email, $password)
     {
         return $this->verifyCredentials->verify($email, $password);
     }
