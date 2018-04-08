@@ -2,7 +2,7 @@
 
 namespace WriteDown\API;
 
-use WriteDown\Database\Interfaces\RepositoryInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 /**
  * Responsible for building a consistent API response.
@@ -29,14 +29,14 @@ class ResponseBuilder
     /**
      * Return on object.
      *
-     * @param mixed                                              $data
-     * @param boolean                                            $success
-     * @param \WriteDown\Database\Interfaces\RepositoryInterface $repository
-     * @param array                                              $filters
+     * @param mixed                                         $data
+     * @param boolean                                       $success
+     * @param \Doctrine\Common\Persistence\ObjectRepository $repository
+     * @param array                                         $filters
      *
      * @return array
      */
-    public function build($data, $success = true, RepositoryInterface $repository = null, array $filters = []) : array
+    public function build($data, $success = true, ObjectRepository $repository = null, array $filters = []) : array
     {
         return [
             'data'    => $data,
