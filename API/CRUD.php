@@ -64,7 +64,7 @@ class CRUD implements EndpointInterface
             return $this->response->build(['Not found.'], false);
         }
 
-        return $this->response->build($entity,true, $this->db->getRepository($this->entityRepo));
+        return $this->response->build($entity, true, $this->db->getRepository($this->entityRepo));
     }
 
     /**
