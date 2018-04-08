@@ -26,7 +26,8 @@ class VerifyCredentials extends TestCase
     }
 
     /**
-     * When the username and password match, true should be returned.
+     * When the username and password match, the matching user should be
+     * returned.
      */
     public function testGoodDetails()
     {
@@ -38,7 +39,8 @@ class VerifyCredentials extends TestCase
         ]);
 
         // Attempt to login with the correct details and check that it passes
-        $this->assertTrue($this->auth->verify($user['data']->email, $password));
+        $loggedInUser = $this->auth->verify($user['data']->email, $password);
+        $this->assertEquals($user['data']->email, $loggedInUser->email);
     }
 
     /**
