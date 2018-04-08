@@ -143,6 +143,17 @@ class WriteDown
     }
 
     /**
+     * Get the authentication manager.
+     *
+     * @return \WriteDown\Auth\Interfaces\AuthInterface
+     */
+    public function auth()
+    {
+        return $this->getContainer()
+            ->get('WriteDown\Auth\Interfaces\AuthInterface');
+    }
+
+    /**
      * Run WriteDown!
      *
      * @return void
