@@ -2,7 +2,7 @@
 
 namespace WriteDown\API;
 
-use WriteDown\Database\Interfaces\RepositoryInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 /**
  * Build meta data to be included with the API response.
@@ -12,12 +12,12 @@ class MetaBuilder
     /**
      * Build the response.
      *
-     * @param \WriteDown\Database\Interfaces\RepositoryInterface $repository
-     * @param array                                              $filters
+     * @param \Doctrine\Common\Persistence\ObjectRepository $repository
+     * @param array                                         $filters
      *
      * @return array
      */
-    public function build(RepositoryInterface $repository, array $filters) : array
+    public function build(ObjectRepository $repository, array $filters) : array
     {
         if (!array_key_exists('pagination', $filters)) {
             return [];

@@ -41,7 +41,8 @@ class ResponseBuilder
         return [
             'data'    => $data,
             'success' => $success,
-            'meta'    => !is_null($repository) ? $this->metaBuilder->build($repository, $filters) : [],
+            'meta'    => !is_null($repository) ?
+                $this->metaBuilder->build($repository, $filters) : [],
         ];
     }
 }
