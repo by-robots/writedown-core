@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Entities;
+namespace Tests\Entities\Database;
 
 use Tests\TestCase;
 
