@@ -15,6 +15,8 @@ use WriteDown\Sessions\SessionInterface;
  */
 abstract class Controller implements ControllerInterface
 {
+    use ControllerHelpers;
+
     /**
      * @var \Psr\Http\Message\ServerRequestInterface
      */

@@ -32,4 +32,13 @@ interface AuthInterface
      * @return bool
      */
     public function verifyToken($token) : bool;
+
+    /**
+     * Retrieve the logged in user.
+     *
+     * @param string $token
+     *
+     * @return \WriteDown\Database\Entities\User
+     */
+    public function user($token);
 }

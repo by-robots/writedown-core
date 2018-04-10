@@ -8,6 +8,11 @@ use WriteDown\Auth\Interfaces\AuthInterface;
 class Auth implements AuthInterface
 {
     /**
+     * @var \Doctrine\ORM\EntityManagerInterface
+     */
+    private $database;
+
+    /**
      * Generates tokens.
      *
      * @var \WriteDown\Auth\Interfaces\TokenInterface
@@ -37,9 +42,10 @@ class Auth implements AuthInterface
      */
     public function __construct(EntityManagerInterface $database)
     {
+        $this->database          = $database;
         $this->token             = new Token;
-        $this->verifyCredentials = new VerifyCredentials($database);
-        $this->verifyToken       = new VerifyToken($database);
+        $this->verifyCredentials = new VerifyCredentials($this->database);
+        $this->verifyToken       = new VerifyToken($this->database);
     }
 
     /**
@@ -64,5 +70,17 @@ class Auth implements AuthInterface
     public function verifyToken($token) : bool
     {
         return $this->verifyToken->verify($token);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function user($token)
+    {
+        $user = $this->database
+            ->getRepository('WriteDown\Database\Entities\User')
+            ->findOneBy(['token' => $token]);
+
+        return $user;
     }
 }
