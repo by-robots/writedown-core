@@ -52,6 +52,7 @@ class Post extends CRUD implements EndpointInterface
         // If a slug has been manually set check that it's unique
         if (
             array_key_exists('slug', $attributes) and
+            !empty($attributes['slug']) and
             !$this->slug->isUnique($attributes['slug'])
         ) {
             return $this->response->build([
@@ -61,7 +62,7 @@ class Post extends CRUD implements EndpointInterface
 
         // If no slug has been set generate it with the post's title
         if (
-            !array_key_exists('slug', $attributes) and
+            !array_key_exists('slug', $attributes) or empty($attributes['slug']) and
             array_key_exists('title', $attributes)
         ) {
             $attributes['slug'] = $this->slug->uniqueSlug($attributes['title']);
