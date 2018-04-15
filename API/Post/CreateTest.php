@@ -86,6 +86,17 @@ class CreateTest extends TestCase
         $this->assertNotNull($result['data']->slug);
     }
 
+    public function testSlugGeneratedWhenAttributeEmpty()
+    {
+        $result = $this->writedown->api()->post()->create([
+            'title' => $this->faker->sentence,
+            'body'  => $this->faker->paragraph,
+            'slug'  => '',
+        ]);
+
+        $this->assertNotNull($result['data']->slug);
+    }
+
     public function testSlugNotOverwritten()
     {
         $expected = $this->faker->slug;
