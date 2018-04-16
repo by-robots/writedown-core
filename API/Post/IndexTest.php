@@ -102,4 +102,20 @@ class IndexTest extends TestCase
         // It should be empty
         $this->assertEquals(0, count($result['data']));
     }
+
+    /**
+     * Tests that posts that have not been published yet can still be retrieved.
+     */
+    public function testNotPublishedStillRetrievable()
+    {
+        $noPublishAt             = $this->resources->post();
+        $noPublishAt->publish_at = null;
+        $this->resources->flush();
+
+        // Grab the index
+        $result = $this->writedown->api()->post()->index(['where' => []]);
+
+        // It should be empty
+        $this->assertEquals(1, count($result['data']));
+    }
 }
