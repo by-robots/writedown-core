@@ -35,6 +35,16 @@ class Valitron implements ValidatorInterface
     private $success = null;
 
     /**
+     * Allez! Allez!
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->validator = new Provider;
+    }
+
+    /**
      * @inheritDoc
      */
     public function setRules(array $rules)
@@ -65,7 +75,7 @@ class Valitron implements ValidatorInterface
         }
 
         // Run the validation
-        $this->validator = new Provider($this->data);
+        $this->validator = $this->validator->withData($this->data);
         foreach ($this->generateRulesFromProvided() as $rule => $columns) {
             $this->validator->rule($rule, $columns);
         }
@@ -79,7 +89,7 @@ class Valitron implements ValidatorInterface
      */
     public function success() : bool
     {
-        if (is_null($this->validator)) {
+        if (is_null($this->success)) {
             throw new \Exception('No validation processed.');
         }
 
@@ -91,7 +101,7 @@ class Valitron implements ValidatorInterface
      */
     public function errors() : array
     {
-        if (is_null($this->validator)) {
+        if (is_null($this->success)) {
             throw new \Exception('No validation processed.');
         }
 
