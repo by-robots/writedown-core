@@ -51,6 +51,6 @@ class HTTPServiceProvider extends AbstractServiceProvider
             ->withArgument(new Token);
 
         $this->getContainer()
-            ->add('WriteDown\Sessions\SessionInterface', AuraSession::class);
+            ->share('WriteDown\Sessions\SessionInterface', AuraSession::class);
     }
 }

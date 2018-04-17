@@ -2,6 +2,7 @@
 
 namespace WriteDown\Sessions;
 
+use Aura\Session\Session;
 use Aura\Session\SessionFactory;
 
 /**
@@ -13,6 +14,11 @@ use Aura\Session\SessionFactory;
  */
 class AuraSession implements SessionInterface
 {
+    /**
+     * @var \Aura\Session\Session
+     */
+    private $session;
+
     /**
      * @var \Aura\Session\Segment
      */
@@ -26,8 +32,8 @@ class AuraSession implements SessionInterface
     public function __construct()
     {
         $sessionFactory = new SessionFactory;
-        $session        = $sessionFactory->newInstance($_COOKIE);
-        $this->segment  = $session->getSegment('WriteDown\WriteDown');
+        $this->session  = $sessionFactory->newInstance($_COOKIE);
+        $this->segment  = $this->session->getSegment('WriteDown\WriteDown');
     }
 
     /**
@@ -51,7 +57,7 @@ class AuraSession implements SessionInterface
      */
     public function clear()
     {
-        $this->segment->clear();
+        $this->session->clear();
     }
 
     /**
@@ -84,5 +90,13 @@ class AuraSession implements SessionInterface
     public function keepFlash()
     {
         $this->segment->keepFlash();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function destroy()
+    {
+        $this->session->destroy();
     }
 }

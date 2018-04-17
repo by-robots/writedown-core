@@ -69,4 +69,11 @@ interface SessionInterface
      * @return null
      */
     public function keepFlash();
+
+    /**
+     * Completely destroy the current session.
+     *
+     * @return null
+     */
+    public function destroy();
 }
