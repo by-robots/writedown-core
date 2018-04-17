@@ -76,9 +76,7 @@ class Valitron implements ValidatorInterface
 
         // Run the validation
         $this->validator = $this->validator->withData($this->data);
-        foreach ($this->generateRulesFromProvided() as $rule => $columns) {
-            $this->validator->rule($rule, $columns);
-        }
+        $this->validator->rules($this->generateRulesFromProvided());
 
         $this->success = $this->validator->validate();
         return $this->success();
@@ -120,11 +118,23 @@ class Valitron implements ValidatorInterface
         $converted = [];
         foreach ($this->rules as $column => $ruleSet) {
             foreach ($ruleSet as $rule) {
-                if (!array_key_exists($rule, $converted)) {
-                    $converted[$rule] = [];
+                // Split rule details
+                $ruleDetails = explode(':', $rule);
+
+                // Create the rule entry
+                if (!array_key_exists($ruleDetails[0], $converted)) {
+                    $converted[$ruleDetails[0]] = [];
                 }
 
-                $converted[$rule][] = $column;
+                // Add column that the rule applies to and check if we need to
+                // add extra information
+                $arguments = [$column];
+                if (isset($ruleDetails[1])) {
+                    $arguments[] = $ruleDetails[1];
+                }
+
+                // Generate the rule
+                $converted[$ruleDetails[0]][] = $arguments;
             }
         }
 

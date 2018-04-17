@@ -110,6 +110,11 @@ class CRUD implements EndpointInterface
             }
         }
 
+        // Validate it
+        if (!$this->validator->validate($entity->rules, $entity->validationArray())) {
+            return $this->response->build($this->validator->errors(), false);
+        }
+
         // Commit to the database and continue
         $this->db->flush();
         return $this->response->build($entity);

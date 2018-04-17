@@ -60,7 +60,7 @@ class Post extends CRUD implements EndpointInterface
             !$this->slug->isUnique($attributes['slug'])
         ) {
             return $this->response->build([
-                'slug' => 'The slug value is not unique.'
+                'slug' => ['The slug value is not unique.'],
             ], false);
         }
 
@@ -88,7 +88,7 @@ class Post extends CRUD implements EndpointInterface
             !$this->slug->isUniqueExcept($attributes['slug'], $entityID)
         ) {
             return $this->response->build([
-                'slug' => 'The slug value is not unique.'
+                'slug' => ['The slug value is not unique.'],
             ], false);
         }
 
