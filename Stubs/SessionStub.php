@@ -14,12 +14,7 @@ class SessionStub implements SessionInterface
     private $session = [];
 
     /**
-     * Returns the value of a key.
-     *
-     * @param string $key The key to retrieve.
-     * @param mixed  $alt If $key is not set, return this.
-     *
-     * @return mixed
+     * @inheritDoc
      */
     public function get($key, $alt = null)
     {
@@ -27,12 +22,7 @@ class SessionStub implements SessionInterface
     }
 
     /**
-     * Sets the value of a key in the segment.
-     *
-     * @param string $key The key to set.
-     * @param mixed  $val The value to set it to.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function set($key, $val)
     {
@@ -40,13 +30,19 @@ class SessionStub implements SessionInterface
     }
 
     /**
-     * Clear all session data.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function clear()
     {
         $this->session = [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function destroy()
+    {
+        $this->clear();
     }
 
     /**
