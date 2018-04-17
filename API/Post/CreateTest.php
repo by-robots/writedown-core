@@ -128,7 +128,7 @@ class CreateTest extends TestCase
 
         // Check that was rejected
         $this->assertFalse($result['success']);
-        $this->assertEquals(['slug' => 'The slug value is not unique.'], $result['data']);
+        $this->assertArrayHasKey('slug', $result['data']);
     }
 
     /**

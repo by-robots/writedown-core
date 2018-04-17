@@ -73,6 +73,21 @@ class UpdateTest extends TestCase
 
         // Check that fails
         $this->assertFalse($result['success']);
-        $this->assertEquals(['slug' => 'The slug value is not unique.'], $result['data']);
+        $this->assertArrayHasKey('slug', $result['data']);
+    }
+
+    /**
+     * An empty title should be invalid
+     */
+    public function testEmptyTitle()
+    {
+        $post   = $this->resources->post();
+        $result = $this->writedown->api()->post()->update($post->id, [
+            'title' => '',
+        ]);
+
+        // Annnnnd check it
+        $this->assertFalse($result['success']);
+        $this->assertArrayHasKey('title', $result['data']);
     }
 }
