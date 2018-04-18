@@ -41,7 +41,7 @@ class User extends CRUD implements EndpointInterface
         $this->entity     = 'User';
 
         // Set the transformer for this model
-        $this->response->setTransformer(new UserTransformer());
+        $this->response->setTransformer(new UserTransformer); // TODO: Inject this
     }
 
     /**

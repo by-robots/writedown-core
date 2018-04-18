@@ -45,7 +45,7 @@ class Post extends CRUD implements EndpointInterface
         $this->entity     = 'Post';
 
         // Set the transformer for this model
-        $this->response->setTransformer(new PostTransformer);
+        $this->response->setTransformer(new PostTransformer); // TODO: Inject this
     }
 
     /**
