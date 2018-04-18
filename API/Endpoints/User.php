@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
 use WriteDown\API\Interfaces\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
+use WriteDown\API\Transformers\UserTransformer;
 use WriteDown\Emails\EmailInterface;
 use WriteDown\Validator\ValidatorInterface;
 
@@ -38,6 +39,9 @@ class User extends CRUD implements EndpointInterface
         // Set additional CRUD settings
         $this->entityRepo = 'WriteDown\Database\Entities\User';
         $this->entity     = 'User';
+
+        // Set the transformer for this model
+        $this->response->setTransformer(new UserTransformer());
     }
 
     /**

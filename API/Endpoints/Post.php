@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
 use WriteDown\API\Interfaces\EndpointInterface;
 use WriteDown\API\ResponseBuilder;
+use WriteDown\API\Transformers\PostTransformer;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
 
@@ -42,6 +43,9 @@ class Post extends CRUD implements EndpointInterface
         // Set additional CRUD settings
         $this->entityRepo = 'WriteDown\Database\Entities\Post';
         $this->entity     = 'Post';
+
+        // Set the transformer for this model
+        $this->response->setTransformer(new PostTransformer);
     }
 
     /**
