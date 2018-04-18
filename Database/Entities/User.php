@@ -35,7 +35,7 @@ class User extends TestCase
                                          // timestamp will be different to created_at.
 
         // Update it
-        $user->password = password_hash($this->faker->word, PASSWORD_DEFAULT);
+        $user->password = $this->faker->word;
         $this->resources->flush();
 
         // Make sure dates have been set and only updated_at has been changed

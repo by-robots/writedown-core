@@ -90,7 +90,7 @@ class CreatesResources
         $user = new User;
 
         $user->email    = $this->faker->email;
-        $user->password = password_hash($this->faker->word, PASSWORD_DEFAULT);
+        $user->password = $this->faker->word;
         $this->persist($user);
         $this->flush();
 

@@ -38,7 +38,7 @@ class ValidatesToken extends TestCase
         $token = bin2hex(random_bytes(64));
         $this->writedown->api()->user()->create([
             'email'    => $this->faker->email,
-            'password' => password_hash($this->faker->word, PASSWORD_DEFAULT),
+            'password' => $this->faker->word,
             'token'    => $token,
         ]);
 
