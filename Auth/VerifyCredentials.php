@@ -84,4 +84,23 @@ class VerifyCredentials extends TestCase
         // Attempt to login with the correct details and check that it passes
         $this->assertFalse($this->auth->verify($this->faker->email, $this->faker->word));
     }
+
+    /**
+     * Test that extra users can login.
+     */
+    public function testExtraUsers()
+    {
+        $this->resources->user();
+
+        // Create a second user, ensure we know the password
+        $password = $this->faker->word;
+        $user     = $this->writedown->api()->user()->create([
+            'email'    => $this->faker->email,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+        ]);
+
+        // Attempt to login with the correct details and check that it passes
+        $loggedInUser = $this->auth->verify($user['data']->email, $password);
+        $this->assertEquals($user['data']->email, $loggedInUser->email);
+    }
 }
