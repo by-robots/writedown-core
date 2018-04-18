@@ -48,7 +48,7 @@ class Base
         $methodName = "get" . ucfirst($property);
 
         if (method_exists($this, $methodName)) {
-            return call_user_func(array($this, $methodName));
+            return call_user_func([$this, $methodName]);
         } else if (
             !in_array($property, $this->hidden) and
             isset($this->{$property})
@@ -57,6 +57,26 @@ class Base
         }
 
         return null;
+    }
+
+    /**
+     * Set a property.
+     *
+     * @param string $property
+     * @param string $value
+     *
+     * @return void
+     */
+    public function __set($property, $value)
+    {
+        $methodName = "set" . ucfirst($property);
+
+        if (method_exists($this, $methodName)) {
+            call_user_func([$this, $methodName], $value);
+            return;
+        }
+
+        $this->$property = $value;
     }
 
     /**

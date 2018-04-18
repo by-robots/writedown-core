@@ -50,7 +50,7 @@ class User extends CRUD implements EndpointInterface
             !$this->emails->isUnique($attributes['email'])
         ) {
             return $this->response->build([
-                'email' => 'The email value is not unique.'
+                'email' => ['The email value is not unique.']
             ], false);
         }
 
@@ -67,7 +67,7 @@ class User extends CRUD implements EndpointInterface
             !$this->emails->isUniqueExcept($attributes['email'], $entityID)
         ) {
             return $this->response->build([
-                'email' => 'The email value is not unique.'
+                'email' => ['The email value is not unique.']
             ], false);
         }
 

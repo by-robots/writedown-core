@@ -20,7 +20,7 @@ class User extends Base
     public $email;
 
     /** @Column(type="text") */
-    public $password;
+    protected $password;
 
     /** @Column(type="text", unique=true, nullable=true) */
     public $token;
@@ -48,4 +48,16 @@ class User extends Base
      * @var array
      */
     protected $hidden = ['token'];
+
+    /**
+     * When the password is set, hash it.
+     *
+     * @param string $password
+     *
+     * @return void
+     */
+    public function setPassword($password)
+    {
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
 }
