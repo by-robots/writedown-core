@@ -88,6 +88,5 @@ class CreateTest extends TestCase
 
         // Check that the errors expected are returned
         $this->assertFalse($result['success']);
-        $this->assertEquals(['email' => 'The email value is not unique.'], $result['data']);
     }
 }

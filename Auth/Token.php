@@ -10,7 +10,7 @@ class Token extends TestCase
     /**
      * The token generator.
      *
-     * @var \WriteDown\Auth\TokenInterface
+     * @var \WriteDown\Auth\Interfaces\TokenInterface
      */
     private $token;
 

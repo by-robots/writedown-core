@@ -10,7 +10,7 @@ class VerifyCredentials extends TestCase
     /**
      * Validates user credentials.
      *
-     * @var \WriteDown\Auth\VerifyCredentialsInterface
+     * @var \WriteDown\Auth\Interfaces\VerifyCredentialsInterface
      */
     private $auth;
 
@@ -35,7 +35,7 @@ class VerifyCredentials extends TestCase
         $password = $this->faker->word;
         $user     = $this->writedown->api()->user()->create([
             'email'    => $this->faker->email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'password' => $password,
         ]);
 
         // Attempt to login with the correct details and check that it passes
@@ -50,7 +50,7 @@ class VerifyCredentials extends TestCase
     {
         $user = $this->writedown->api()->user()->create([
             'email'    => $this->faker->email,
-            'password' => password_hash($this->faker->word, PASSWORD_DEFAULT),
+            'password' => $this->faker->word,
         ]);
 
         // Attempt to login with the correct details and check that it passes
@@ -66,7 +66,7 @@ class VerifyCredentials extends TestCase
         $password = $this->faker->word;
         $this->writedown->api()->user()->create([
             'email'    => $this->faker->email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'password' => $password,
         ]);
 
         // Attempt to login with the correct details and check that it passes
@@ -96,7 +96,7 @@ class VerifyCredentials extends TestCase
         $password = $this->faker->word;
         $user     = $this->writedown->api()->user()->create([
             'email'    => $this->faker->email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'password' => $password,
         ]);
 
         // Attempt to login with the correct details and check that it passes
