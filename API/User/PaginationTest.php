@@ -18,8 +18,8 @@ class PaginationTest extends TestCase
 
         // Request an index, with 10 per index
         $result = $this->writedown->api()->user()->index(['pagination' => [
-            'per_page' => 10,
-            'page'     => 1,
+            'per_page'     => 10,
+            'current_page' => 1,
         ]]);
 
         // We should have received 10 posts
@@ -46,8 +46,8 @@ class PaginationTest extends TestCase
 
         // Request an index, with 10 per index
         $result = $this->writedown->api()->user()->index(['pagination' => [
-            'per_page' => 10,
-            'page'     => 2,
+            'per_page'     => 10,
+            'current_page' => 2,
         ]]);
 
         $this->assertEquals(5, count($result['data']));
