@@ -76,7 +76,7 @@ class Filter implements FilterInterface
     private function pagination($paginations)
     {
         $this->query
-            ->setFirstResult($paginations['per_page'] * ($paginations['page'] - 1))
+            ->setFirstResult($paginations['per_page'] * ($paginations['current_page'] - 1))
             ->setMaxResults($paginations['per_page']);
     }
 }

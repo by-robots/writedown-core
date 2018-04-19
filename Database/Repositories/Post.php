@@ -21,8 +21,12 @@ class Post extends BaseRepository
 
         $this->entity         = 'WriteDown\Database\Entities\Post';
         $this->defaultFilters = [
-            'orderBy' => ['e.publish_at' => 'DESC'],
-            'where'   => [
+            'orderBy'    => ['e.publish_at' => 'DESC'],
+            'pagination' => [
+                'current_page' => 1,
+                'per_page'     => getenv('MAX_ITEMS'),
+            ],
+            'where'      => [
                 'e.publish_at IS NOT NULL AND e.publish_at <= :now' => [
                     'now' => new \DateTime('now'),
                 ],
