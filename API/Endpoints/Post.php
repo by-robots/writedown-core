@@ -53,16 +53,8 @@ class Post extends CRUD implements PostEndpointInterface
      */
     public function create(array $attributes) : array
     {
-        // Remove empty slug attributes for tidiness
-        if (array_key_exists('slug', $attributes) and empty($attributes['slug'])) {
-            unset($attributes['slug']);
-        }
-
         // If a slug has been manually set check that it's unique
-        if (
-            array_key_exists('slug', $attributes) and
-            !$this->slug->isUnique($attributes['slug'])
-        ) {
+        if (isset($attributes['slug']) and !$this->slug->isUnique($attributes['slug'])) {
             return $this->response->build([
                 'slug' => ['The slug value is not unique.'],
             ], false);
@@ -70,8 +62,8 @@ class Post extends CRUD implements PostEndpointInterface
 
         // If no slug has been set generate it with the post's title
         if (
-            !array_key_exists('slug', $attributes) and
-            array_key_exists('title', $attributes)
+            (!isset($attributes['slug']) or empty($attributes['slug'])) and
+            isset($attributes['title'])
         ) {
             $attributes['slug'] = $this->slug->uniqueSlug($attributes['title']);
         }
@@ -87,10 +79,7 @@ class Post extends CRUD implements PostEndpointInterface
     {
         // First up, check the slug is unique.
         // A slug has been manually set so check it's unique
-        if (
-            array_key_exists('slug', $attributes) and
-            !$this->slug->isUniqueExcept($attributes['slug'], $entityID)
-        ) {
+        if (isset($attributes['slug']) and !$this->slug->isUniqueExcept($attributes['slug'], $entityID)) {
             return $this->response->build([
                 'slug' => ['The slug value is not unique.'],
             ], false);

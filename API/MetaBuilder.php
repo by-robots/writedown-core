@@ -19,7 +19,7 @@ class MetaBuilder
      */
     public function build(ObjectRepository $repository, array $filters) : array
     {
-        if (!array_key_exists('pagination', $filters)) {
+        if (!isset($filters['pagination'])) {
             return [];
         }
 

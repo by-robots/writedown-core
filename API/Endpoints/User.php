@@ -49,10 +49,7 @@ class User extends CRUD implements EndpointInterface
      */
     public function create(array $attributes) : array
     {
-        if (
-            array_key_exists('email', $attributes) and
-            !$this->emails->isUnique($attributes['email'])
-        ) {
+        if (isset($attributes['email']) and !$this->emails->isUnique($attributes['email'])) {
             return $this->response->build([
                 'email' => ['The email value is not unique.']
             ], false);
@@ -66,10 +63,7 @@ class User extends CRUD implements EndpointInterface
      */
     public function update($entityID, array $attributes) : array
     {
-        if (
-            array_key_exists('email', $attributes) and
-            !$this->emails->isUniqueExcept($attributes['email'], $entityID)
-        ) {
+        if (isset($attributes['email']) and !$this->emails->isUniqueExcept($attributes['email'], $entityID)) {
             return $this->response->build([
                 'email' => ['The email value is not unique.']
             ], false);

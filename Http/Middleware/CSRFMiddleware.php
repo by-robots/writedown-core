@@ -38,7 +38,7 @@ class CSRFMiddleware
     public function validate(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         if (
-            !array_key_exists('csrf', $request->getParsedBody()) or
+            !isset($request->getParsedBody()['csrf']) or
             !$this->csrf->isValid($request->getParsedBody()['csrf'])
         ) {
             throw new \Exception('Invalid CSRF.');
