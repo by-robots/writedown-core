@@ -12,9 +12,9 @@ interface APIInterface
      *
      * @param \WriteDown\Slugs\GenerateSlugInterface $generateSlug
      *
-     * @return \WriteDown\API\Interfaces\EndpointInterface;
+     * @return \WriteDown\API\Interfaces\PostEndpointInterface
      */
-    public function post(GenerateSlugInterface $generateSlug = null) : EndpointInterface;
+    public function post(GenerateSlugInterface $generateSlug = null) : PostEndpointInterface;
 
     /**
      * Work with users.

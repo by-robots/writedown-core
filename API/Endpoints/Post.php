@@ -4,13 +4,13 @@ namespace WriteDown\API\Endpoints;
 
 use Doctrine\ORM\EntityManager;
 use WriteDown\API\CRUD;
-use WriteDown\API\Interfaces\EndpointInterface;
+use WriteDown\API\Interfaces\PostEndpointInterface;
 use WriteDown\API\ResponseBuilder;
 use WriteDown\API\Transformers\PostTransformer;
 use WriteDown\Slugs\GenerateSlugInterface;
 use WriteDown\Validator\ValidatorInterface;
 
-class Post extends CRUD implements EndpointInterface
+class Post extends CRUD implements PostEndpointInterface
 {
     /**
      * Checks slugs are unique.
@@ -97,5 +97,18 @@ class Post extends CRUD implements EndpointInterface
         }
 
         return parent::update($entityID, $attributes);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function bySlug($slug) : array
+    {
+        $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['slug' => $slug]);
+        if (!$entity) {
+            return $this->response->build(['Not found.'], false);
+        }
+
+        return $this->response->build($entity, true, $this->db->getRepository($this->entityRepo));
     }
 }

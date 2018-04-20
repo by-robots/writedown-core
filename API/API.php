@@ -7,6 +7,7 @@ use WriteDown\API\Endpoints\Post;
 use WriteDown\API\Endpoints\User;
 use WriteDown\API\Interfaces\APIInterface;
 use WriteDown\API\Interfaces\EndpointInterface;
+use WriteDown\API\Interfaces\PostEndpointInterface;
 use WriteDown\Emails\EmailInterface;
 use WriteDown\Emails\Emails;
 use WriteDown\Slugs\GenerateSlug;
@@ -52,7 +53,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function post(GenerateSlugInterface $generateSlug = null) : EndpointInterface
+    public function post(GenerateSlugInterface $generateSlug = null) : PostEndpointInterface
     {
         if (!$generateSlug) {
             $generateSlug = new GenerateSlug($this->db);
