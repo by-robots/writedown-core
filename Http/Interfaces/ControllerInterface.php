@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use WriteDown\API\Interfaces\APIInterface;
 use WriteDown\Auth\Interfaces\AuthInterface;
 use WriteDown\CSRF\CSRFInterface;
+use WriteDown\Markdown\MarkdownInterface;
 use WriteDown\Sessions\SessionInterface;
 
 interface ControllerInterface
@@ -74,4 +75,13 @@ interface ControllerInterface
      * @return void
      */
     public function setAuth(AuthInterface $auth);
+
+    /**
+     * Set the Markdown parser.
+     *
+     * @param \WriteDown\Markdown\MarkdownInterface $markdown
+     *
+     * @return void
+     */
+    public function setMarkdown(MarkdownInterface $markdown);
 }

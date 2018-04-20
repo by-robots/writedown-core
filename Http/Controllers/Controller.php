@@ -8,6 +8,7 @@ use WriteDown\API\Interfaces\APIInterface;
 use WriteDown\Auth\Interfaces\AuthInterface;
 use WriteDown\CSRF\CSRFInterface;
 use WriteDown\Http\Interfaces\ControllerInterface;
+use WriteDown\Markdown\MarkdownInterface;
 use WriteDown\Sessions\SessionInterface;
 
 /**
@@ -51,6 +52,11 @@ abstract class Controller implements ControllerInterface
      * @var \WriteDown\Auth\Interfaces\AuthInterface
      */
     protected $auth;
+
+    /**
+     * @var \WriteDown\Markdown\MarkdownInterface
+     */
+    protected $markdown;
 
     /**
      * @inheritDoc
@@ -110,5 +116,13 @@ abstract class Controller implements ControllerInterface
     public function setAuth(AuthInterface $auth)
     {
         $this->auth = $auth;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setMarkdown(MarkdownInterface $markdown)
+    {
+        $this->markdown = $markdown;
     }
 }
