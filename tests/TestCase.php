@@ -77,6 +77,8 @@ abstract class TestCase extends BaseTestCase
         $this->makeWritedown();
         $this->setUpDatabase();
 
+        putenv('ROOT_PATH=' . realpath(__DIR__ . '/..'));
+
         $this->faker     = Factory::create();
         $this->resources = new CreatesResources($this->writedown->database(), $this->faker);
     }

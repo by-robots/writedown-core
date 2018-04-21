@@ -21,10 +21,7 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
                     /** @scrutinizer ignore-type */ env('DB_DRIVER'));
         }
 
-        $path = explode('/', env('DB_DATABASE'));
-        $file = array_pop($path);
-        $path = realpath(__DIR__ . '/../../' . implode('/', $path));
-        $path = $path . '/' . $file;
+        $path = env('ROOT_PATH') . '/' . env('DB_DATABASE');
 
         return [
             'driver' => $driver,

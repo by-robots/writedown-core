@@ -29,10 +29,7 @@ class SQLite extends TestCase
 
         // Request the config
         $config       = $configBuilder->generate();
-        $expectedPath = explode('/', $newDatabase);
-        $dbFile       = array_pop($expectedPath);
-        $expectedPath = realpath(__DIR__ . '/../../../../' . implode('/', $expectedPath));
-        $expectedPath = $expectedPath . '/' . $dbFile;
+        $expectedPath = env('ROOT_PATH') . '/' . $newDatabase;
 
         // Check the config is what we expected
         $this->assertEquals([
