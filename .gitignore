@@ -4,5 +4,6 @@
 .DS_Store
 /db/*
 composer.phar
+ocular.phar
 
 !/db/writedown-test-clean
