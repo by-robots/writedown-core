@@ -25,7 +25,7 @@ class CreateTest extends TestCase
         // Now attempt to retrieve it from the database to make sure it's been
         // stored
         $result = $this->writedown->database()
-            ->getRepository('WriteDown\Database\Entities\Post')
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post['data']->id]);
 
         // Check it
@@ -112,7 +112,7 @@ class CreateTest extends TestCase
     /**
      * It must not be possible to create a post with a slug that's already in
      * use. As such, the database will prevent this with a unique key but
-     * WriteDown should handle it elegantly.
+     * ByRobots\WriteDown should handle it elegantly.
      */
     public function testCantDuplicateSlugManually()
     {

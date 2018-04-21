@@ -4,7 +4,7 @@ namespace Tests\Http\Middleware\Authenticated;
 
 use Tests\Stubs\SessionStub;
 use Tests\TestCase;
-use WriteDown\HTTP\Middleware\AuthenticatedMiddleware;
+use ByRobots\WriteDown\HTTP\Middleware\AuthenticatedMiddleware;
 
 class ValidatesToken extends TestCase
 {

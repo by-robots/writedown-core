@@ -4,19 +4,19 @@ namespace Tests\Http\Middleware\CSRF;
 
 use Tests\Stubs\SessionStub;
 use Tests\TestCase;
-use WriteDown\Auth\Token;
-use WriteDown\CSRF\Hash;
-use WriteDown\HTTP\Middleware\CSRFMiddleware;
+use ByRobots\WriteDown\Auth\Token;
+use ByRobots\WriteDown\CSRF\Hash;
+use ByRobots\WriteDown\HTTP\Middleware\CSRFMiddleware;
 
 class ValidatesToken extends TestCase
 {
     /**
-     * @var \WriteDown\CSRF\CSRFInterface
+     * @var \ByRobots\WriteDown\CSRF\CSRFInterface
      */
     private $csrf;
 
     /**
-     * @var \WriteDown\HTTP\Middleware\CSRFMiddleware
+     * @var \ByRobots\WriteDown\HTTP\Middleware\CSRFMiddleware
      */
     private $provider;
 

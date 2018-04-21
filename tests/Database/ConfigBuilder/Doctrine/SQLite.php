@@ -3,7 +3,7 @@
 namespace Tests\Database\ConfigBuilder\Doctrine;
 
 use Tests\TestCase;
-use WriteDown\Database\DoctrineConfigBuilder;
+use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 
 class SQLite extends TestCase
 {

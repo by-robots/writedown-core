@@ -2,7 +2,7 @@
 
 namespace Tests\Stubs;
 
-use WriteDown\Sessions\SessionInterface;
+use ByRobots\WriteDown\Sessions\SessionInterface;
 
 class SessionStub implements SessionInterface
 {

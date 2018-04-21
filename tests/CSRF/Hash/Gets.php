@@ -4,13 +4,13 @@ namespace Tests\CSRF\Hash;
 
 use Tests\Stubs\SessionStub;
 use Tests\TestCase;
-use WriteDown\Auth\Token;
-use WriteDown\CSRF\Hash;
+use ByRobots\WriteDown\Auth\Token;
+use ByRobots\WriteDown\CSRF\Hash;
 
 class Gets extends TestCase
 {
     /**
-     * @var \WriteDown\CSRF\CSRFInterface $csrf
+     * @var \ByRobots\WriteDown\CSRF\CSRFInterface $csrf
      */
     private $csrf;
 

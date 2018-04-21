@@ -5,15 +5,14 @@ namespace Tests;
 use Faker\Factory;
 use League\Container\Container;
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use Tests\Stubs\SessionStub;
-use WriteDown\WriteDown;
+use ByRobots\WriteDown;
 
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * The WriteDown object.
+     * The ByRobots\WriteDown object.
      *
-     * @var \WriteDown\WriteDown
+     * @var \ByRobots\WriteDown\WriteDown
      */
     protected $writedown;
 
@@ -32,14 +31,14 @@ abstract class TestCase extends BaseTestCase
     protected $faker;
 
     /**
-     * Make WriteDown.
+     * Make ByRobots\WriteDown.
      *
      * @return void
      */
     protected function makeWritedown()
     {
-        // Start WriteDown
-        $this->writedown = require __DIR__ . '/../boot/start.php';
+        // Start ByRobots\WriteDown
+        $this->writedown = new WriteDown\WriteDown(new Container);
     }
 
     /**

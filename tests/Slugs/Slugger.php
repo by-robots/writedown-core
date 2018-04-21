@@ -3,7 +3,7 @@
 namespace Tests\Slugs;
 
 use Tests\TestCase;
-use WriteDown\Slugs\Slugger as Provider;
+use ByRobots\WriteDown\Slugs\Slugger as Provider;
 
 class Slugger extends TestCase
 {

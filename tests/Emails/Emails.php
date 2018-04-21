@@ -3,14 +3,14 @@
 namespace Tests\Emails;
 
 use Tests\TestCase;
-use WriteDown\Emails\Emails as Provider;
+use ByRobots\WriteDown\Emails\Emails as Provider;
 
 class Emails extends TestCase
 {
     /**
      * The UniqueSlug class.
      *
-     * @var \WriteDown\Emails\Emails
+     * @var \ByRobots\WriteDown\Emails\Emails
      */
     private $emails;
 

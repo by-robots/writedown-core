@@ -4,8 +4,8 @@ namespace Tests\CSRF\Hash;
 
 use Tests\Stubs\SessionStub;
 use Tests\TestCase;
-use WriteDown\Auth\Token;
-use WriteDown\CSRF\Hash;
+use ByRobots\WriteDown\Auth\Token;
+use ByRobots\WriteDown\CSRF\Hash;
 
 class Generates extends TestCase
 {

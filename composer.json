@@ -1,0 +1,44 @@
+{
+    "name": "byrobots/writedown-core",
+    "description": "Write Down's core code.",
+    "license": "MIT",
+    "require": {
+        "aura/session": "^2.1",
+        "container-interop/container-interop": "^1.2",
+        "doctrine/orm": "^2.6",
+        "league/commonmark": "^0.17",
+        "league/container": "^2.4",
+        "league/html-to-markdown": "^4.6",
+        "league/route": "^3.0",
+        "vlucas/valitron": "^1.4",
+        "zendframework/zend-diactoros": "^1.7"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "~7.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Helpers/helpers.php"
+        ],
+        "psr-4": {
+            "ByRobots\\WriteDown\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "7.1"
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

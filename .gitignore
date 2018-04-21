@@ -2,4 +2,7 @@
 /vendor
 
 .DS_Store
+/db/*
 composer.phar
+
+!/db/writedown-test-clean

@@ -3,7 +3,7 @@
 namespace Tests\Database\ConfigBuilder;
 
 use Tests\TestCase;
-use WriteDown\Database\DoctrineConfigBuilder;
+use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 
 class ConfigBuilder extends TestCase
 {

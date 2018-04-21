@@ -3,14 +3,14 @@
 namespace Tests\Auth;
 
 use Tests\TestCase;
-use WriteDown\Auth\VerifyCredentials as Provider;
+use ByRobots\WriteDown\Auth\VerifyCredentials as Provider;
 
 class VerifyCredentials extends TestCase
 {
     /**
      * Validates user credentials.
      *
-     * @var \WriteDown\Auth\Interfaces\VerifyCredentialsInterface
+     * @var \ByRobots\WriteDown\Auth\Interfaces\VerifyCredentialsInterface
      */
     private $auth;
 

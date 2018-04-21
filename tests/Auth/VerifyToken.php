@@ -3,14 +3,14 @@
 namespace Tests\Auth;
 
 use Tests\TestCase;
-use WriteDown\Auth\VerifyToken as Provider;
+use ByRobots\WriteDown\Auth\VerifyToken as Provider;
 
 class VerifyToken extends TestCase
 {
     /**
      * The class responsible for verifying tokens.
      *
-     * @var \WriteDown\Auth\Interfaces\VerifyTokenInterface
+     * @var \ByRobots\WriteDown\Auth\Interfaces\VerifyTokenInterface
      */
     private $auth;
 

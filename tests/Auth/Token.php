@@ -3,14 +3,14 @@
 namespace Tests\Auth;
 
 use Tests\TestCase;
-use WriteDown\Auth\Token as Provider;
+use ByRobots\WriteDown\Auth\Token as Provider;
 
 class Token extends TestCase
 {
     /**
      * The token generator.
      *
-     * @var \WriteDown\Auth\Interfaces\TokenInterface
+     * @var \ByRobots\WriteDown\Auth\Interfaces\TokenInterface
      */
     private $token;
 
