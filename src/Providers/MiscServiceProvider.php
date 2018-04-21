@@ -30,7 +30,6 @@ class MiscServiceProvider extends AbstractServiceProvider
             ->invokeMethod('setResponse', ['Psr\Http\Message\ResponseInterface'])
             ->invokeMethod('setSessions', ['ByRobots\WriteDown\Sessions\SessionInterface'])
             ->invokeMethod('setAPI',      ['ByRobots\WriteDown\API\Interfaces\APIInterface'])
-            ->invokeMethod('setView',     ['view']) // TODO: Interface
             ->invokeMethod('setCSRF',     ['ByRobots\WriteDown\CSRF\CSRFInterface'])
             ->invokeMethod('setAuth',     ['ByRobots\WriteDown\Auth\Interfaces\AuthInterface'])
             ->invokeMethod('setMarkdown', ['ByRobots\WriteDown\Markdown\MarkdownInterface']);
