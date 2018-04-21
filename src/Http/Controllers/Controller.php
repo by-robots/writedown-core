@@ -39,11 +39,6 @@ abstract class Controller implements ControllerInterface
     protected $api;
 
     /**
-     * @var \Slim\Views\PhpRenderer
-     */
-    protected $view;
-
-    /**
      * @var \ByRobots\WriteDown\CSRF\CSRFInterface
      */
     protected $csrf;
@@ -88,14 +83,6 @@ abstract class Controller implements ControllerInterface
     public function setAPI(APIInterface $api)
     {
         $this->api = $api;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setView($view)
-    {
-        $this->view = $view;
     }
 
     /**

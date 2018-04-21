@@ -35,11 +35,9 @@ class MiscServiceProvider extends AbstractServiceProvider
             ->invokeMethod('setAuth',     ['ByRobots\WriteDown\Auth\Interfaces\AuthInterface'])
             ->invokeMethod('setMarkdown', ['ByRobots\WriteDown\Markdown\MarkdownInterface']);
 
-        $this->getContainer()->add('Doctrine\ORM\EntityManagerInterface', function() {
+        $this->getContainer()->add('Doctrine\ORM\EntityManagerInterface', function () {
             $configBuilder = new DoctrineConfigBuilder;
-            $database      = new DoctrineDriver(
-                $configBuilder->generate()
-            );
+            $database      = new DoctrineDriver($configBuilder->generate());
 
             return $database->getManager();
         });

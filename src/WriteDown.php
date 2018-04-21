@@ -13,7 +13,7 @@ class WriteDown
     /**
      * The service container.
      *
-     * @var \Interop\Container\ContainerInterface
+     * @var \League\Container\ContainerInterface
      */
     private $container;
 

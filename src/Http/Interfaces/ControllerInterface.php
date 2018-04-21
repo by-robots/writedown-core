@@ -49,15 +49,6 @@ interface ControllerInterface
     public function setAPI(APIInterface $api);
 
     /**
-     * Set the view generation object.
-     *
-     * @param \Slim\Views\PhpRenderer $view
-     *
-     * @return void
-     */
-    public function setView($view);
-
-    /**
      * Set the CSRF manager.
      *
      * @param \ByRobots\WriteDown\CSRF\CSRFInterface $csrf
