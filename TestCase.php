@@ -49,8 +49,8 @@ abstract class TestCase extends BaseTestCase
      */
     public function tearDownDatabase()
     {
-        if (file_exists(__DIR__ . '/../' . getenv('DB_DATABASE'))) {
-            unlink(__DIR__ . '/../' . getenv('DB_DATABASE'));
+        if (file_exists(__DIR__ . '/../' . env('DB_DATABASE'))) {
+            unlink(__DIR__ . '/../' . env('DB_DATABASE'));
         }
     }
 
@@ -64,7 +64,7 @@ abstract class TestCase extends BaseTestCase
         $this->tearDownDatabase();
         copy(
             __DIR__ . '/../db/writedown-test-clean',
-            __DIR__ . '/../' . getenv('DB_DATABASE')
+            __DIR__ . '/../' . env('DB_DATABASE')
         );
     }
 

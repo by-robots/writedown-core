@@ -22,7 +22,7 @@ class SQLite extends TestCase
     {
         $configBuilder     = new DoctrineConfigBuilder;
         $newDatabase       = 'db/road-to-nowhere';
-        $this->oldDatabase = getenv('DB_DATABASE');
+        $this->oldDatabase = env('DB_DATABASE');
 
         // Set-up the environment
         putenv('DB_DATABASE=' . $newDatabase);

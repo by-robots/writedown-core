@@ -22,7 +22,7 @@ class ConfigBuilder extends TestCase
     public function testHandlesBadDriver()
     {
         $configBuilder   = new DoctrineConfigBuilder;
-        $this->oldDriver = getenv('DB_DRIVER');
+        $this->oldDriver = env('DB_DRIVER');
 
         // We'll expect an exception to be thrown
         $this->expectException(\Exception::class);
