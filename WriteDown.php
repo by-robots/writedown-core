@@ -4,6 +4,9 @@ namespace WriteDown;
 
 use Interop\Container\ContainerInterface;
 use League\Route\RouteCollection;
+use WriteDown\Providers\APIServiceProvider;
+use WriteDown\Providers\HTTPServiceProvider;
+use WriteDown\Providers\MiscServiceProvider;
 
 class WriteDown
 {
@@ -22,6 +25,17 @@ class WriteDown
     private $router;
 
     /**
+     * WriteDown's core services.
+     *
+     * @var array
+     */
+    private $services = [
+        APIServiceProvider::class,
+        HTTPServiceProvider::class,
+        MiscServiceProvider::class,
+    ];
+
+    /**
      * Start the app up.
      *
      * @param \Interop\Container\ContainerInterface $container
@@ -32,6 +46,19 @@ class WriteDown
     {
         $this->container = $container;
         $this->router    = new RouteCollection($this->getContainer());
+        $this->loadServices();
+    }
+
+    /**
+     * Load Write Down's services.
+     *
+     * @return void
+     */
+    private function loadServices()
+    {
+        foreach ($this->services as $service) {
+            $this->getContainer()->addServiceProvider($service);
+        }
     }
 
     /**
