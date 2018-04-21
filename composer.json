@@ -20,7 +20,7 @@
     },
     "autoload": {
         "files": [
-            "src/Helpers/helpers.php"
+            "src/Helpers/Helpers.php"
         ],
         "psr-4": {
             "ByRobots\\WriteDown\\": "src/"
