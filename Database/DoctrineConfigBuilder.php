@@ -11,17 +11,17 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
      */
     public function generate() : array
     {
-        switch (getenv('DB_DRIVER')) {
+        switch (env('DB_DRIVER')) {
             case 'sqlite':
                 $driver = 'pdo_sqlite';
                 break;
 
             default:
                 throw new \Exception('The provided database driver is not supported: ' .
-                    /** @scrutinizer ignore-type */ getenv('DB_DRIVER'));
+                    /** @scrutinizer ignore-type */ env('DB_DRIVER'));
         }
 
-        $path = explode('/', getenv('DB_DATABASE'));
+        $path = explode('/', env('DB_DATABASE'));
         $file = array_pop($path);
         $path = realpath(__DIR__ . '/../../' . implode('/', $path));
         $path = $path . '/' . $file;

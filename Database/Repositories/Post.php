@@ -24,7 +24,7 @@ class Post extends BaseRepository
             'orderBy'    => ['e.publish_at' => 'DESC'],
             'pagination' => [
                 'current_page' => 1,
-                'per_page'     => getenv('MAX_ITEMS'),
+                'per_page'     => env('MAX_ITEMS', 10),
             ],
             'where'      => [
                 'e.publish_at IS NOT NULL AND e.publish_at <= :now' => [
