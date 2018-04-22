@@ -13,7 +13,7 @@ class WriteDown
     /**
      * The service container.
      *
-     * @var \League\Container\ContainerInterface
+     * @var \Interop\Container\ContainerInterface
      */
     private $container;
 
@@ -25,7 +25,7 @@ class WriteDown
     private $router;
 
     /**
-     * ByRobots\WriteDown's core services.
+     * WriteDown's core services.
      *
      * @var array
      */
