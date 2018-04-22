@@ -33,11 +33,11 @@ interface ControllerInterface
     /**
      * Set the session management object.
      *
-     * @param \ByRobots\WriteDown\Sessions\SessionInterface $sessions
+     * @param \ByRobots\WriteDown\Sessions\SessionInterface $session
      *
      * @return void
      */
-    public function setSessions(SessionInterface $sessions);
+    public function setSession(SessionInterface $session);
 
     /**
      * Set the API object.

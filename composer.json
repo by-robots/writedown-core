@@ -1,6 +1,6 @@
 {
     "name": "byrobots/writedown-core",
-    "description": "Write Down's core code.",
+    "description": "WriteDown's core code.",
     "license": "MIT",
     "require": {
         "aura/session": "^2.1",

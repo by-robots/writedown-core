@@ -50,7 +50,7 @@ class WriteDown
     }
 
     /**
-     * Load Write Down's services.
+     * Load WriteDown's services.
      *
      * @return void
      */

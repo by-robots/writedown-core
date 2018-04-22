@@ -31,7 +31,7 @@ abstract class Controller implements ControllerInterface
     /**
      * @var \ByRobots\WriteDown\Sessions\SessionInterface
      */
-    protected $sessions;
+    protected $session;
 
     /**
      * @var \ByRobots\WriteDown\API\Interfaces\APIInterface
@@ -72,9 +72,9 @@ abstract class Controller implements ControllerInterface
     /**
      * @inheritDoc
      */
-    public function setSessions(SessionInterface $sessions)
+    public function setSession(SessionInterface $session)
     {
-        $this->sessions = $sessions;
+        $this->session = $session;
     }
 
     /**
