@@ -42,6 +42,21 @@ class CreateTest extends TestCase
         $this->assertArrayHasKey('name', $result['data']);
     }
 
+	/**
+	 * Test that a tag's name needs to be a valid slug.
+	 */
+	public function testValidSlug()
+	{
+		// Attempt to create a tag with an invalid name.
+		$result = $this->writedown->api()->tag()->create([
+			'name' => 'Bad Tag',
+		]);
+
+		// Check the error was as expected
+		$this->assertFalse($result['success']);
+		$this->assertArrayHasKey('name', $result['data']);
+	}
+
     /**
      * Test columns that aren't marked as fillable can't be populated.
      */
