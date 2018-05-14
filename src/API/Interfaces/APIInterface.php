@@ -24,4 +24,11 @@ interface APIInterface
      * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
      */
     public function user(EmailInterface $emails = null) : EndpointInterface;
+
+    /**
+     * Work with tags.
+     *
+     * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
+     */
+    public function tag() : EndpointInterface;
 }

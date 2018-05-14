@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use ByRobots\WriteDown\Database\Entities\Tag;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Generator;
 use ByRobots\WriteDown\Database\Entities\Post;
@@ -95,5 +96,21 @@ class CreatesResources
         $this->flush();
 
         return $user;
+    }
+
+    /**
+     * Create a test tag.
+     *
+     * @return \ByRobots\WriteDown\Database\Entities\Tag
+     */
+    public function tag()
+    {
+    	$tag = new Tag;
+
+    	$tag->name = $this->faker->slug;
+    	$this->persist($tag);
+    	$this->flush();
+
+    	return $tag;
     }
 }

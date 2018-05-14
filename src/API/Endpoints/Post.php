@@ -22,7 +22,7 @@ class Post extends CRUD implements PostEndpointInterface
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager             $db
+     * @param \Doctrine\ORM\EntityManager                      $db
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
      * @param \ByRobots\WriteDown\Slugs\GenerateSlugInterface  $generateSlug
