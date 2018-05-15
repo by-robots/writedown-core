@@ -48,7 +48,7 @@ interface ValidatorInterface
     /**
      * Check if the last validation was successful.
      *
-     * An exception should be thrown if not validation has occoured.
+     * An exception should be thrown if not validation has occurred.
      *
      * @return boolean
      * @throws \Exception
@@ -62,4 +62,16 @@ interface ValidatorInterface
      * @throws \Exception
      */
     public function errors() : array;
+
+    /**
+     * Add a custom validation rule.
+     *
+     * @param string   $name
+     * @param callback $rule         For now this will need to be tailored
+     *                               depending on the validation provider.
+     * @param string   $errorMessage
+     *
+     * @return bool
+     */
+    public function addRule($name, $rule, $errorMessage);
 }

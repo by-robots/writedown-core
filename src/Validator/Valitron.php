@@ -28,7 +28,7 @@ class Valitron implements ValidatorInterface
     private $validator;
 
     /**
-     * When a validation has occoured this will contain the result.
+     * When a validation has occurred this will contain the result.
      *
      * @var boolean
      */
@@ -105,6 +105,14 @@ class Valitron implements ValidatorInterface
 
         return $this->validator->errors();
     }
+
+	/**
+	 * @inheritDoc
+	 */
+	public function addRule($name, $rule, $errorMessage)
+	{
+		$this->validator->addRule($name, $rule, $errorMessage);
+	}
 
     /**
      * Convert the rules into a Valitron valid array.
