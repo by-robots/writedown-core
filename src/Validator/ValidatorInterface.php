@@ -67,11 +67,11 @@ interface ValidatorInterface
      * Add a custom validation rule.
      *
      * @param string    $name
-     * @param \Callback $rule        For now this will need to be tailored
+     * @param \Closure $rule         For now this will need to be tailored
      *                               depending on the validation provider.
      * @param string   $errorMessage
      *
      * @return bool
      */
-    public function addRule($name, \Callback $rule, $errorMessage);
+    public function addRule($name, \Closure $rule, $errorMessage);
 }
