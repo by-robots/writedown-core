@@ -109,7 +109,7 @@ class Valitron implements ValidatorInterface
 	/**
 	 * @inheritDoc
 	 */
-	public function addRule($name, $rule, $errorMessage)
+	public function addRule($name, \Callback $rule, $errorMessage)
 	{
 		$this->validator->addRule($name, $rule, $errorMessage);
 	}

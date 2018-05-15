@@ -2,6 +2,7 @@
 
 namespace ByRobots\WriteDown;
 
+use ByRobots\WriteDown\Providers\ValidationServiceProvider;
 use Interop\Container\ContainerInterface;
 use League\Route\RouteCollection;
 use ByRobots\WriteDown\Providers\APIServiceProvider;
@@ -33,6 +34,7 @@ class WriteDown
         APIServiceProvider::class,
         HTTPServiceProvider::class,
         MiscServiceProvider::class,
+	    ValidationServiceProvider::class,
     ];
 
     /**
