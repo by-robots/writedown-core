@@ -24,19 +24,5 @@ class ValidationServiceProvider extends AbstractServiceProvider
 	{
 		$this->getContainer()
 		     ->add('ByRobots\WriteDown\Validator\ValidatorInterface', Valitron::class);
-
-		// Get an instance of the data source. This will be needed for checking
-		// uniqueness
-		$database = $this->getContainer()->get('Doctrine\ORM\EntityManagerInterface');
-		$this->getContainer()->inflector(ValidatorInterface::class)
-		     ->invokeMethod('addRule', [
-			     'unique',
-			     function ($field, $value, array $params, array $fields) use ($database) {
-				     // Validate that the field is unique. Optionally an ID
-				     // can be specified in $params so, in the case of updates,
-				     // a specific row can be excluded from the check.
-			     },
-			     '{$field} is not unique.',
-		     ]);
 	}
 }
