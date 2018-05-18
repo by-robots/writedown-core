@@ -2,9 +2,8 @@
 
 namespace ByRobots\WriteDown\Providers;
 
-use ByRobots\WriteDown\Validator\ValidatorInterface;
-use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\Validator\Valitron;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class ValidationServiceProvider extends AbstractServiceProvider
 {

@@ -62,16 +62,4 @@ interface ValidatorInterface
      * @throws \Exception
      */
     public function errors() : array;
-
-    /**
-     * Add a custom validation rule.
-     *
-     * @param string    $name
-     * @param \Closure $rule         For now this will need to be tailored
-     *                               depending on the validation provider.
-     * @param string   $errorMessage
-     *
-     * @return bool
-     */
-    public function addRule($name, \Closure $rule, $errorMessage);
 }
