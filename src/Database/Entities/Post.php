@@ -37,9 +37,9 @@ class Post extends Base
      * @var array
      */
     protected $rules = [
-        'title' => ['required'],
-        'body'  => ['required'],
-        'slug'  => ['required'],
+        'title' => ['present', 'not_empty'],
+        'body'  => ['present', 'not_empty'],
+        'slug'  => ['present', 'not_empty'],
     ];
 
     /**

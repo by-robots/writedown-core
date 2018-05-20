@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8da4c4f5e4d0ab12e1560e26359b79e9",
+    "content-hash": "11ddf78a88a5f924294900ef6d96bec3",
     "packages": [
         {
             "name": "aura/session",
@@ -67,6 +67,44 @@
                 "sessions"
             ],
             "time": "2016-10-03T20:28:32+00:00"
+        },
+        {
+            "name": "byrobots/validation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/byrobots/validation.git",
+                "reference": "92c33427ec8c7b337113f0ad3c405549b53ff884"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/byrobots/validation/zipball/92c33427ec8c7b337113f0ad3c405549b53ff884",
+                "reference": "92c33427ec8c7b337113f0ad3c405549b53ff884",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ByRobots\\Validation\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Straightforward and extendable data validation.",
+            "support": {
+                "source": "https://github.com/byrobots/validation/tree/master",
+                "issues": "https://github.com/byrobots/validation/issues"
+            },
+            "time": "2018-05-20T18:53:27+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -849,16 +887,16 @@
         },
         {
             "name": "league/html-to-markdown",
-            "version": "4.6.2",
+            "version": "4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/html-to-markdown.git",
-                "reference": "3af14d8f44838257a75822819784e83819b34e2e"
+                "reference": "76c076483cef89860d32a3fd25312f5a42848a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/3af14d8f44838257a75822819784e83819b34e2e",
-                "reference": "3af14d8f44838257a75822819784e83819b34e2e",
+                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/76c076483cef89860d32a3fd25312f5a42848a8c",
+                "reference": "76c076483cef89860d32a3fd25312f5a42848a8c",
                 "shasum": ""
             },
             "require": {
@@ -877,7 +915,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.7-dev"
+                    "dev-master": "4.8-dev"
                 }
             },
             "autoload": {
@@ -909,7 +947,7 @@
                 "html",
                 "markdown"
             ],
-            "time": "2018-01-07T19:45:06+00:00"
+            "time": "2018-05-19T23:47:12+00:00"
         },
         {
             "name": "league/route",
@@ -1350,55 +1388,6 @@
                 "shim"
             ],
             "time": "2018-04-26T10:06:28+00:00"
-        },
-        {
-            "name": "vlucas/valitron",
-            "version": "v1.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vlucas/valitron.git",
-                "reference": "3c5463315bfa23b17f8949b100a960d035234e43"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/valitron/zipball/3c5463315bfa23b17f8949b100a960d035234e43",
-                "reference": "3c5463315bfa23b17f8949b100a960d035234e43",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.5 || ^6.5"
-            },
-            "suggest": {
-                "ext-mbstring": "It can support the multiple bytes string length."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Valitron\\": "src/Valitron"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Vance Lucas",
-                    "email": "vance@vancelucas.com",
-                    "homepage": "http://www.vancelucas.com"
-                }
-            ],
-            "description": "Simple, elegant, stand-alone validation library with NO dependencies",
-            "homepage": "http://github.com/vlucas/valitron",
-            "keywords": [
-                "valid",
-                "validation",
-                "validator"
-            ],
-            "time": "2018-05-06T10:45:26+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -3021,7 +3010,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "byrobots/validation": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

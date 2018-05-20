@@ -25,7 +25,7 @@ class Tag extends Base
      * @var array
      */
     protected $rules = [
-        'name' => ['required'],
+        'name' => ['present', 'not_empty'],
     ];
 
     /**

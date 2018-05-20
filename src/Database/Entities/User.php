@@ -31,8 +31,8 @@ class User extends Base
      * @var array
      */
     protected $rules = [
-        'email'    => ['required'],
-        'password' => ['required'],
+        'email'    => ['present', 'not_empty'],
+        'password' => ['present', 'not_empty'],
     ];
 
     /**

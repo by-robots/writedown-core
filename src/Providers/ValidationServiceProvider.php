@@ -2,7 +2,7 @@
 
 namespace ByRobots\WriteDown\Providers;
 
-use ByRobots\WriteDown\Validator\Valitron;
+use ByRobots\WriteDown\Validator\ByRobots;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class ValidationServiceProvider extends AbstractServiceProvider
@@ -22,6 +22,6 @@ class ValidationServiceProvider extends AbstractServiceProvider
 	public function register()
 	{
 		$this->getContainer()
-		     ->add('ByRobots\WriteDown\Validator\ValidatorInterface', Valitron::class);
+		     ->add('ByRobots\WriteDown\Validator\ValidatorInterface', ByRobots::class);
 	}
 }
