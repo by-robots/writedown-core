@@ -2,6 +2,8 @@
 
 namespace ByRobots\WriteDown\Validator;
 
+use ByRobots\Validation\AbstractRule;
+
 interface ValidatorInterface
 {
     /**
@@ -9,8 +11,8 @@ interface ValidatorInterface
      *
      * Format should be as follows:
      * [
-     *     'column 1' => ['required', 'unique'],
-     *     'column x' => ['numeric'],
+     *     'column 1' => ['present', 'not_empty'],
+     *     'column x' => ['string_between' => ['min' => 1, 'max' => 10],
      * ]
      *
      * @param array $rules
@@ -68,4 +70,5 @@ interface ValidatorInterface
      *
      * @param \ByRobots\Validation\AbstractRule $rule
      */
+    public function addRule(AbstractRule $rule);
 }
