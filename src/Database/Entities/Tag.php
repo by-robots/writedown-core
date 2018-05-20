@@ -25,7 +25,7 @@ class Tag extends Base
      * @var array
      */
     protected $rules = [
-        'name' => ['present', 'not_empty', 'unique_in_database' => [
+        'name' => ['present', 'not_empty', 'valid_slug', 'unique_in_database' => [
             'repository' => 'ByRobots\WriteDown\Database\Entities\Tag',
         ]],
     ];

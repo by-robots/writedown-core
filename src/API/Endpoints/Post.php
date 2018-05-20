@@ -2,12 +2,12 @@
 
 namespace ByRobots\WriteDown\API\Endpoints;
 
+use ByRobots\WriteDown\Slugs\Slugger;
 use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\CRUD;
 use ByRobots\WriteDown\API\Interfaces\PostEndpointInterface;
 use ByRobots\WriteDown\API\ResponseBuilder;
 use ByRobots\WriteDown\API\Transformers\PostTransformer;
-use ByRobots\WriteDown\Slugs\GenerateSlugInterface;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 
 class Post extends CRUD implements PostEndpointInterface
@@ -15,7 +15,7 @@ class Post extends CRUD implements PostEndpointInterface
     /**
      * Checks slugs are unique.
      *
-     * @var \ByRobots\WriteDown\Slugs\GenerateSlugInterface
+     * @var \ByRobots\WriteDown\Slugs\Slugger
      */
     private $slug;
 
@@ -25,7 +25,7 @@ class Post extends CRUD implements PostEndpointInterface
      * @param \Doctrine\ORM\EntityManager                      $db
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
-     * @param \ByRobots\WriteDown\Slugs\GenerateSlugInterface  $generateSlug
+     * @param \ByRobots\WriteDown\Slugs\Slugger                $generateSlug
      *
      * @return void
      */
@@ -33,7 +33,7 @@ class Post extends CRUD implements PostEndpointInterface
         EntityManager $db,
         ResponseBuilder $response,
         ValidatorInterface $validator,
-        GenerateSlugInterface $generateSlug
+        Slugger $generateSlug
     ) {
         $this->db          = $db;
         $this->response    = $response;

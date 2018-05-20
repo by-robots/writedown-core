@@ -3,7 +3,6 @@
 namespace ByRobots\WriteDown\Validator\Rules;
 
 use ByRobots\Validation\AbstractRule;
-use ByRobots\WriteDown\Database\Interfaces\RepositoryInterface;
 use Doctrine\ORM\EntityManager;
 
 class Unique extends AbstractRule

@@ -112,4 +112,12 @@ class ByRobots implements ValidatorInterface
     {
         $this->validator->addRule($rule);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function addRules(array $rules)
+    {
+        $this->validator->addRules($rules);
+    }
 }

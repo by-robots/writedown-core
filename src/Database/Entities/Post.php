@@ -39,7 +39,7 @@ class Post extends Base
     protected $rules = [
         'title' => ['present', 'not_empty'],
         'body'  => ['present', 'not_empty'],
-        'slug'  => ['present', 'not_empty', 'unique_in_database' => [
+        'slug'  => ['present', 'not_empty', 'valid_slug', 'unique_in_database' => [
             'repository' => 'ByRobots\WriteDown\Database\Entities\Post',
         ]],
     ];

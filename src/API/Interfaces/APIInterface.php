@@ -3,18 +3,18 @@
 namespace ByRobots\WriteDown\API\Interfaces;
 
 use ByRobots\WriteDown\Emails\EmailInterface;
-use ByRobots\WriteDown\Slugs\GenerateSlugInterface;
+use ByRobots\WriteDown\Slugs\Slugger;
 
 interface APIInterface
 {
     /**
      * Work with posts.
      *
-     * @param \ByRobots\WriteDown\Slugs\GenerateSlugInterface $generateSlug
+     * @param \ByRobots\WriteDown\Slugs\Slugger $slugger
      *
      * @return \ByRobots\WriteDown\API\Interfaces\PostEndpointInterface
      */
-    public function post(GenerateSlugInterface $generateSlug = null) : PostEndpointInterface;
+    public function post(Slugger $slugger = null) : PostEndpointInterface;
 
     /**
      * Work with users.

@@ -71,4 +71,11 @@ interface ValidatorInterface
      * @param \ByRobots\Validation\AbstractRule $rule
      */
     public function addRule(AbstractRule $rule);
+
+    /**
+     * Add rules.
+     *
+     * @param array $rules
+     */
+    public function addRules(array $rules);
 }

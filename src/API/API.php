@@ -3,6 +3,7 @@
 namespace ByRobots\WriteDown\API;
 
 use ByRobots\WriteDown\API\Endpoints\Tag;
+use ByRobots\WriteDown\Slugs\Slugger;
 use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\Endpoints\Post;
 use ByRobots\WriteDown\API\Endpoints\User;
@@ -11,8 +12,6 @@ use ByRobots\WriteDown\API\Interfaces\EndpointInterface;
 use ByRobots\WriteDown\API\Interfaces\PostEndpointInterface;
 use ByRobots\WriteDown\Emails\EmailInterface;
 use ByRobots\WriteDown\Emails\Emails;
-use ByRobots\WriteDown\Slugs\GenerateSlug;
-use ByRobots\WriteDown\Slugs\GenerateSlugInterface;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 
 class API implements APIInterface
@@ -54,13 +53,13 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function post(GenerateSlugInterface $generateSlug = null) : PostEndpointInterface
+    public function post(Slugger $slugger = null) : PostEndpointInterface
     {
-        if (!$generateSlug) {
-            $generateSlug = new GenerateSlug($this->db);
+        if (!$slugger) {
+            $slugger = new Slugger($this->db);
         }
 
-        return new Post($this->db, $this->response, $this->validator, $generateSlug);
+        return new Post($this->db, $this->response, $this->validator, $slugger);
     }
 
     /**
