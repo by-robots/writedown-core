@@ -17,7 +17,7 @@ class Post extends CRUD implements PostEndpointInterface
      *
      * @var \ByRobots\WriteDown\Slugs\Slugger
      */
-    private $slug;
+    private $slugger;
 
     /**
      * Set-up.
@@ -25,7 +25,7 @@ class Post extends CRUD implements PostEndpointInterface
      * @param \Doctrine\ORM\EntityManager                      $db
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
-     * @param \ByRobots\WriteDown\Slugs\Slugger                $generateSlug
+     * @param \ByRobots\WriteDown\Slugs\Slugger                $slugger
      *
      * @return void
      */
@@ -33,12 +33,12 @@ class Post extends CRUD implements PostEndpointInterface
         EntityManager $db,
         ResponseBuilder $response,
         ValidatorInterface $validator,
-        Slugger $generateSlug
+        Slugger $slugger
     ) {
         $this->db          = $db;
         $this->response    = $response;
         $this->validator   = $validator;
-        $this->slug        = $generateSlug;
+        $this->slugger     = $slugger;
 
         // Set additional CRUD settings
         $this->entityRepo = 'ByRobots\WriteDown\Database\Entities\Post';
@@ -58,7 +58,7 @@ class Post extends CRUD implements PostEndpointInterface
             (!isset($attributes['slug']) or empty($attributes['slug'])) and
             isset($attributes['title'])
         ) {
-            $attributes['slug'] = $this->slug->slug($attributes['title']);
+            $attributes['slug'] = $this->slugger->slug($attributes['title']);
         }
 
         // Let the parent finish off the validation and creation
