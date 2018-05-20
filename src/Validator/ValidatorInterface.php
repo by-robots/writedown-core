@@ -62,4 +62,10 @@ interface ValidatorInterface
      * @throws \Exception
      */
     public function errors() : array;
+
+    /**
+     * Add a rule.
+     *
+     * @param \ByRobots\Validation\AbstractRule $rule
+     */
 }

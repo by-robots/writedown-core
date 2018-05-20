@@ -74,12 +74,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/byrobots/validation.git",
-                "reference": "92c33427ec8c7b337113f0ad3c405549b53ff884"
+                "reference": "0c4719eece8d6a6bbd75d2e5b1c43ac22c6486ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/byrobots/validation/zipball/92c33427ec8c7b337113f0ad3c405549b53ff884",
-                "reference": "92c33427ec8c7b337113f0ad3c405549b53ff884",
+                "url": "https://api.github.com/repos/byrobots/validation/zipball/0c4719eece8d6a6bbd75d2e5b1c43ac22c6486ff",
+                "reference": "0c4719eece8d6a6bbd75d2e5b1c43ac22c6486ff",
                 "shasum": ""
             },
             "require-dev": {
@@ -104,7 +104,7 @@
                 "source": "https://github.com/byrobots/validation/tree/master",
                 "issues": "https://github.com/byrobots/validation/issues"
             },
-            "time": "2018-05-20T18:53:27+00:00"
+            "time": "2018-05-20T19:24:29+00:00"
         },
         {
             "name": "container-interop/container-interop",

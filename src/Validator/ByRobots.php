@@ -2,6 +2,7 @@
 
 namespace ByRobots\WriteDown\Validator;
 
+use ByRobots\Validation\AbstractRule;
 use ByRobots\Validation\Validation as Provider;
 
 class ByRobots implements ValidatorInterface
@@ -102,5 +103,13 @@ class ByRobots implements ValidatorInterface
         }
 
         return $this->validator->errors();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addRule(AbstractRule $rule)
+    {
+        $this->validator->addRule($rule);
     }
 }
