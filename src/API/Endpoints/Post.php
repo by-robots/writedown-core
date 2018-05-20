@@ -53,19 +53,12 @@ class Post extends CRUD implements PostEndpointInterface
      */
     public function create(array $attributes) : array
     {
-        // If a slug has been manually set check that it's unique
-        if (isset($attributes['slug']) and !$this->slug->isUnique($attributes['slug'])) {
-            return $this->response->build([
-                'slug' => ['The slug value is not unique.'],
-            ], false);
-        }
-
         // If no slug has been set generate it with the post's title
         if (
             (!isset($attributes['slug']) or empty($attributes['slug'])) and
             isset($attributes['title'])
         ) {
-            $attributes['slug'] = $this->slug->uniqueSlug($attributes['title']);
+            $attributes['slug'] = $this->slug->slug($attributes['title']);
         }
 
         // Let the parent finish off the validation and creation
@@ -77,14 +70,6 @@ class Post extends CRUD implements PostEndpointInterface
      */
     public function update($entityID, array $attributes) : array
     {
-        // First up, check the slug is unique.
-        // A slug has been manually set so check it's unique
-        if (isset($attributes['slug']) and !$this->slug->isUniqueExcept($attributes['slug'], $entityID)) {
-            return $this->response->build([
-                'slug' => ['The slug value is not unique.'],
-            ], false);
-        }
-
         return parent::update($entityID, $attributes);
     }
 

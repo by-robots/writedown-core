@@ -4,6 +4,7 @@ namespace ByRobots\WriteDown\Validator\Rules;
 
 use ByRobots\Validation\AbstractRule;
 use ByRobots\WriteDown\Database\Interfaces\RepositoryInterface;
+use Doctrine\ORM\EntityManager;
 
 class Unique extends AbstractRule
 {
@@ -20,10 +21,35 @@ class Unique extends AbstractRule
     ];
 
     /**
+     * The EntityManager object.
+     *
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $db;
+
+    /**
+     * Set-up the rule.
+     *
+     * @param \Doctrine\ORM\EntityManager $database
+     */
+    public function __construct(EntityManager $database)
+    {
+        $this->db = $database;
+    }
+
+    /**
      * @inheritDoc
      */
     public function validate($field, array $input, array $params = null): bool
     {
-        // TODO: Implement validate() method.
+        $column = !empty($params['column']) ? $params['column'] : $field;
+        $result = $this->db->getRepository($params['repository'])
+            ->findOneBy([$column => $input[$field]]);
+
+        if (!$result) {
+            return true;
+        }
+
+        return false;
     }
 }

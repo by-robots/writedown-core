@@ -32,14 +32,16 @@ class Post extends Base
     public $publish_at;
 
     /**
-     * Contains the validation rules for the entity.
+     * Contains the validation rules for creation of the entity.
      *
      * @var array
      */
     protected $rules = [
         'title' => ['present', 'not_empty'],
         'body'  => ['present', 'not_empty'],
-        'slug'  => ['present', 'not_empty'],
+        'slug'  => ['present', 'not_empty', 'unique_in_database' => [
+            'repository' => 'ByRobots\WriteDown\Database\Entities\Post',
+        ]],
     ];
 
     /**

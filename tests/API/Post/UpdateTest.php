@@ -19,7 +19,8 @@ class UpdateTest extends TestCase
         ]);
 
         // Re-retrieve the post from the database and check the change was saved
-        $post = $this->writedown->database()->getRepository('ByRobots\WriteDown\Database\Entities\Post')
+        $post = $this->writedown->database()
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post->id]);
 
         // Annnnnd check it

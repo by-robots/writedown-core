@@ -27,6 +27,8 @@ class ValidationServiceProvider extends AbstractServiceProvider
 
 		$this->getContainer()
              ->inflector('ByRobots\WriteDown\Validator\ValidatorInterface')
-             ->invokeMethod('addRule', [new Unique]);
+             ->invokeMethod('addRule', [
+                 new Unique($this->getContainer()->get('Doctrine\ORM\EntityManagerInterface')),
+             ]);
 	}
 }
