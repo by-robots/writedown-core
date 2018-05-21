@@ -111,7 +111,7 @@ class CRUD implements EndpointInterface
         }
 
         // Validate it
-        if (!$this->validator->validate($entity->rules, $entity->validationArray())) {
+        if (!$this->validator->validate($entity->updateRules(), $entity->validationArray())) {
             return $this->response->build($this->validator->errors(), false);
         }
 

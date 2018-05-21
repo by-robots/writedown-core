@@ -96,6 +96,31 @@ class Base
         return $data;
     }
 
+    /**
+     * Modify rules for updates.
+     *
+     * @return array
+     */
+    public function updateRules() : array
+    {
+        $updateRules = $this->rules;
+
+        foreach ($updateRules as $column => $ruleset) {
+            foreach ($ruleset as $key => $value) {
+                if (is_array($value)) {
+                    // $key will contain the rule name, $value the params.
+                    switch ($key) {
+                        case 'unique_in_database':
+                            $updateRules[$column][$key] = array_merge(['except' => $this->id], $value);
+                            break;
+                    }
+                }
+            }
+        }
+
+        return $updateRules;
+    }
+
     /** @PrePersist */
     public function setCreatedAt()
     {

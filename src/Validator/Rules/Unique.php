@@ -45,10 +45,18 @@ class Unique extends AbstractRule
         $result = $this->db->getRepository($params['repository'])
             ->findOneBy([$column => $input[$field]]);
 
+        // No match, all good
         if (!$result) {
             return true;
         }
 
+        // There's a match - if an exclusion is specified check to see if it
+        // matches what we've got
+        if (!empty($params['except']) and $result->id == $params['except']) {
+            return true;
+        }
+
+        // We have a collision
         return false;
     }
 }
