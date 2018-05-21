@@ -34,7 +34,9 @@ class UpdateTest extends TestCase
      */
     public function testUpdateWithSameSlug()
     {
-        //
+        $tag    = $this->resources->tag();
+        $result = $this->writedown->api()->tag()->update($tag->id, ['name' => $tag->name]);
+        $this->assertTrue($result['success']);
     }
 
     /**
@@ -43,6 +45,9 @@ class UpdateTest extends TestCase
      */
     public function testUpdateInvalid()
     {
-        //
+        $tag    = $this->resources->tag();
+        $result = $this->writedown->api()->tag()->update($tag->id, ['name' => 'I am not a valid name!!!']);
+        $this->assertFalse($result['success']);
+        $this->assertArrayHasKey('name', $result['data']);
     }
 }
