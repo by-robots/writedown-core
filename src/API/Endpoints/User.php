@@ -43,32 +43,4 @@ class User extends CRUD implements EndpointInterface
         // Set the transformer for this model
         $this->response->setTransformer(new UserTransformer); // TODO: Inject this
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function create(array $attributes) : array
-    {
-        if (isset($attributes['email']) and !$this->emails->isUnique($attributes['email'])) {
-            return $this->response->build([
-                'email' => ['The email value is not unique.']
-            ], false);
-        }
-
-        return parent::create($attributes);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function update($entityID, array $attributes) : array
-    {
-        if (isset($attributes['email']) and !$this->emails->isUniqueExcept($attributes['email'], $entityID)) {
-            return $this->response->build([
-                'email' => ['The email value is not unique.']
-            ], false);
-        }
-
-        return parent::update($entityID, $attributes);
-    }
 }
