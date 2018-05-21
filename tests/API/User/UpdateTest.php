@@ -70,5 +70,21 @@ class UpdateTest extends TestCase
 
         // Check that the errors expected are returned
         $this->assertFalse($result['success']);
+        $this->assertArrayHasKey('email', $result['data']);
+    }
+
+    /**
+     * Test the email must be valid.
+     */
+    public function testEmailValid()
+    {
+        // Create a user, then update it.
+        $user     = $this->resources->user();
+        $result   = $this->writedown->api()->user()->update($user->id, [
+            'email' => $this->faker->word,
+        ]);
+
+        $this->assertFalse($result['success']);
+        $this->assertArrayHasKey('email', $result['data']);
     }
 }

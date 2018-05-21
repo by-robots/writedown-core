@@ -46,6 +46,22 @@ class CreateTest extends TestCase
     }
 
     /**
+     * Email must be valid.
+     */
+    public function testValidEmail()
+    {
+        // Create a user
+        $user = $this->writedown->api()->user()->create([
+            'email'    => $this->faker->word,
+            'password' => $this->faker->word,
+        ]);
+
+        // Check we have something
+        $this->assertFalse($user['success']);
+        $this->assertArrayHasKey('email', $user['data']);
+    }
+
+    /**
      * Test a user can not be created without a password.
      */
     public function testValidationNoPassword()
