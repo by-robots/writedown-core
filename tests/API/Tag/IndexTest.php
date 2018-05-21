@@ -12,7 +12,7 @@ class IndexTest extends TestCase
      */
     public function testNoTags()
     {
-        // Request posts
+        // Request tags
         $result = $this->writedown->api()->tag()->index();
 
         // Check that an empty array is returned
@@ -49,7 +49,7 @@ class IndexTest extends TestCase
             $this->resources->tag();
         }
 
-        // Request the post index
+        // Request the tag index
         $result = $this->writedown->api()->tag()->index();
 
         // Check that the result contains the right number of entries
