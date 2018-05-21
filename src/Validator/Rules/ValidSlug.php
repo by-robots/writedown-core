@@ -3,7 +3,7 @@
 namespace ByRobots\WriteDown\Validator\Rules;
 
 use ByRobots\Validation\AbstractRule;
-use ByRobots\WriteDown\Slugs\Slugger;
+use ByRobots\WriteDown\Slugs\GenerateSlug;
 
 class ValidSlug extends AbstractRule
 {
@@ -22,16 +22,16 @@ class ValidSlug extends AbstractRule
     /**
      * Generates slugs.
      *
-     * @var \ByRobots\WriteDown\Slugs\Slugger
+     * @var \ByRobots\WriteDown\Slugs\GenerateSlug
      */
     protected $slugger;
 
     /**
      * Set-up the rule.
      *
-     * @param \ByRobots\WriteDown\Slugs\Slugger $slugger
+     * @param \ByRobots\WriteDown\Slugs\GenerateSlug $slugger
      */
-    public function __construct(Slugger $slugger)
+    public function __construct(GenerateSlug $slugger)
     {
         $this->slugger = $slugger;
     }

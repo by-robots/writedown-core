@@ -130,4 +130,22 @@ class CreateTest extends TestCase
         $this->assertFalse($result['success']);
         $this->assertArrayHasKey('slug', $result['data']);
     }
+
+    /**
+     * A slug must not be duplicated when it's automatically generated.
+     */
+    public function testSlugDuplicationOnGeneration()
+    {
+        // Create a post
+        $post = $this->resources->post();
+
+        // Now try to create another post with the same title.
+        $result = $this->writedown->api()->post()->create([
+            'title' => $post->title,
+            'body'  => $this->faker->paragraph,
+        ]);
+
+        // Check the slugs are different
+        $this->assertNotEquals($result['data']->slug, $post->slug);
+    }
 }

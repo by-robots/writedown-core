@@ -2,7 +2,7 @@
 
 namespace ByRobots\WriteDown\Providers;
 
-use ByRobots\WriteDown\Slugs\Slugger;
+use ByRobots\WriteDown\Slugs\GenerateSlug;
 use ByRobots\WriteDown\Validator\ByRobots;
 use ByRobots\WriteDown\Validator\Rules\Unique;
 use ByRobots\WriteDown\Validator\Rules\ValidSlug;
@@ -31,7 +31,7 @@ class ValidationServiceProvider extends AbstractServiceProvider
              ->inflector('ByRobots\WriteDown\Validator\ValidatorInterface')
              ->invokeMethod('addRules', [[
                  new Unique($this->getContainer()->get('Doctrine\ORM\EntityManagerInterface')),
-                 new ValidSlug(new Slugger),
+                 new ValidSlug(new GenerateSlug),
             ]]);
 	}
 }

@@ -58,7 +58,7 @@ class Post extends CRUD implements PostEndpointInterface
             (!isset($attributes['slug']) or empty($attributes['slug'])) and
             isset($attributes['title'])
         ) {
-            $attributes['slug'] = $this->slugger->slug($attributes['title']);
+            $attributes['slug'] = $this->slugger->uniqueSlug($attributes['title']);
         }
 
         // Let the parent finish off the validation and creation

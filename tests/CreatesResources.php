@@ -69,10 +69,10 @@ class CreatesResources
     public function post()
     {
         $post    = new Post;
-        $slugger = new Slugger;
+        $slugger = new Slugger($this->db);
 
         $post->title      = $this->faker->sentence;
-        $post->slug       = $slugger->slug($post->title);
+        $post->slug       = $slugger->generateSlug($post->title);
         $post->body       = $this->faker->paragraph;
         $post->publish_at = new \DateTime('now');
         $this->persist($post);

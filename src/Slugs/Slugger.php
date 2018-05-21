@@ -2,33 +2,69 @@
 
 namespace ByRobots\WriteDown\Slugs;
 
-class Slugger
+use Doctrine\ORM\EntityManager;
+
+class Slugger implements GenerateSlugInterface
 {
     /**
-     * Take a string and convert it to a URL friendly slug.
+     * Generate slug.
      *
-     * @param string $input
-     *
-     * @return string
+     * @var \ByRobots\WriteDown\Slugs\GenerateSlug
      */
-    public function slug($input)
+    private $generateSlug;
+
+    /**
+     * Check slugs are unique.
+     *
+     * @var \ByRobots\WriteDown\Slugs\UniqueSlug
+     */
+    private $uniqueSlug;
+
+    /**
+     * Set-up.
+     *
+     * @param \Doctrine\ORM\EntityManager $database
+     *
+     * @return void
+     */
+    public function __construct(EntityManager $database)
     {
-        // Remove punctuation, but leave hyphens
-        $input = preg_replace('/[^\w\s-]/', '', $input);
+        $this->generateSlug = new GenerateSlug;
+        $this->uniqueSlug   = new UniqueSlug($database);
+    }
 
-        // Change underscores and spaces to hyphens
-        $input = str_replace([' ', '_'], '-', $input);
+    /**
+     * @inheritDoc
+     */
+    public function generateSlug($input) : string
+    {
+        return $this->generateSlug->slug($input);
+    }
 
-        // Remove double hyphens
-        while (strpos($input, '--') !== false) {
-            $input = str_replace('--', '-', $input);
-        }
+    /**
+     * @inheritDoc
+     */
+    public function isUnique($slug) : bool
+    {
+        return $this->uniqueSlug->isUnique($slug);
+    }
 
-        // Remove leading and trailing hyphens
-        $input = ltrim($input, '-');
-        $input = rtrim($input, '-');
+    /**
+     * @inheritDoc
+     */
+    public function uniqueSlug($title) : string
+    {
+        $index = 0;
 
-        // Return the generated slug with all lower case letters
-        return strtolower($input);
+        do {
+            $slug = $this->generateSlug($title);
+            $index++;
+
+            if ($index > 1) {
+                $slug .= '-' . $index;
+            }
+        } while (!$this->isUnique($slug));
+
+        return $slug;
     }
 }
