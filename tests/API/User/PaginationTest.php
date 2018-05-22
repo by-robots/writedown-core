@@ -23,6 +23,7 @@ class PaginationTest extends TestCase
         ]]);
 
         // We should have received 10 posts
+        $this->assertTrue($result['success']);
         $this->assertEquals(10, count($result['data']));
 
         // And meta data should be available telling us more information
@@ -50,6 +51,7 @@ class PaginationTest extends TestCase
             'current_page' => 2,
         ]]);
 
+        $this->assertTrue($result['success']);
         $this->assertEquals(5, count($result['data']));
         $this->assertEquals(10, $result['meta']['per_page']);
         $this->assertEquals(2, $result['meta']['current_page']);

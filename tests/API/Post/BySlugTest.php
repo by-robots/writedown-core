@@ -28,7 +28,8 @@ class BySlugTest extends TestCase
     public function testPostNotFound()
     {
         // Attempt to retrieve a non-existent post
-        $result = $this->writedown->api()->post()->bySlug('SGV5IGJhYnksIHdhbm5hIGtpbGwgYWxsIGh1bWFucz8=');
+        $result = $this->writedown->api()->post()
+            ->bySlug('SGV5IGJhYnksIHdhbm5hIGtpbGwgYWxsIGh1bWFucz8=');
 
         // An error should be returned
         $this->assertEquals(['Not found.'], $result['data']);

@@ -15,10 +15,12 @@ class DeleteTest extends TestCase
         $post   = $this->resources->post();
         $result = $this->writedown->api()->post()->delete($post->id);
 
-        // Test that the response is correct and the post is no longer in the database
-        $databaseResult = $this->writedown->database()->getRepository('ByRobots\WriteDown\Database\Entities\Post')
+        // Query the database and try to retrieve the post
+        $databaseResult = $this->writedown->database()
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post->id]);
 
+        // Check the results
         $this->assertTrue($result['success']);
         $this->assertNull($databaseResult);
     }

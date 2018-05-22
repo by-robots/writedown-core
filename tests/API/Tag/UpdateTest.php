@@ -19,13 +19,8 @@ class UpdateTest extends TestCase
 
         $result = $this->writedown->api()->tag()->update($tag->id, ['name' => $newName]);
 
-        // Re-retrieve the tag from the database
-        $tag = $this->writedown->database()
-            ->getRepository('ByRobots\WriteDown\Database\Entities\Tag')
-            ->findOneBy(['id' => $tag->id]);
-
         $this->assertTrue($result['success']);
-        $this->assertEquals($newName, $tag->name);
+        $this->assertEquals($newName, $result->name);
     }
 
     /**

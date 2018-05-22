@@ -35,6 +35,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->tag()->index();
 
         // Check that the result contains one entry
+        $this->assertTrue($result['success']);
         $this->assertEquals(1, count($result['data']));
         $this->assertEquals($tag->id, $result['data'][0]->id);
     }
@@ -53,6 +54,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->tag()->index();
 
         // Check that the result contains the right number of entries
+        $this->assertTrue($result['success']);
         $this->assertEquals($tagCount, count($result['data']));
     }
 }

@@ -12,21 +12,14 @@ class CreateTest extends TestCase
     public function testCreated()
     {
         // Create a tag
-        $tag = $this->writedown->api()->tag()->create([
-            'name' => $this->faker->word,
+        $name = $this->faker->word;
+        $tag  = $this->writedown->api()->tag()->create([
+            'name' => $name,
         ]);
 
         // Check we have something
         $this->assertTrue($tag['success']);
-
-        // Now attempt to retrieve it from the database to make sure it's been
-        // stored
-        $result = $this->writedown->database()
-            ->getRepository('ByRobots\WriteDown\Database\Entities\Tag')
-            ->findOneBy(['id' => $tag['data']->id]);
-
-        // Check it
-        $this->assertEquals($tag['data']->id, $result->id);
+        $this->assertEquals($name, $tag['data']->name);
     }
 
     /**
@@ -67,6 +60,7 @@ class CreateTest extends TestCase
             'not_fillable' => $this->faker->word,
         ]);
 
+        $this->assertTrue($result['success']);
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
 
@@ -85,5 +79,6 @@ class CreateTest extends TestCase
 
         // Check that the errors expected are returned
         $this->assertFalse($result['success']);
+        $this->assertArrayHasKey('name', $result['data']);
     }
 }

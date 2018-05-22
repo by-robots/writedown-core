@@ -29,14 +29,14 @@ class IndexTest extends TestCase
     public function testRetrievesOne()
     {
         // Create one post
-        $post = $this->resources->post();
+        $this->resources->post();
 
         // Request the post index
         $result = $this->writedown->api()->post()->index();
 
         // Check that the result contains one entry
+        $this->assertTrue($result['success']);
         $this->assertEquals(1, count($result['data']));
-        $this->assertEquals($post->id, $result['data'][0]->id); // Double check the ID. I'd be very confused if this failed, but y'know.
     }
 
     /**
@@ -53,6 +53,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check that the result contains one entry
+        $this->assertTrue($result['success']);
         $this->assertEquals($postCount, count($result['data']));
     }
 
@@ -76,6 +77,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // Check the order is correct
+        $this->assertTrue($result['success']);
         $this->assertEquals($third->id, $result['data'][0]->id);
         $this->assertEquals($second->id, $result['data'][1]->id);
         $this->assertEquals($first->id, $result['data'][2]->id);
@@ -100,6 +102,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index();
 
         // It should be empty
+        $this->assertTrue($result['success']);
         $this->assertEquals(0, count($result['data']));
     }
 
@@ -116,6 +119,7 @@ class IndexTest extends TestCase
         $result = $this->writedown->api()->post()->index(['where' => []]);
 
         // It should be empty
+        $this->assertTrue($result['success']);
         $this->assertEquals(1, count($result['data']));
     }
 }

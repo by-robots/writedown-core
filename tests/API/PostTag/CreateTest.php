@@ -24,13 +24,5 @@ class CreateTest extends TestCase
 
         // Check it worked
         $this->assertTrue($result['success']);
-
-        // Now attempt to retrieve it from the database to make sure it's been
-        // stored
-        $result = $this->writedown->database()
-            ->getRepository('ByRobots\WriteDown\Database\Entities\PostTag')
-            ->findOneBy(['post_id' => $post->id]);
-
-        $this->assertEquals($tag->id, $result->tag_id);
     }
 }

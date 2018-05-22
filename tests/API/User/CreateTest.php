@@ -12,22 +12,15 @@ class CreateTest extends TestCase
     public function testCreated()
     {
         // Create a user
-        $user = $this->writedown->api()->user()->create([
-            'email'    => $this->faker->email,
+        $email = $this->faker->email;
+        $user  = $this->writedown->api()->user()->create([
+            'email'    => $email,
             'password' => $this->faker->word,
         ]);
 
         // Check we have something
         $this->assertTrue($user['success']);
-
-        // Now attempt to retrieve it from the database to make sure it's been
-        // stored
-        $result = $this->writedown->database()
-            ->getRepository('ByRobots\WriteDown\Database\Entities\User')
-            ->findOneBy(['id' => $user['data']->id]);
-
-        // Check it
-        $this->assertEquals($user['data']->id, $result->id);
+        $this->assertEquals($email, $user['data']->email);
     }
 
     /**
@@ -85,6 +78,7 @@ class CreateTest extends TestCase
             'not_fillable' => $this->faker->word,
         ]);
 
+        $this->assertTrue($result['success']);
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
 

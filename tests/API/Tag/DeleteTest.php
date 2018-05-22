@@ -15,7 +15,7 @@ class DeleteTest extends TestCase
         $tag    = $this->resources->tag();
         $result = $this->writedown->api()->tag()->delete($tag->id);
 
-        // Test that the response is correct and the tag is no longer in the database
+        // Attempt to grab the tag from the database
         $databaseResult = $this->writedown->database()
             ->getRepository('ByRobots\WriteDown\Database\Entities\Tag')
             ->findOneBy(['id' => $tag->id]);

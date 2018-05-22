@@ -18,6 +18,7 @@ class ReadTest extends TestCase
         $result = $this->writedown->api()->post()->read($post->id);
 
         // Check it
+        $this->assertTrue($result['success']);
         $this->assertEquals($post->id, $result['data']->id);
     }
 
@@ -31,6 +32,7 @@ class ReadTest extends TestCase
         $result = $this->writedown->api()->post()->read(mt_rand(1000, 9999));
 
         // An error should be returned
+        $this->assertFalse($result['success']);
         $this->assertEquals(['Not found.'], $result['data']);
     }
 }

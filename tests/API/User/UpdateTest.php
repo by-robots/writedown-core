@@ -18,12 +18,8 @@ class UpdateTest extends TestCase
             'email' => $newEmail,
         ]);
 
-        // Re-retrieve the user from the database and check the change was saved
-        $user = $this->writedown->database()->getRepository('ByRobots\WriteDown\Database\Entities\User')
-            ->findOneBy(['id' => $user->id]);
-
         $this->assertTrue($result['success']);
-        $this->assertEquals($newEmail, $user->email);
+        $this->assertEquals($newEmail, $result['data']->email);
     }
 
     /**
@@ -51,6 +47,7 @@ class UpdateTest extends TestCase
             'not_fillable' => $this->faker->word,
         ]);
 
+        $this->assertTrue($result['success']);
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
 
