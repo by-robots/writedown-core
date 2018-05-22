@@ -20,7 +20,7 @@ class UpdateTest extends TestCase
         $result = $this->writedown->api()->tag()->update($tag->id, ['name' => $newName]);
 
         $this->assertTrue($result['success']);
-        $this->assertEquals($newName, $result->name);
+        $this->assertEquals($newName, $result['data']->name);
     }
 
     /**

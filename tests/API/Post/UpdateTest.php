@@ -25,7 +25,7 @@ class UpdateTest extends TestCase
 
         // Annnnnd check it
         $this->assertTrue($result['success']);
-        $this->assertEquals($newTitle, $result->title);
+        $this->assertEquals($newTitle, $result['data']->title);
         $this->assertEquals($newTitle, $databaseResult->title);
     }
 
