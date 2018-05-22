@@ -102,7 +102,8 @@ class ByRobots implements ValidatorInterface
             throw new \Exception('No validation processed.');
         }
 
-        return $this->validator->errors();
+        $errors = $this->validator->errors();
+        return is_array($errors) ? $errors : [];
     }
 
     /**
