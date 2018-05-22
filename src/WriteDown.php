@@ -34,7 +34,7 @@ class WriteDown
         APIServiceProvider::class,
         HTTPServiceProvider::class,
         MiscServiceProvider::class,
-	    ValidationServiceProvider::class,
+        ValidationServiceProvider::class,
     ];
 
     /**

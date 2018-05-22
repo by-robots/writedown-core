@@ -79,6 +79,6 @@ class API implements APIInterface
      */
     public function tag() : EndpointInterface
     {
-    	return new Tag($this->db, $this->response, $this->validator);
+        return new Tag($this->db, $this->response, $this->validator);
     }
 }
