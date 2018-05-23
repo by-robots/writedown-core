@@ -4,6 +4,7 @@ namespace ByRobots\WriteDown\Providers;
 
 use ByRobots\WriteDown\Slugs\GenerateSlug;
 use ByRobots\WriteDown\Validator\ByRobots;
+use ByRobots\WriteDown\Validator\Rules\Exists;
 use ByRobots\WriteDown\Validator\Rules\Unique;
 use ByRobots\WriteDown\Validator\Rules\ValidSlug;
 use League\Container\ServiceProvider\AbstractServiceProvider;
@@ -30,6 +31,7 @@ class ValidationServiceProvider extends AbstractServiceProvider
         $this->getContainer()
                 ->inflector('ByRobots\WriteDown\Validator\ValidatorInterface')
                 ->invokeMethod('addRules', [[
+                    new Exists($this->getContainer()->get('Doctrine\ORM\EntityManagerInterface')),
                     new Unique($this->getContainer()->get('Doctrine\ORM\EntityManagerInterface')),
                     new ValidSlug(new GenerateSlug),
             ]]);

@@ -26,8 +26,12 @@ class PostTag extends Base
      * @var array
      */
     protected $rules = [
-        'post_id' => ['present', 'not_empty'],
-        'tag_id'  => ['present', 'not_empty'],
+        'post_id' => ['present', 'not_empty', 'exists_in_database' => [
+            'repository' => 'ByRobots\WriteDown\Database\Entities\Post',
+        ]],
+        'tag_id' => ['present', 'not_empty', 'exists_in_database' => [
+            'repository' => 'ByRobots\WriteDown\Database\Entities\Tag',
+        ]],
     ];
 
     /**
