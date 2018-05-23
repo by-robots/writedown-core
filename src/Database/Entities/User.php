@@ -9,6 +9,8 @@ namespace ByRobots\WriteDown\Database\Entities;
  */
 class User extends Base
 {
+    use EntityTimestamps;
+
     /**
      * @Id
      * @Column(type="integer")

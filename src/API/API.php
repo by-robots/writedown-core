@@ -2,6 +2,7 @@
 
 namespace ByRobots\WriteDown\API;
 
+use ByRobots\WriteDown\API\Endpoints\PostTag;
 use ByRobots\WriteDown\API\Endpoints\Tag;
 use ByRobots\WriteDown\Slugs\Slugger;
 use Doctrine\ORM\EntityManager;
@@ -80,5 +81,13 @@ class API implements APIInterface
     public function tag() : EndpointInterface
     {
         return new Tag($this->db, $this->response, $this->validator);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function postTag() : EndpointInterface
+    {
+        return new PostTag($this->db, $this->response, $this->validator);
     }
 }

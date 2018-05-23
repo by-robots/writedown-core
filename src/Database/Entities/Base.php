@@ -8,12 +8,6 @@ namespace ByRobots\WriteDown\Database\Entities;
  */
 class Base
 {
-    /** @Column(name="created_at", type="datetime") */
-    protected $created_at;
-
-    /** @Column(name="updated_at", type="datetime") */
-    protected $updated_at;
-
     /**
      * Contains the validation rules for the entity.
      *
@@ -119,20 +113,5 @@ class Base
         }
 
         return $updateRules;
-    }
-
-    /** @PrePersist */
-    public function setCreatedAt()
-    {
-        $this->created_at = new \DateTime('now');
-    }
-
-    /**
-     * @PrePersist
-     * @PreUpdate
-     */
-    public function setUpdatedAt()
-    {
-        $this->updated_at = new \DateTime('now');
     }
 }

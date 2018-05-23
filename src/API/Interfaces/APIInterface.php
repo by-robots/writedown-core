@@ -31,4 +31,11 @@ interface APIInterface
      * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
      */
     public function tag() : EndpointInterface;
+
+    /**
+     * Work with the post_tag table. Allows posts to be tagged.
+     *
+     * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
+     */
+    public function postTag() : EndpointInterface;
 }
