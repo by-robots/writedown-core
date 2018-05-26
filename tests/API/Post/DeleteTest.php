@@ -35,4 +35,12 @@ class DeleteTest extends TestCase
         $this->assertFalse($result['success']);
         $this->assertEquals(['Not found.'], $result['data']);
     }
+
+    /**
+     * When deleting a post any post_tag relationships should also be removed.
+     */
+    public function testDeletesPostTagRelationship()
+    {
+        //
+    }
 }
