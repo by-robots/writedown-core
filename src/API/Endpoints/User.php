@@ -4,13 +4,13 @@ namespace ByRobots\WriteDown\API\Endpoints;
 
 use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\CRUD;
-use ByRobots\WriteDown\API\Interfaces\EndpointInterface;
+use ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface;
 use ByRobots\WriteDown\API\ResponseBuilder;
 use ByRobots\WriteDown\API\Transformers\UserTransformer;
 use ByRobots\WriteDown\Emails\EmailInterface;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 
-class User extends CRUD implements EndpointInterface
+class User extends CRUD implements EndpointCRUInterface
 {
     /**
      * Validates emails are unique.

@@ -7,9 +7,9 @@ use ByRobots\WriteDown\API\Transformers\TagTransformer;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\CRUD;
-use ByRobots\WriteDown\API\Interfaces\EndpointInterface;
+use ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface;
 
-class Tag extends CRUD implements EndpointInterface
+class Tag extends CRUD implements EndpointCRUInterface
 {
     /**
      * Set-up.

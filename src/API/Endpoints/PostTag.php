@@ -2,14 +2,14 @@
 
 namespace ByRobots\WriteDown\API\Endpoints;
 
-use ByRobots\WriteDown\API\CRUD;
-use ByRobots\WriteDown\API\Interfaces\EndpointInterface;
+use ByRobots\WriteDown\API\CRU;
+use ByRobots\WriteDown\API\Interfaces\PostTagEndpointInterface;
 use ByRobots\WriteDown\API\ResponseBuilder;
 use ByRobots\WriteDown\API\Transformers\PostTagTransformer;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 use Doctrine\ORM\EntityManager;
 
-class PostTag extends CRUD implements EndpointInterface
+class PostTag extends CRU implements PostTagEndpointInterface
 {
 
     /**
@@ -36,5 +36,13 @@ class PostTag extends CRUD implements EndpointInterface
 
         // Set the transformer for this model
         $this->response->setTransformer(new PostTagTransformer); // TODO: Inject this
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete($postID, $tagID): array
+    {
+        return [];
     }
 }

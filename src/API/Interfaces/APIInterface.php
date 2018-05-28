@@ -21,21 +21,21 @@ interface APIInterface
      *
      * @param \ByRobots\WriteDown\Emails\EmailInterface $emails
      *
-     * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
+     * @return \ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface
      */
-    public function user(EmailInterface $emails = null) : EndpointInterface;
+    public function user(EmailInterface $emails = null) : EndpointCRUInterface;
 
     /**
      * Work with tags.
      *
-     * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
+     * @return \ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface
      */
-    public function tag() : EndpointInterface;
+    public function tag() : EndpointCRUInterface;
 
     /**
      * Work with the post_tag table. Allows posts to be tagged.
      *
-     * @return \ByRobots\WriteDown\API\Interfaces\EndpointInterface
+     * @return \ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface
      */
-    public function postTag() : EndpointInterface;
+    public function postTag() : EndpointCRUInterface;
 }

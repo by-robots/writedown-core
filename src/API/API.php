@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\Endpoints\Post;
 use ByRobots\WriteDown\API\Endpoints\User;
 use ByRobots\WriteDown\API\Interfaces\APIInterface;
-use ByRobots\WriteDown\API\Interfaces\EndpointInterface;
+use ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface;
 use ByRobots\WriteDown\API\Interfaces\PostEndpointInterface;
 use ByRobots\WriteDown\Emails\EmailInterface;
 use ByRobots\WriteDown\Emails\Emails;
@@ -66,7 +66,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function user(EmailInterface $emails = null) : EndpointInterface
+    public function user(EmailInterface $emails = null) : EndpointCRUInterface
     {
         if (!$emails) {
             $emails = new Emails($this->db);
@@ -78,7 +78,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function tag() : EndpointInterface
+    public function tag() : EndpointCRUInterface
     {
         return new Tag($this->db, $this->response, $this->validator);
     }
@@ -86,7 +86,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function postTag() : EndpointInterface
+    public function postTag() : EndpointCRUInterface
     {
         return new PostTag($this->db, $this->response, $this->validator);
     }
