@@ -2,12 +2,12 @@
 
 namespace ByRobots\WriteDown\API;
 
-use ByRobots\WriteDown\API\Interfaces\EndpointCRUInterface;
+use ByRobots\WriteDown\API\Interfaces\CRUInterface;
 
 /**
  * Implement the Create, Read and Update methods for endpoints.
  */
-class CRU implements EndpointCRUInterface
+class CRU implements CRUInterface
 {
     /**
      * The entity repo.

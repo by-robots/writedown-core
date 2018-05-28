@@ -2,7 +2,7 @@
 
 namespace ByRobots\WriteDown\API\Interfaces;
 
-interface PostTagEndpointInterface extends EndpointCRUInterface
+interface PostTagEndpointInterface extends CRUInterface
 {
     /**
      * Delete a post->tag relationship.

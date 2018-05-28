@@ -2,7 +2,7 @@
 
 namespace ByRobots\WriteDown\API\Interfaces;
 
-interface EndpointInterface extends EndpointCRUInterface
+interface EndpointInterface extends CRUInterface
 {
     /**
      * Delete an entity.

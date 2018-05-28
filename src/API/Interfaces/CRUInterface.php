@@ -5,7 +5,7 @@ namespace ByRobots\WriteDown\API\Interfaces;
 /**
  * Define the Create, Read and Update methods.
  */
-interface EndpointCRUInterface
+interface CRUInterface
 {
     /**
      * List all entities.
