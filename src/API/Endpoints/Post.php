@@ -68,14 +68,6 @@ class Post extends CRUD implements PostEndpointInterface
     /**
      * @inheritDoc
      */
-    public function update($entityID, array $attributes) : array
-    {
-        return parent::update($entityID, $attributes);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function bySlug($slug) : array
     {
         $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['slug' => $slug]);
