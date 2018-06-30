@@ -43,6 +43,14 @@ class PostTag extends CRU implements PostTagEndpointInterface
      */
     public function delete($postID, $tagID): array
     {
-        return [];
+        $postTag = $this->db->getRepository($this->entityRepo)->findOneBy([
+            'post_id' => $postID,
+            'tag_id'  => $tagID,
+        ]);
+
+        $this->db->remove($postTag);
+        $this->db->flush();
+
+        return $this->response->build([]);
     }
 }
