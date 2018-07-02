@@ -41,6 +41,24 @@ class DeleteTest extends TestCase
      */
     public function testDeletesPostTagRelationship()
     {
-        //
+        // Create the post and tag
+        $post = $this->resources->post();
+        $tag  = $this->resources->tag();
+
+        // Add the tag to the post
+        $result = $this->writedown->api()->postTag()->create([
+            'post_id' => $post->id,
+            'tag_id'  => $tag->id,
+        ]);
+
+        // Now delete the tag
+        $this->writedown->api()->tag()->delete($tag->id);
+
+        // Check the relationship no longer exists
+        $databaseResult = $this->writedown->database()
+            ->getRepository('ByRobots\WriteDown\Database\Entities\PostTag')
+            ->findOneBy(['post_id' => $post->id, 'tag_id' => $tag->id]);
+
+        $this->assertNull($databaseResult);
     }
 }
