@@ -40,6 +40,11 @@ class DeleteTest extends TestCase
      */
     public function testMissingRelationship()
     {
-        //
+        // Delete a relationship that doesn't exist
+        $result = $this->writedown->api()->postTag()->delete(mt_rand(1000, 9999), mt_rand(1000, 9999));
+
+        // API says no
+        $this->assertFalse($result['success']);
+        $this->assertEquals(['Not found.'], $result['data']);
     }
 }
