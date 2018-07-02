@@ -3,9 +3,9 @@
 namespace Tests\Slugs;
 
 use Tests\TestCase;
-use ByRobots\WriteDown\Slugs\Slugger as Provider;
+use ByRobots\WriteDown\Slugs\GenerateSlug as Provider;
 
-class Slugger extends TestCase
+class GenerateSlug extends TestCase
 {
     public function testSingleWord()
     {

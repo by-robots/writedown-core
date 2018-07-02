@@ -5,11 +5,11 @@ namespace ByRobots\WriteDown\Database\Entities;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
- * @Entity(repositoryClass="ByRobots\WriteDown\Database\Repositories\Post")
- * @Table(name="posts")
+ * @Entity(repositoryClass="ByRobots\WriteDown\Database\Repositories\Tag")
+ * @Table(name="tags")
  * @HasLifecycleCallbacks
  */
-class Post extends Base
+class Tag extends Base
 {
     use EntityTimestamps;
 
@@ -21,30 +21,16 @@ class Post extends Base
     protected $id;
 
     /** @Column(type="string") */
-    public $title;
-
-    /** @Column(type="text", unique=true) */
-    public $slug;
-
-    /** @Column(type="text", nullable=true) */
-    public $excerpt;
-
-    /** @Column(type="text") */
-    public $body;
-
-    /** @Column(name="publish_at", type="datetime", nullable=true) */
-    public $publish_at;
+    public $name;
 
     /**
-     * Contains the validation rules for creation of the entity.
+     * Contains the validation rules for the entity.
      *
      * @var array
      */
     protected $rules = [
-        'title' => ['present', 'not_empty'],
-        'body'  => ['present', 'not_empty'],
-        'slug'  => ['present', 'not_empty', 'valid_slug', 'unique_in_database' => [
-            'repository' => 'ByRobots\WriteDown\Database\Entities\Post',
+        'name' => ['present', 'not_empty', 'valid_slug', 'unique_in_database' => [
+            'repository' => 'ByRobots\WriteDown\Database\Entities\Tag',
         ]],
     ];
 
@@ -53,13 +39,13 @@ class Post extends Base
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
+    protected $fillable = ['name'];
 
     /**
-     * On deletion remove any post_tag entries relating to this post.
+     * On deletion remove any post_tag entries relating to this tag.
      *
      * @param LifecycleEventArgs $event
-     *                                 
+     *
      * @throws \Exception
      *
      * @preRemove
@@ -69,7 +55,7 @@ class Post extends Base
         $entityManager = $event->getEntityManager();
         $repository    = $entityManager->getRepository('ByRobots\WriteDown\Database\Entities\PostTag');
         $relationships = $repository->findBy([
-            'post_id' => $this->id,
+            'tag_id' => $this->id,
         ]);
 
         foreach ($relationships as $relationship) {

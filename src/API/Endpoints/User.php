@@ -4,13 +4,13 @@ namespace ByRobots\WriteDown\API\Endpoints;
 
 use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\CRUD;
-use ByRobots\WriteDown\API\Interfaces\EndpointInterface;
+use ByRobots\WriteDown\API\Interfaces\CRUInterface;
 use ByRobots\WriteDown\API\ResponseBuilder;
 use ByRobots\WriteDown\API\Transformers\UserTransformer;
 use ByRobots\WriteDown\Emails\EmailInterface;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 
-class User extends CRUD implements EndpointInterface
+class User extends CRUD implements CRUInterface
 {
     /**
      * Validates emails are unique.
@@ -42,33 +42,5 @@ class User extends CRUD implements EndpointInterface
 
         // Set the transformer for this model
         $this->response->setTransformer(new UserTransformer); // TODO: Inject this
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function create(array $attributes) : array
-    {
-        if (isset($attributes['email']) and !$this->emails->isUnique($attributes['email'])) {
-            return $this->response->build([
-                'email' => ['The email value is not unique.']
-            ], false);
-        }
-
-        return parent::create($attributes);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function update($entityID, array $attributes) : array
-    {
-        if (isset($attributes['email']) and !$this->emails->isUniqueExcept($attributes['email'], $entityID)) {
-            return $this->response->build([
-                'email' => ['The email value is not unique.']
-            ], false);
-        }
-
-        return parent::update($entityID, $attributes);
     }
 }

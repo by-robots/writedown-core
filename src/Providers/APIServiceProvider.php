@@ -6,7 +6,6 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\API\MetaBuilder;
 use ByRobots\WriteDown\API\ResponseBuilder;
 use ByRobots\WriteDown\Markdown\Markdown;
-use ByRobots\WriteDown\Validator\Valitron;
 
 class APIServiceProvider extends AbstractServiceProvider
 {
@@ -20,7 +19,6 @@ class APIServiceProvider extends AbstractServiceProvider
         'ByRobots\WriteDown\API\MetaBuilder',
         'ByRobots\WriteDown\API\ResponseBuilder',
         'ByRobots\WriteDown\Markdown\MarkdownInterface',
-        'ByRobots\WriteDown\Validator\ValidatorInterface',
     ];
 
     /**
@@ -43,8 +41,5 @@ class APIServiceProvider extends AbstractServiceProvider
 
         $this->getContainer()
             ->add('ByRobots\WriteDown\Markdown\MarkdownInterface', Markdown::class);
-
-        $this->getContainer()
-            ->add('ByRobots\WriteDown\Validator\ValidatorInterface', Valitron::class);
     }
 }

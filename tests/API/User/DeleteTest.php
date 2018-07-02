@@ -15,10 +15,12 @@ class DeleteTest extends TestCase
         $user   = $this->resources->user();
         $result = $this->writedown->api()->user()->delete($user->id);
 
-        // Test that the response is correct and the user is no longer in the database
-        $databaseResult = $this->writedown->database()->getRepository('ByRobots\WriteDown\Database\Entities\User')
+        // Try and retrieve the user from the database
+        $databaseResult = $this->writedown->database()
+            ->getRepository('ByRobots\WriteDown\Database\Entities\User')
             ->findOneBy(['id' => $user->id]);
 
+        // Check it
         $this->assertTrue($result['success']);
         $this->assertNull($databaseResult);
     }

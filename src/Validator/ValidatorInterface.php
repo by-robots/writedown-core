@@ -2,6 +2,8 @@
 
 namespace ByRobots\WriteDown\Validator;
 
+use ByRobots\Validation\AbstractRule;
+
 interface ValidatorInterface
 {
     /**
@@ -9,8 +11,8 @@ interface ValidatorInterface
      *
      * Format should be as follows:
      * [
-     *     'column 1' => ['required', 'unique'],
-     *     'column x' => ['numeric'],
+     *     'column 1' => ['present', 'not_empty'],
+     *     'column x' => ['string_between' => ['min' => 1, 'max' => 10],
      * ]
      *
      * @param array $rules
@@ -48,7 +50,7 @@ interface ValidatorInterface
     /**
      * Check if the last validation was successful.
      *
-     * An exception should be thrown if not validation has occoured.
+     * An exception should be thrown if not validation has occurred.
      *
      * @return boolean
      * @throws \Exception
@@ -62,4 +64,18 @@ interface ValidatorInterface
      * @throws \Exception
      */
     public function errors() : array;
+
+    /**
+     * Add a rule.
+     *
+     * @param \ByRobots\Validation\AbstractRule $rule
+     */
+    public function addRule(AbstractRule $rule);
+
+    /**
+     * Add rules.
+     *
+     * @param array $rules
+     */
+    public function addRules(array $rules);
 }

@@ -9,6 +9,8 @@ namespace ByRobots\WriteDown\Database\Entities;
  */
 class User extends Base
 {
+    use EntityTimestamps;
+
     /**
      * @Id
      * @Column(type="integer")
@@ -31,8 +33,10 @@ class User extends Base
      * @var array
      */
     protected $rules = [
-        'email'    => ['required'],
-        'password' => ['required'],
+        'email' => ['present', 'not_empty', 'valid_email', 'unique_in_database' => [
+            'repository' => 'ByRobots\WriteDown\Database\Entities\User',
+        ]],
+        'password' => ['present', 'not_empty'],
     ];
 
     /**

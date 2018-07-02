@@ -19,12 +19,14 @@ class UpdateTest extends TestCase
         ]);
 
         // Re-retrieve the post from the database and check the change was saved
-        $post = $this->writedown->database()->getRepository('ByRobots\WriteDown\Database\Entities\Post')
+        $databaseResult = $this->writedown->database()
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post->id]);
 
         // Annnnnd check it
         $this->assertTrue($result['success']);
-        $this->assertEquals($newTitle, $post->title);
+        $this->assertEquals($newTitle, $result['data']->title);
+        $this->assertEquals($newTitle, $databaseResult->title);
     }
 
     /**
@@ -52,6 +54,7 @@ class UpdateTest extends TestCase
             'not_fillable' => $this->faker->word,
         ]);
 
+        $this->assertTrue($result['success']);
         $this->assertFalse(property_exists($result['data'], 'not_fillable'));
     }
 

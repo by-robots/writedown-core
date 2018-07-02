@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use ByRobots\WriteDown\Database\Entities\Tag;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Generator;
 use ByRobots\WriteDown\Database\Entities\Post;
@@ -68,10 +69,10 @@ class CreatesResources
     public function post()
     {
         $post    = new Post;
-        $slugger = new Slugger;
+        $slugger = new Slugger($this->db);
 
         $post->title      = $this->faker->sentence;
-        $post->slug       = $slugger->slug($post->title);
+        $post->slug       = $slugger->generateSlug($post->title);
         $post->body       = $this->faker->paragraph;
         $post->publish_at = new \DateTime('now');
         $this->persist($post);
@@ -95,5 +96,21 @@ class CreatesResources
         $this->flush();
 
         return $user;
+    }
+
+    /**
+     * Create a test tag.
+     *
+     * @return \ByRobots\WriteDown\Database\Entities\Tag
+     */
+    public function tag()
+    {
+    	$tag = new Tag;
+
+    	$tag->name = $this->faker->slug;
+    	$this->persist($tag);
+    	$this->flush();
+
+    	return $tag;
     }
 }

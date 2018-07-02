@@ -2,9 +2,10 @@
 
 namespace ByRobots\WriteDown\Validator;
 
-use Valitron\Validator as Provider;
+use ByRobots\Validation\AbstractRule;
+use ByRobots\Validation\Validation as Provider;
 
-class Valitron implements ValidatorInterface
+class ByRobots implements ValidatorInterface
 {
     /**
      * Contains the rules to validate against.
@@ -23,12 +24,12 @@ class Valitron implements ValidatorInterface
     /**
      * The validator provider.
      *
-     * @var \Valitron\Validator
+     * @var \ByRobots\Validation\Validation
      */
     private $validator;
 
     /**
-     * When a validation has occoured this will contain the result.
+     * When a validation has occurred this will contain the result.
      *
      * @var boolean
      */
@@ -75,10 +76,8 @@ class Valitron implements ValidatorInterface
         }
 
         // Run the validation
-        $this->validator = $this->validator->withData($this->data);
-        $this->validator->rules($this->generateRulesFromProvided());
-
-        $this->success = $this->validator->validate();
+        $result        = $this->validator->validate($this->data, $this->rules);
+        $this->success = $result;
         return $this->success();
     }
 
@@ -103,41 +102,23 @@ class Valitron implements ValidatorInterface
             throw new \Exception('No validation processed.');
         }
 
-        return $this->validator->errors();
+        $errors = $this->validator->errors();
+        return is_array($errors) ? $errors : [];
     }
 
     /**
-     * Convert the rules into a Valitron valid array.
-     *
-     * See https://github.com/vlucas/valitron for details
-     *
-     * @return array
+     * @inheritDoc
      */
-    private function generateRulesFromProvided()
+    public function addRule(AbstractRule $rule)
     {
-        $converted = [];
-        foreach ($this->rules as $column => $ruleSet) {
-            foreach ($ruleSet as $rule) {
-                // Split rule details
-                $ruleDetails = explode(':', $rule);
+        $this->validator->addRule($rule);
+    }
 
-                // Create the rule entry
-                if (!array_key_exists($ruleDetails[0], $converted)) {
-                    $converted[$ruleDetails[0]] = [];
-                }
-
-                // Add column that the rule applies to and check if we need to
-                // add extra information
-                $arguments = [$column];
-                if (isset($ruleDetails[1])) {
-                    $arguments[] = $ruleDetails[1];
-                }
-
-                // Generate the rule
-                $converted[$ruleDetails[0]][] = $arguments;
-            }
-        }
-
-        return $converted;
+    /**
+     * @inheritDoc
+     */
+    public function addRules(array $rules)
+    {
+        $this->validator->addRules($rules);
     }
 }

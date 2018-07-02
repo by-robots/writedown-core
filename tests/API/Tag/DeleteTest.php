@@ -1,43 +1,43 @@
 <?php
 
-namespace Tests\API\Post;
+namespace Tests\API\Tag;
 
 use Tests\TestCase;
 
 class DeleteTest extends TestCase
 {
     /**
-     * A post can be deleted.
+     * A tag can be deleted.
      */
     public function testDeleted()
     {
-        // Make a post, then request it's deletion
-        $post   = $this->resources->post();
-        $result = $this->writedown->api()->post()->delete($post->id);
+        // Make a tag, then request it's deletion
+        $tag    = $this->resources->tag();
+        $result = $this->writedown->api()->tag()->delete($tag->id);
 
-        // Query the database and try to retrieve the post
+        // Attempt to grab the tag from the database
         $databaseResult = $this->writedown->database()
-            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
-            ->findOneBy(['id' => $post->id]);
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Tag')
+            ->findOneBy(['id' => $tag->id]);
 
-        // Check the results
         $this->assertTrue($result['success']);
         $this->assertNull($databaseResult);
     }
 
     /**
-     * A post that does not exist can not be deleted.
+     * A tag that does not exist can not be deleted.
      */
     public function testMissing()
     {
-        $result = $this->writedown->api()->post()->delete(mt_rand(1000, 9999));
+        $result = $this->writedown->api()->tag()->delete(mt_rand(1000, 9999));
 
         $this->assertFalse($result['success']);
         $this->assertEquals(['Not found.'], $result['data']);
     }
 
     /**
-     * When deleting a post any post_tag relationships should also be removed.
+     * When a tag is deleted any corresponding post_tag relationship should also
+     * be removed.
      */
     public function testDeletesPostTagRelationship()
     {
@@ -51,8 +51,8 @@ class DeleteTest extends TestCase
             'tag_id'  => $tag->id,
         ]);
 
-        // Now delete the post
-        $this->writedown->api()->post()->delete($post->id);
+        // Now delete the tag
+        $this->writedown->api()->tag()->delete($tag->id);
 
         // Check the relationship no longer exists
         $databaseResult = $this->writedown->database()

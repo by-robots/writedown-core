@@ -2,12 +2,12 @@
 
 namespace ByRobots\WriteDown\API\Endpoints;
 
+use ByRobots\WriteDown\Slugs\Slugger;
 use Doctrine\ORM\EntityManager;
 use ByRobots\WriteDown\API\CRUD;
 use ByRobots\WriteDown\API\Interfaces\PostEndpointInterface;
 use ByRobots\WriteDown\API\ResponseBuilder;
 use ByRobots\WriteDown\API\Transformers\PostTransformer;
-use ByRobots\WriteDown\Slugs\GenerateSlugInterface;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
 
 class Post extends CRUD implements PostEndpointInterface
@@ -15,17 +15,17 @@ class Post extends CRUD implements PostEndpointInterface
     /**
      * Checks slugs are unique.
      *
-     * @var \ByRobots\WriteDown\Slugs\GenerateSlugInterface
+     * @var \ByRobots\WriteDown\Slugs\Slugger
      */
-    private $slug;
+    private $slugger;
 
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager             $db
+     * @param \Doctrine\ORM\EntityManager                      $db
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
-     * @param \ByRobots\WriteDown\Slugs\GenerateSlugInterface  $generateSlug
+     * @param \ByRobots\WriteDown\Slugs\Slugger                $slugger
      *
      * @return void
      */
@@ -33,12 +33,12 @@ class Post extends CRUD implements PostEndpointInterface
         EntityManager $db,
         ResponseBuilder $response,
         ValidatorInterface $validator,
-        GenerateSlugInterface $generateSlug
+        Slugger $slugger
     ) {
         $this->db          = $db;
         $this->response    = $response;
         $this->validator   = $validator;
-        $this->slug        = $generateSlug;
+        $this->slugger     = $slugger;
 
         // Set additional CRUD settings
         $this->entityRepo = 'ByRobots\WriteDown\Database\Entities\Post';
@@ -53,39 +53,16 @@ class Post extends CRUD implements PostEndpointInterface
      */
     public function create(array $attributes) : array
     {
-        // If a slug has been manually set check that it's unique
-        if (isset($attributes['slug']) and !$this->slug->isUnique($attributes['slug'])) {
-            return $this->response->build([
-                'slug' => ['The slug value is not unique.'],
-            ], false);
-        }
-
         // If no slug has been set generate it with the post's title
         if (
             (!isset($attributes['slug']) or empty($attributes['slug'])) and
             isset($attributes['title'])
         ) {
-            $attributes['slug'] = $this->slug->uniqueSlug($attributes['title']);
+            $attributes['slug'] = $this->slugger->uniqueSlug($attributes['title']);
         }
 
         // Let the parent finish off the validation and creation
         return parent::create($attributes);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function update($entityID, array $attributes) : array
-    {
-        // First up, check the slug is unique.
-        // A slug has been manually set so check it's unique
-        if (isset($attributes['slug']) and !$this->slug->isUniqueExcept($attributes['slug'], $entityID)) {
-            return $this->response->build([
-                'slug' => ['The slug value is not unique.'],
-            ], false);
-        }
-
-        return parent::update($entityID, $attributes);
     }
 
     /**

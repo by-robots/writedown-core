@@ -2,77 +2,33 @@
 
 namespace ByRobots\WriteDown\Slugs;
 
-use Doctrine\ORM\EntityManager;
-
-class GenerateSlug implements GenerateSlugInterface
+class GenerateSlug
 {
     /**
-     * Generate slug.
+     * Take a string and convert it to a URL friendly slug.
      *
-     * @var \ByRobots\WriteDown\Slugs\Slugger
-     */
-    private $slugger;
-
-    /**
-     * Check slugs are unique.
+     * @param string $input
      *
-     * @var \ByRobots\WriteDown\Slugs\UniqueSlug
+     * @return string
      */
-    private $uniqueSlug;
-
-    /**
-     * Set-up.
-     *
-     * @param \Doctrine\ORM\EntityManager $database
-     *
-     * @return void
-     */
-    public function __construct(EntityManager $database)
+    public function slug($input)
     {
-        $this->slugger    = new Slugger;
-        $this->uniqueSlug = new UniqueSlug($database);
-    }
+        // Remove punctuation, but leave hyphens
+        $input = preg_replace('/[^\w\s-]/', '', $input);
 
-    /**
-     * @inheritDoc
-     */
-    public function slug($input) : string
-    {
-        return $this->slugger->slug($input);
-    }
+        // Change underscores and spaces to hyphens
+        $input = str_replace([' ', '_'], '-', $input);
 
-    /**
-     * @inheritDoc
-     */
-    public function isUnique($slug) : bool
-    {
-        return $this->uniqueSlug->isUnique($slug);
-    }
+        // Remove double hyphens
+        while (strpos($input, '--') !== false) {
+            $input = str_replace('--', '-', $input);
+        }
 
-    /**
-     * @inheritDoc
-     */
-    public function uniqueSlug($title) : string
-    {
-        $index = 0;
+        // Remove leading and trailing hyphens
+        $input = ltrim($input, '-');
+        $input = rtrim($input, '-');
 
-        do {
-            $slug = $this->slug($title);
-            $index++;
-
-            if ($index > 1) {
-                $slug .= '-' . $index;
-            }
-        } while (!$this->isUnique($slug));
-
-        return $slug;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isUniqueExcept($slug, $postID) : bool
-    {
-        return $this->uniqueSlug->isUniqueExcept($slug, $postID);
+        // Return the generated slug with all lower case letters
+        return strtolower($input);
     }
 }

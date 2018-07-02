@@ -8,12 +8,6 @@ namespace ByRobots\WriteDown\Database\Entities;
  */
 class Base
 {
-    /** @Column(name="created_at", type="datetime") */
-    protected $created_at;
-
-    /** @Column(name="updated_at", type="datetime") */
-    protected $updated_at;
-
     /**
      * Contains the validation rules for the entity.
      *
@@ -96,18 +90,28 @@ class Base
         return $data;
     }
 
-    /** @PrePersist */
-    public function setCreatedAt()
-    {
-        $this->created_at = new \DateTime('now');
-    }
-
     /**
-     * @PrePersist
-     * @PreUpdate
+     * Modify rules for updates.
+     *
+     * @return array
      */
-    public function setUpdatedAt()
+    public function updateRules() : array
     {
-        $this->updated_at = new \DateTime('now');
+        $updateRules = $this->rules;
+
+        foreach ($updateRules as $column => $ruleset) {
+            foreach ($ruleset as $key => $value) {
+                if (is_array($value)) {
+                    // $key will contain the rule name, $value the params.
+                    switch ($key) {
+                        case 'unique_in_database':
+                            $updateRules[$column][$key] = array_merge(['except' => $this->id], $value);
+                            break;
+                    }
+                }
+            }
+        }
+
+        return $updateRules;
     }
 }
