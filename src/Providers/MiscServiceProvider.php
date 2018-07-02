@@ -26,15 +26,15 @@ class MiscServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->getContainer()->inflector(ControllerInterface::class)
-            ->invokeMethod('setRequest',  ['Psr\Http\Message\RequestInterface'])
+            ->invokeMethod('setRequest', ['Psr\Http\Message\RequestInterface'])
             ->invokeMethod('setResponse', ['Psr\Http\Message\ResponseInterface'])
-            ->invokeMethod('setSession',  ['ByRobots\WriteDown\Sessions\SessionInterface'])
-            ->invokeMethod('setAPI',      ['ByRobots\WriteDown\API\Interfaces\APIInterface'])
-            ->invokeMethod('setCSRF',     ['ByRobots\WriteDown\CSRF\CSRFInterface'])
-            ->invokeMethod('setAuth',     ['ByRobots\WriteDown\Auth\Interfaces\AuthInterface'])
+            ->invokeMethod('setSession', ['ByRobots\WriteDown\Sessions\SessionInterface'])
+            ->invokeMethod('setAPI', ['ByRobots\WriteDown\API\Interfaces\APIInterface'])
+            ->invokeMethod('setCSRF', ['ByRobots\WriteDown\CSRF\CSRFInterface'])
+            ->invokeMethod('setAuth', ['ByRobots\WriteDown\Auth\Interfaces\AuthInterface'])
             ->invokeMethod('setMarkdown', ['ByRobots\WriteDown\Markdown\MarkdownInterface']);
 
-        $this->getContainer()->add('Doctrine\ORM\EntityManagerInterface', function () {
+        $this->getContainer()->add('Doctrine\ORM\EntityManagerInterface', function() {
             $configBuilder = new DoctrineConfigBuilder;
             $database      = new DoctrineDriver($configBuilder->generate());
 
