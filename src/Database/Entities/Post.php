@@ -2,6 +2,8 @@
 
 namespace ByRobots\WriteDown\Database\Entities;
 
+use Doctrine\ORM\Event\LifecycleEventArgs;
+
 /**
  * @Entity(repositoryClass="ByRobots\WriteDown\Database\Repositories\Post")
  * @Table(name="posts")
@@ -52,4 +54,28 @@ class Post extends Base
      * @var array
      */
     protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
+
+    /**
+     * On deletion remove any post_tag entries relating to this post.
+     *
+     * @param LifecycleEventArgs $event
+     *                                 
+     * @throws \Exception
+     *
+     * @preRemove
+     */
+    public function removeTagRelationships(LifecycleEventArgs $event)
+    {
+        $entityManager = $event->getEntityManager();
+        $repository    = $entityManager->getRepository('ByRobots\WriteDown\Database\Entities\PostTag');
+        $relationships = $repository->findBy([
+            'post_id' => $this->id,
+        ]);
+
+        foreach ($relationships as $relationship) {
+            $entityManager->remove($relationship);
+        }
+
+        $entityManager->flush();
+    }
 }
