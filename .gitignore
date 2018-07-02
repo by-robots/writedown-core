@@ -2,8 +2,8 @@
 /vendor
 
 .DS_Store
-/db/*
+/tests/db/*
 composer.phar
 ocular.phar
 
-!/db/writedown-test-clean
+!/tests/db/writedown-test-clean
