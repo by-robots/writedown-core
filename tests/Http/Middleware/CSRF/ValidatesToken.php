@@ -34,6 +34,8 @@ class ValidatesToken extends TestCase
     {
         // Set-up mocks
         $request = \Mockery::mock('\Psr\Http\Message\ServerRequestInterface')->makePartial();
+        $request->shouldReceive('getMethod')
+            ->andReturn('POST');
         $request->shouldReceive('getParsedBody')
             ->andReturn([
                 'csrf' => 'TXkgc3RvcnkgaXMgYSBsb3QgbGlrZSB5b3Vycywgb25seSBtb3JlIGludGVyZXN0aW5nIOKAmGNhdXNlIGl0IGludm9sdmVzIHJvYm90cy4=',
@@ -57,6 +59,8 @@ class ValidatesToken extends TestCase
 
         // Set-up mocks
         $request = \Mockery::mock('\Psr\Http\Message\ServerRequestInterface')->makePartial();
+        $request->shouldReceive('getMethod')
+            ->andReturn('POST');
         $request->shouldReceive('getParsedBody')
             ->andReturn(['csrf' => $token]);
 

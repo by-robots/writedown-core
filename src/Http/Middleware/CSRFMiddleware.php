@@ -37,10 +37,18 @@ class CSRFMiddleware
      */
     public function validate(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
-        if (
-            !isset($request->getParsedBody()['csrf']) or
-            !$this->csrf->isValid($request->getParsedBody()['csrf'])
-        ) {
+        switch ($request->getMethod()) {
+            case 'POST':
+                $token = $request->getParsedBody()['csrf'];
+                break;
+            case 'GET':
+                $token = $request->getQueryParams()['csrf'];
+                break;
+            default:
+                throw new \Exception('Invalid CSRF.');
+        }
+
+        if (!$this->csrf->isValid($token)) {
             throw new \Exception('Invalid CSRF.');
         }
 
