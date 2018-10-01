@@ -1,0 +1,5 @@
+# Set the default behavior
+* text=auto
+
+# Be sure to treat the test database as a binary file
+/db/writedown-test-clean
