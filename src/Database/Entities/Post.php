@@ -36,7 +36,7 @@ class Post extends Base
     public $publish_at;
 
     /** @Column(name="detached", type="boolean") */
-    public $detached;
+    public $detached = false;
 
     /**
      * Contains the validation rules for creation of the entity.
