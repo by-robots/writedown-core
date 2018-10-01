@@ -27,8 +27,9 @@ class Post extends BaseRepository
                 'per_page'     => env('MAX_ITEMS', 10),
             ],
             'where'      => [
-                'e.publish_at IS NOT NULL AND e.publish_at <= :now' => [
-                    'now' => new \DateTime('now'),
+                'e.publish_at IS NOT NULL AND e.publish_at <= :now AND e.detached = :detached' => [
+                    'detached' => false,
+                    'now'      => new \DateTime('now'),
                 ],
             ],
         ];
