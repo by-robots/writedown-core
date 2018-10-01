@@ -40,7 +40,15 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
     public function __construct(EntityManager $em, ClassMetadata $class)
     {
         parent::__construct($em, $class);
+
         $this->filter = new Filter;
+
+        $this->defaultFilters['where']      = [];
+        $this->defaultFilters['orderBy']    = [];
+        $this->defaultFilters['pagination'] = [
+            'current_page' => 1,
+            'per_page'     => env('MAX_ITEMS', 10),
+        ];
     }
 
     /**
@@ -48,14 +56,22 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      */
     public function all(array $filters = []) : array
     {
-        // Combine $filters with the default, overriding the default ones with
+        // Combine $filters with the defaults, overriding the default ones with
         // those that have been passed directly.
-        $filters = array_merge($this->defaultFilters, $filters);
+        //
+        // TODO: Re-factor this for tidiness
+        $filters['where'] = isset($filters['where'])
+            ? $filters['where'] : $this->defaultFilters['where'];
+
+        $filters['pagination'] = isset($filters['pagination'])
+            ? $filters['pagination'] : $this->defaultFilters['pagination'];
+
+        $filters['orderBy'] = isset($filters['orderBy'])
+            ? $filters['orderBy'] : $this->defaultFilters['orderBy'];
 
         // Build the start of the query
         $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('e')
-            ->from($this->entity, 'e');
+            ->select('e')->from($this->entity, 'e');
 
         // Apply filters
         return $this->filter->build($query, $filters)->getQuery()->getResult();

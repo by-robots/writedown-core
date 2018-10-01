@@ -57,8 +57,15 @@ class Filter implements FilterInterface
      */
     private function where(array $statements)
     {
+        $first = true;
+
         foreach ($statements as $statement => $parameters) {
-            $this->query->where($statement);
+            if ($first) {
+                $this->query->where($statement);
+                $first = false;
+            } else {
+                $this->query->andWhere($statement);
+            }
 
             foreach ($parameters as $parameter => $value) {
                 $this->query->setParameter($parameter, $value);

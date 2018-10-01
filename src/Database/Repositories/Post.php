@@ -19,18 +19,13 @@ class Post extends BaseRepository
     {
         parent::__construct($em, $class);
 
-        $this->entity         = 'ByRobots\WriteDown\Database\Entities\Post';
-        $this->defaultFilters = [
-            'orderBy'    => ['e.publish_at' => 'DESC'],
-            'pagination' => [
-                'current_page' => 1,
-                'per_page'     => env('MAX_ITEMS', 10),
-            ],
-            'where'      => [
-                'e.publish_at IS NOT NULL AND e.publish_at <= :now AND e.detached = :detached' => [
-                    'detached' => false,
-                    'now'      => new \DateTime('now'),
-                ],
+        $this->entity = 'ByRobots\WriteDown\Database\Entities\Post';
+
+        $this->defaultFilters['orderBy'] = ['e.publish_at' => 'DESC'];
+        $this->defaultFilters['where']   = [
+            'e.detached = :post_detached' => ['post_detached' => false],
+            'e.publish_at IS NOT NULL AND e.publish_at <= :post_now' => [
+                'post_now' => new \DateTime('now'),
             ],
         ];
     }
