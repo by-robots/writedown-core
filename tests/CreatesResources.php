@@ -74,6 +74,28 @@ class CreatesResources
         $post->title      = $this->faker->sentence;
         $post->slug       = $slugger->generateSlug($post->title);
         $post->body       = $this->faker->paragraph;
+        $post->detached   = false;
+        $post->publish_at = new \DateTime('now');
+        $this->persist($post);
+        $this->flush();
+
+        return $post;
+    }
+
+    /**
+     * Create a test detached post.
+     *
+     * @return \ByRobots\WriteDown\Database\Entities\Post
+     */
+    public function detachedPost()
+    {
+        $post    = new Post;
+        $slugger = new Slugger($this->db);
+
+        $post->title      = $this->faker->sentence;
+        $post->slug       = $slugger->generateSlug($post->title);
+        $post->body       = $this->faker->paragraph;
+        $post->detached   = true;
         $post->publish_at = new \DateTime('now');
         $this->persist($post);
         $this->flush();
