@@ -60,11 +60,15 @@ class Filter implements FilterInterface
         $first = true;
 
         foreach ($statements as $statement => $parameters) {
-            if ($first) {
-                $this->query->where($statement);
-                $first = false;
-            } else {
-                $this->query->andWhere($statement);
+            switch ($first) {
+                case true:
+                    $this->query->where($statement);
+                    $first = false;
+                    break;
+                default:
+                    // Subsequent where statements needs to be andWhere or we'll
+                    // get errors about the wrong number of parameters.
+                    $this->query->andWhere($statement);
             }
 
             foreach ($parameters as $parameter => $value) {
