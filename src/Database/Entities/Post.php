@@ -35,6 +35,9 @@ class Post extends Base
     /** @Column(name="publish_at", type="datetime", nullable=true) */
     public $publish_at;
 
+    /** @Column(name="detached", type="boolean") */
+    public $detached = false;
+
     /**
      * Contains the validation rules for creation of the entity.
      *
@@ -53,13 +56,14 @@ class Post extends Base
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at'];
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at',
+        'detached'];
 
     /**
      * On deletion remove any post_tag entries relating to this post.
      *
      * @param LifecycleEventArgs $event
-     *                                 
+     *
      * @throws \Exception
      *
      * @preRemove
