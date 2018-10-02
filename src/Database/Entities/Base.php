@@ -3,8 +3,9 @@
 namespace ByRobots\WriteDown\Database\Entities;
 
 /**
- * @property array $rules
- * @property array $fillable
+ * @property array   $fillable
+ * @property array   $rules
+ * @property integer $id
  */
 class Base
 {
