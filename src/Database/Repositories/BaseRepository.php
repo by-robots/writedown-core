@@ -56,18 +56,8 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      */
     public function all(array $filters = []) : array
     {
-        // Combine $filters with the defaults, overriding the default ones with
-        // those that have been passed directly.
-        //
-        // TODO: Re-factor this for tidiness
-        $filters['where'] = isset($filters['where'])
-            ? $filters['where'] : $this->defaultFilters['where'];
-
-        $filters['pagination'] = isset($filters['pagination'])
-            ? $filters['pagination'] : $this->defaultFilters['pagination'];
-
-        $filters['orderBy'] = isset($filters['orderBy'])
-            ? $filters['orderBy'] : $this->defaultFilters['orderBy'];
+        // Build the filters
+        $filters = $this->mergeFilters($filters);
 
         // Build the start of the query
         $query = $this->getEntityManager()->createQueryBuilder()
@@ -85,5 +75,28 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
         return $this->getEntityManager()->createQueryBuilder()
             ->select('count(e.id)')->from($this->entity, 'e')
             ->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * Build the complete filter by merging the defaults and any that have been
+     * supplied.
+     *
+     * @param array $supplied
+     *
+     * @return array
+     */
+    private function mergeFilters(array $supplied) : array
+    {
+        $filters = [];
+        $filters['where'] = isset($supplied['where'])
+            ? $supplied['where'] : $this->defaultFilters['where'];
+
+        $filters['pagination'] = isset($supplied['pagination'])
+            ? $supplied['pagination'] : $this->defaultFilters['pagination'];
+
+        $filters['orderBy'] = isset($supplied['orderBy'])
+            ? $supplied['orderBy'] : $this->defaultFilters['orderBy'];
+
+        return $filters;
     }
 }
