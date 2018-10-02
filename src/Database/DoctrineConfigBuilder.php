@@ -12,6 +12,14 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
     public function generate() : array
     {
         switch (env('DB_DRIVER')) {
+            case 'mysql':
+                return [
+                    'dbname'   => getenv('DB_DATABASE'),
+                    'driver'   => 'pdo_mysql',
+                    'host'     => getenv('DB_HOST'),
+                    'password' => getenv('DB_PASSWORD'),
+                    'user'     => getenv('DB_USER'),
+                ];
             case 'sqlite':
                 return [
                     'driver' => 'pdo_sqlite',
