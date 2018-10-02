@@ -11,24 +11,44 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
      */
     public function generate() : array
     {
-        switch (env('DB_DRIVER')) {
+        $driver = env('DB_DRIVER');
+        switch ($driver) {
             case 'mysql':
-                return [
-                    'dbname'   => getenv('DB_DATABASE'),
-                    'driver'   => 'pdo_mysql',
-                    'host'     => getenv('DB_HOST'),
-                    'password' => getenv('DB_PASSWORD'),
-                    'user'     => getenv('DB_USER'),
-                ];
             case 'sqlite':
-                return [
-                    'driver' => 'pdo_sqlite',
-                    'path'   => env('ROOT_PATH') . '/' . env('DB_DATABASE'),
-                ];
+                return $this->$driver();
 
             default:
                 throw new \Exception('The provided database driver is not supported: ' .
                     /** @scrutinizer ignore-type */ env('DB_DRIVER'));
         }
+    }
+
+    /**
+     * Build the SQLite connection.
+     *
+     * @return array
+     */
+    private function sqlite() : array
+    {
+        return [
+            'driver' => 'pdo_sqlite',
+            'path'   => env('ROOT_PATH') . '/' . env('DB_DATABASE'),
+        ];
+    }
+
+    /**
+     * Build the MySQL connection.
+     *
+     * @return array
+     */
+    private function mysql() : array
+    {
+        return [
+            'dbname'   => getenv('DB_DATABASE'),
+            'driver'   => 'pdo_mysql',
+            'host'     => getenv('DB_HOST'),
+            'password' => getenv('DB_PASSWORD'),
+            'user'     => getenv('DB_USER'),
+        ];
     }
 }
