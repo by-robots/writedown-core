@@ -13,19 +13,14 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
     {
         switch (env('DB_DRIVER')) {
             case 'sqlite':
-                $driver = 'pdo_sqlite';
-                break;
+                return [
+                    'driver' => 'pdo_sqlite',
+                    'path'   => env('ROOT_PATH') . '/' . env('DB_DATABASE'),
+                ];
 
             default:
                 throw new \Exception('The provided database driver is not supported: ' .
                     /** @scrutinizer ignore-type */ env('DB_DRIVER'));
         }
-
-        $path = env('ROOT_PATH') . '/' . env('DB_DATABASE');
-
-        return [
-            'driver' => $driver,
-            'path'   => $path,
-        ];
     }
 }
