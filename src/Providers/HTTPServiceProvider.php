@@ -6,6 +6,7 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\Auth\Token;
 use ByRobots\WriteDown\CSRF\Hash;
 use ByRobots\WriteDown\Sessions\AuraSession;
+use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Response\SapiEmitter;
 
@@ -20,6 +21,7 @@ class HTTPServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
+        'Psr\Http\Message\ResponseInterface',
         'Psr\Http\Message\RequestInterface',
         'ByRobots\WriteDown\CSRF\CSRFInterface',
         'ByRobots\WriteDown\Sessions\SessionInterface',
@@ -31,6 +33,9 @@ class HTTPServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
+        $this->getContainer()
+            ->add('Psr\Http\Message\ResponseInterface', Response::class);
+
         $this->getContainer()->add('Psr\Http\Message\RequestInterface', function() {
             return ServerRequestFactory::fromGlobals(
                 $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
