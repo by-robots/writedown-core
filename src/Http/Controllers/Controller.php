@@ -2,7 +2,6 @@
 
 namespace ByRobots\WriteDown\Http\Controllers;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use ByRobots\WriteDown\API\Interfaces\APIInterface;
 use ByRobots\WriteDown\Auth\Interfaces\AuthInterface;
@@ -22,11 +21,6 @@ abstract class Controller implements ControllerInterface
      * @var \Psr\Http\Message\ServerRequestInterface
      */
     protected $request;
-
-    /**
-     * @var \Psr\Http\Message\ResponseInterface
-     */
-    protected $response;
 
     /**
      * @var \ByRobots\WriteDown\Sessions\SessionInterface
@@ -59,14 +53,6 @@ abstract class Controller implements ControllerInterface
     public function setRequest(ServerRequestInterface $request)
     {
         $this->request = $request;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setResponse(ResponseInterface $response)
-    {
-        $this->response = $response;
     }
 
     /**

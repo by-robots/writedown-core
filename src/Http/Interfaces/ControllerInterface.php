@@ -2,7 +2,6 @@
 
 namespace ByRobots\WriteDown\Http\Interfaces;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use ByRobots\WriteDown\API\Interfaces\APIInterface;
 use ByRobots\WriteDown\Auth\Interfaces\AuthInterface;
@@ -20,15 +19,6 @@ interface ControllerInterface
      * @return void
      */
     public function setRequest(ServerRequestInterface $request);
-
-    /**
-     * Set the response object.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *
-     * @return void
-     */
-    public function setResponse(ResponseInterface $response);
 
     /**
      * Set the session management object.

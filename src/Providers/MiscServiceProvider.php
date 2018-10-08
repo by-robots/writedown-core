@@ -27,7 +27,6 @@ class MiscServiceProvider extends AbstractServiceProvider
     {
         $this->getContainer()->inflector(ControllerInterface::class)
             ->invokeMethod('setRequest', ['Psr\Http\Message\RequestInterface'])
-            ->invokeMethod('setResponse', ['Psr\Http\Message\ResponseInterface'])
             ->invokeMethod('setSession', ['ByRobots\WriteDown\Sessions\SessionInterface'])
             ->invokeMethod('setAPI', ['ByRobots\WriteDown\API\Interfaces\APIInterface'])
             ->invokeMethod('setCSRF', ['ByRobots\WriteDown\CSRF\CSRFInterface'])
