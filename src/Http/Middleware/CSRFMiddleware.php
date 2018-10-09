@@ -39,16 +39,16 @@ class CSRFMiddleware
     {
         switch ($request->getMethod()) {
             case 'POST':
-                $token = $request->getParsedBody()['csrf'];
+                $body = $request->getParsedBody();
                 break;
             case 'GET':
-                $token = $request->getQueryParams()['csrf'];
+                $body = $request->getQueryParams();
                 break;
             default:
-                throw new \Exception('Invalid CSRF.');
+                throw new \Exception('Invalid Request.');
         }
 
-        if (!$this->csrf->isValid($token)) {
+        if (!$this->csrf->isValid($body['csrf'])) {
             throw new \Exception('Invalid CSRF.');
         }
 
