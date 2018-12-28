@@ -106,6 +106,6 @@ class WriteDown
         $response = $this->getRouter()
             ->dispatch($this->getService('request'), new Response);
 
-        $this->emitter()->emit($response);
+        $this->getService('emitter')->emit($response);
     }
 }
