@@ -84,93 +84,15 @@ class WriteDown
     }
 
     /**
-     * Get the Request service.
+     * Get a service.
      *
-     * @return \Psr\Http\Message\RequestInterface
-     */
-    public function request()
-    {
-        return $this->getContainer()->get('request');
-    }
-
-    /**
-     * Get the Response service.
+     * @param string $name
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return mixed
      */
-    public function response()
+    public function getService($name)
     {
-        return $this->getContainer()->get('response');
-    }
-
-    /**
-     * Get the Emitter service.
-     *
-     * @return \Zend\Diactoros\Response\EmitterInterface
-     */
-    public function emitter()
-    {
-        return $this->getContainer()->get('emitter');
-    }
-
-    /**
-     * Get the Entity Manager service.
-     *
-     * @return \Doctrine\ORM\EntityManagerInterface
-     */
-    public function database()
-    {
-        return $this->getContainer()->get('entityManager');
-    }
-
-    /**
-     * Get the API.
-     *
-     * @return \ByRobots\WriteDown\API\Interfaces\APIInterface
-     */
-    public function api()
-    {
-        return $this->getContainer()->get('api');
-    }
-
-    /**
-     * Get the Markdown converter.
-     *
-     * @return \ByRobots\WriteDown\Markdown\MarkdownInterface
-     */
-    public function markdown()
-    {
-        return $this->getContainer()->get('markdown');
-    }
-
-    /**
-     * Get the session manager.
-     *
-     * @return \ByRobots\WriteDown\Sessions\SessionInterface
-     */
-    public function session()
-    {
-        return $this->getContainer()->get('session');
-    }
-
-    /**
-     * Get the CSRF manager.
-     *
-     * @return \ByRobots\WriteDown\CSRF\CSRFInterface
-     */
-    public function csrf()
-    {
-        return $this->getContainer()->get('csrf');
-    }
-
-    /**
-     * Get the authentication manager.
-     *
-     * @return \ByRobots\WriteDown\Auth\Interfaces\AuthInterface
-     */
-    public function auth()
-    {
-        return $this->getContainer()->get('auth');
+        return $this->getContainer()->get($name);
     }
 
     /**

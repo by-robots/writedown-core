@@ -17,7 +17,7 @@ class CreateTest extends TestCase
         $tag  = $this->resources->tag();
 
         // Attempt to tag $post with $tag
-        $result = $this->writedown->api()->postTag()->create([
+        $result = $this->writedown->getService('api')->postTag()->create([
             'post_id' => $post->id,
             'tag_id'  => $tag->id,
         ]);
@@ -35,7 +35,7 @@ class CreateTest extends TestCase
         $tag = $this->resources->tag();
 
         // Attempt to tag $post with $tag
-        $result = $this->writedown->api()->postTag()->create([
+        $result = $this->writedown->getService('api')->postTag()->create([
             'post_id' => mt_rand(1000, 9999),
             'tag_id'  => $tag->id,
         ]);
@@ -54,7 +54,7 @@ class CreateTest extends TestCase
         $post = $this->resources->post();
 
         // Attempt to tag $post with $tag
-        $result = $this->writedown->api()->postTag()->create([
+        $result = $this->writedown->getService('api')->postTag()->create([
             'post_id' => $post->id,
             'tag_id'  => mt_rand(1000, 9999),
         ]);

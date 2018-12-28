@@ -15,7 +15,7 @@ class ReadTest extends TestCase
         $post = $this->resources->post();
 
         // Attempt to retrieve it
-        $result = $this->writedown->api()->post()->read($post->id);
+        $result = $this->writedown->getService('api')->post()->read($post->id);
 
         // Check it
         $this->assertTrue($result['success']);
@@ -29,7 +29,7 @@ class ReadTest extends TestCase
     public function testPostNotFound()
     {
         // Attempt to retrieve a non-existent post
-        $result = $this->writedown->api()->post()->read(mt_rand(1000, 9999));
+        $result = $this->writedown->getService('api')->post()->read(mt_rand(1000, 9999));
 
         // An error should be returned
         $this->assertFalse($result['success']);

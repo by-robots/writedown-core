@@ -18,7 +18,7 @@ class ValidatesToken extends TestCase
         $session->set('auth_token', 'WU9VJ1JFIE5PVCBNWSBTVVBFUlZJU09SIQ==');
 
         // Add that to the provider
-        $provider = new AuthenticatedMiddleware($this->writedown->auth(), $session);
+        $provider = new AuthenticatedMiddleware($this->writedown->getService('auth'), $session);
 
         // Make mocks
         $request  = \Mockery::mock('\Psr\Http\Message\ServerRequestInterface')->makePartial();
@@ -36,7 +36,7 @@ class ValidatesToken extends TestCase
     {
         // Create the user with a token we know
         $token = bin2hex(random_bytes(64));
-        $this->writedown->api()->user()->create([
+        $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $this->faker->word,
             'token'    => $token,
@@ -47,7 +47,7 @@ class ValidatesToken extends TestCase
         $session->set('auth_token', $token);
 
         // Create the middleware
-        $provider = new AuthenticatedMiddleware($this->writedown->auth(), $session);
+        $provider = new AuthenticatedMiddleware($this->writedown->getService('auth'), $session);
 
         // Make mocks
         $request  = \Mockery::mock('\Psr\Http\Message\ServerRequestInterface')->makePartial();

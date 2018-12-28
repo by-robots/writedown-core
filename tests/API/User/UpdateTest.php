@@ -14,7 +14,7 @@ class UpdateTest extends TestCase
         // Create a user, then update it.
         $user     = $this->resources->user();
         $newEmail = $this->faker->email;
-        $result   = $this->writedown->api()->user()->update($user->id, [
+        $result   = $this->writedown->getService('api')->user()->update($user->id, [
             'email' => $newEmail,
         ]);
 
@@ -28,7 +28,7 @@ class UpdateTest extends TestCase
     public function testMissing()
     {
         // Attempt to update a user that doesn't exist
-        $result = $this->writedown->api()->user()->update(mt_rand(1000, 9999), [
+        $result = $this->writedown->getService('api')->user()->update(mt_rand(1000, 9999), [
             'email' => $this->faker->email,
         ]);
 
@@ -43,7 +43,7 @@ class UpdateTest extends TestCase
     public function testOnlyFillable()
     {
         $user   = $this->resources->user();
-        $result = $this->writedown->api()->user()->update($user->id, [
+        $result = $this->writedown->getService('api')->user()->update($user->id, [
             'not_fillable' => $this->faker->word,
         ]);
 
@@ -61,7 +61,7 @@ class UpdateTest extends TestCase
         $secondUser = $this->resources->user();
 
         // Try to set $secondUser's email to $firstUser's
-        $result = $this->writedown->api()->user()->update($secondUser->id, [
+        $result = $this->writedown->getService('api')->user()->update($secondUser->id, [
             'email' => $firstUser->email,
         ]);
 
@@ -77,7 +77,7 @@ class UpdateTest extends TestCase
     {
         // Create a user, then update it.
         $user     = $this->resources->user();
-        $result   = $this->writedown->api()->user()->update($user->id, [
+        $result   = $this->writedown->getService('api')->user()->update($user->id, [
             'email' => $this->faker->word,
         ]);
 

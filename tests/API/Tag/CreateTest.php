@@ -13,7 +13,7 @@ class CreateTest extends TestCase
     {
         // Create a tag
         $name = $this->faker->word;
-        $tag  = $this->writedown->api()->tag()->create([
+        $tag  = $this->writedown->getService('api')->tag()->create([
             'name' => $name,
         ]);
 
@@ -28,7 +28,7 @@ class CreateTest extends TestCase
     public function testValidationNoName()
     {
         // Attempt to create a tag without a name.
-        $result = $this->writedown->api()->tag()->create([]);
+        $result = $this->writedown->getService('api')->tag()->create([]);
 
         // Check the error was as expected
         $this->assertFalse($result['success']);
@@ -41,7 +41,7 @@ class CreateTest extends TestCase
 	public function testValidSlug()
 	{
 		// Attempt to create a tag with an invalid name.
-		$result = $this->writedown->api()->tag()->create([
+		$result = $this->writedown->getService('api')->tag()->create([
 			'name' => 'Bad Tag',
 		]);
 
@@ -55,7 +55,7 @@ class CreateTest extends TestCase
      */
     public function testOnlyFillable()
     {
-        $result = $this->writedown->api()->tag()->create([
+        $result = $this->writedown->getService('api')->tag()->create([
             'name'         => $this->faker->word,
             'not_fillable' => $this->faker->word,
         ]);
@@ -73,7 +73,7 @@ class CreateTest extends TestCase
         $tag = $this->resources->tag();
 
         // Try to create another tag with the same name
-        $result = $this->writedown->api()->tag()->create([
+        $result = $this->writedown->getService('api')->tag()->create([
             'name' => $tag->name,
         ]);
 

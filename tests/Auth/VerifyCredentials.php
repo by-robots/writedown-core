@@ -22,7 +22,7 @@ class VerifyCredentials extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->auth = new Provider($this->writedown->database());
+        $this->auth = new Provider($this->writedown->getService('entityManager'));
     }
 
     /**
@@ -33,7 +33,7 @@ class VerifyCredentials extends TestCase
     {
         // Create a new user, ensure we know the password
         $password = $this->faker->word;
-        $user     = $this->writedown->api()->user()->create([
+        $user     = $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $password,
         ]);
@@ -48,7 +48,7 @@ class VerifyCredentials extends TestCase
      */
     public function testBadPassword()
     {
-        $user = $this->writedown->api()->user()->create([
+        $user = $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $this->faker->word,
         ]);
@@ -64,7 +64,7 @@ class VerifyCredentials extends TestCase
     {
         // Create a new user, ensure we know the password
         $password = $this->faker->word;
-        $this->writedown->api()->user()->create([
+        $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $password,
         ]);
@@ -94,7 +94,7 @@ class VerifyCredentials extends TestCase
 
         // Create a second user, ensure we know the password
         $password = $this->faker->word;
-        $user     = $this->writedown->api()->user()->create([
+        $user     = $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $password,
         ]);

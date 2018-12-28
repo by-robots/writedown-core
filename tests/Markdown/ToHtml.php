@@ -14,6 +14,6 @@ class ToHtml extends TestCase
         $sentence = $this->faker->sentence;
         $expected = '<p>' . $sentence . '</p>';
 
-        $this->assertEquals($expected, $this->writedown->markdown()->markdownToHtml($sentence));
+        $this->assertEquals($expected, $this->writedown->getService('markdown')->markdownToHtml($sentence));
     }
 }

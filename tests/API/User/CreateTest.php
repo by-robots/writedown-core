@@ -13,7 +13,7 @@ class CreateTest extends TestCase
     {
         // Create a user
         $email = $this->faker->email;
-        $user  = $this->writedown->api()->user()->create([
+        $user  = $this->writedown->getService('api')->user()->create([
             'email'    => $email,
             'password' => $this->faker->word,
         ]);
@@ -29,7 +29,7 @@ class CreateTest extends TestCase
     public function testValidationNoEmail()
     {
         // Attempt to create a user without an email.
-        $result = $this->writedown->api()->user()->create([
+        $result = $this->writedown->getService('api')->user()->create([
             'password' => $this->faker->word,
         ]);
 
@@ -44,7 +44,7 @@ class CreateTest extends TestCase
     public function testValidEmail()
     {
         // Create a user
-        $user = $this->writedown->api()->user()->create([
+        $user = $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->word,
             'password' => $this->faker->word,
         ]);
@@ -59,7 +59,7 @@ class CreateTest extends TestCase
      */
     public function testValidationNoPassword()
     {
-        $result = $this->writedown->api()->user()->create([
+        $result = $this->writedown->getService('api')->user()->create([
             'email' => $this->faker->email,
         ]);
 
@@ -72,7 +72,7 @@ class CreateTest extends TestCase
      */
     public function testOnlyFillable()
     {
-        $result = $this->writedown->api()->user()->create([
+        $result = $this->writedown->getService('api')->user()->create([
             'email'        => $this->faker->email,
             'password'     => $this->faker->word,
             'not_fillable' => $this->faker->word,
@@ -91,7 +91,7 @@ class CreateTest extends TestCase
         $user = $this->resources->user();
 
         // Try to create another user with the same email
-        $result = $this->writedown->api()->user()->create([
+        $result = $this->writedown->getService('api')->user()->create([
             'email'    => $user->email,
             'password' => $this->faker->word,
         ]);

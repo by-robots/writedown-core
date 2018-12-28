@@ -17,7 +17,7 @@ class UpdateTest extends TestCase
             $newName = $this->faker->word;
         } while ($newName == $tag->name);
 
-        $result = $this->writedown->api()->tag()->update($tag->id, ['name' => $newName]);
+        $result = $this->writedown->getService('api')->tag()->update($tag->id, ['name' => $newName]);
 
         $this->assertTrue($result['success']);
         $this->assertEquals($newName, $result['data']->name);
@@ -30,7 +30,7 @@ class UpdateTest extends TestCase
     public function testUpdateWithSameSlug()
     {
         $tag    = $this->resources->tag();
-        $result = $this->writedown->api()->tag()->update($tag->id, ['name' => $tag->name]);
+        $result = $this->writedown->getService('api')->tag()->update($tag->id, ['name' => $tag->name]);
         $this->assertTrue($result['success']);
     }
 
@@ -41,7 +41,7 @@ class UpdateTest extends TestCase
     public function testUpdateInvalid()
     {
         $tag    = $this->resources->tag();
-        $result = $this->writedown->api()->tag()->update($tag->id, ['name' => 'I am not a valid name!!!']);
+        $result = $this->writedown->getService('api')->tag()->update($tag->id, ['name' => 'I am not a valid name!!!']);
         $this->assertFalse($result['success']);
         $this->assertArrayHasKey('name', $result['data']);
     }

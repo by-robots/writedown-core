@@ -13,7 +13,7 @@ class IndexTest extends TestCase
     public function testNoTags()
     {
         // Request tags
-        $result = $this->writedown->api()->tag()->index();
+        $result = $this->writedown->getService('api')->tag()->index();
 
         // Check that an empty array is returned
         $this->assertEquals(
@@ -32,7 +32,7 @@ class IndexTest extends TestCase
         $tag = $this->resources->tag();
 
         // Request the tag index
-        $result = $this->writedown->api()->tag()->index();
+        $result = $this->writedown->getService('api')->tag()->index();
 
         // Check that the result contains one entry
         $this->assertTrue($result['success']);
@@ -51,7 +51,7 @@ class IndexTest extends TestCase
         }
 
         // Request the tag index
-        $result = $this->writedown->api()->tag()->index();
+        $result = $this->writedown->getService('api')->tag()->index();
 
         // Check that the result contains the right number of entries
         $this->assertTrue($result['success']);

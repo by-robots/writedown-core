@@ -6,7 +6,6 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\Auth\Auth;
 use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 use ByRobots\WriteDown\Database\DoctrineDriver;
-use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
 
 class MiscServiceProvider extends AbstractServiceProvider
 {
@@ -22,15 +21,6 @@ class MiscServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->inflector(ControllerInterface::class)
-            ->invokeMethod('setRequest', ['request'])
-            ->invokeMethod('setResponse', ['response'])
-            ->invokeMethod('setSession', ['session'])
-            ->invokeMethod('setAPI', ['api'])
-            ->invokeMethod('setCSRF', ['csrf'])
-            ->invokeMethod('setAuth', ['auth'])
-            ->invokeMethod('setMarkdown', ['markdown']);
-
         $this->getContainer()->add('entityManager', function() {
             $configBuilder = new DoctrineConfigBuilder;
             $database      = new DoctrineDriver($configBuilder->generate());

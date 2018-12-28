@@ -13,7 +13,7 @@ class IndexTest extends TestCase
     public function testNoPosts()
     {
         // Request posts
-        $result = $this->writedown->api()->post()->index();
+        $result = $this->writedown->getService('api')->post()->index();
 
         // Check that an empty array is returned
         $this->assertEquals(
@@ -32,7 +32,7 @@ class IndexTest extends TestCase
         $this->resources->post();
 
         // Request the post index
-        $result = $this->writedown->api()->post()->index();
+        $result = $this->writedown->getService('api')->post()->index();
 
         // Check that the result contains one entry
         $this->assertTrue($result['success']);
@@ -50,7 +50,7 @@ class IndexTest extends TestCase
         }
 
         // Request the post index
-        $result = $this->writedown->api()->post()->index();
+        $result = $this->writedown->getService('api')->post()->index();
 
         // Check that the result contains one entry
         $this->assertTrue($result['success']);
@@ -74,7 +74,7 @@ class IndexTest extends TestCase
         $this->resources->flush();
 
         // Retrieve the posts
-        $result = $this->writedown->api()->post()->index();
+        $result = $this->writedown->getService('api')->post()->index();
 
         // Check the order is correct
         $this->assertTrue($result['success']);
@@ -99,7 +99,7 @@ class IndexTest extends TestCase
         $this->resources->flush();
 
         // Grab the index
-        $result = $this->writedown->api()->post()->index();
+        $result = $this->writedown->getService('api')->post()->index();
 
         // It should be empty
         $this->assertTrue($result['success']);
@@ -116,7 +116,7 @@ class IndexTest extends TestCase
         $this->resources->flush();
 
         // Grab the index
-        $result = $this->writedown->api()->post()->index(['where' => []]);
+        $result = $this->writedown->getService('api')->post()->index(['where' => []]);
 
         // It should be empty
         $this->assertTrue($result['success']);

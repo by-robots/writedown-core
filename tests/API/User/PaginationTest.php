@@ -17,7 +17,7 @@ class PaginationTest extends TestCase
         }
 
         // Request an index, with 10 per index
-        $result = $this->writedown->api()->user()->index(['pagination' => [
+        $result = $this->writedown->getService('api')->user()->index(['pagination' => [
             'per_page'     => 10,
             'current_page' => 1,
         ]]);
@@ -46,7 +46,7 @@ class PaginationTest extends TestCase
         }
 
         // Request an index, with 10 per index
-        $result = $this->writedown->api()->user()->index(['pagination' => [
+        $result = $this->writedown->getService('api')->user()->index(['pagination' => [
             'per_page'     => 10,
             'current_page' => 2,
         ]]);
