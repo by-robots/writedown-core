@@ -90,8 +90,7 @@ class WriteDown
      */
     public function request()
     {
-        return $this->getContainer()
-            ->get('Psr\Http\Message\RequestInterface');
+        return $this->getContainer()->get('request');
     }
 
     /**
@@ -101,8 +100,7 @@ class WriteDown
      */
     public function response()
     {
-        return $this->getContainer()
-            ->get('Psr\Http\Message\ResponseInterface');
+        return $this->getContainer()->get('response');
     }
 
     /**
@@ -112,8 +110,7 @@ class WriteDown
      */
     public function emitter()
     {
-        return $this->getContainer()
-            ->get('Zend\Diactoros\Response\EmitterInterface');
+        return $this->getContainer()->get('emitter');
     }
 
     /**
@@ -123,8 +120,7 @@ class WriteDown
      */
     public function database()
     {
-        return $this->getContainer()
-            ->get('Doctrine\ORM\EntityManagerInterface');
+        return $this->getContainer()->get('entityManager');
     }
 
     /**
@@ -134,8 +130,7 @@ class WriteDown
      */
     public function api()
     {
-        return $this->getContainer()
-            ->get('ByRobots\WriteDown\API\Interfaces\APIInterface');
+        return $this->getContainer()->get('api');
     }
 
     /**
@@ -145,8 +140,7 @@ class WriteDown
      */
     public function markdown()
     {
-        return $this->getContainer()
-            ->get('ByRobots\WriteDown\Markdown\MarkdownInterface');
+        return $this->getContainer()->get('markdown');
     }
 
     /**
@@ -156,8 +150,7 @@ class WriteDown
      */
     public function session()
     {
-        return $this->getContainer()
-            ->get('ByRobots\WriteDown\Sessions\SessionInterface');
+        return $this->getContainer()->get('session');
     }
 
     /**
@@ -167,8 +160,7 @@ class WriteDown
      */
     public function csrf()
     {
-        return $this->getContainer()
-            ->get('ByRobots\WriteDown\CSRF\CSRFInterface');
+        return $this->getContainer()->get('csrf');
     }
 
     /**
@@ -178,8 +170,7 @@ class WriteDown
      */
     public function auth()
     {
-        return $this->getContainer()
-            ->get('ByRobots\WriteDown\Auth\Interfaces\AuthInterface');
+        return $this->getContainer()->get('auth');
     }
 
     /**

@@ -14,12 +14,7 @@ class APIServiceProvider extends AbstractServiceProvider
      *
      * @var array
      */
-    protected $provides = [
-        'ByRobots\WriteDown\API\Interfaces\APIInterface',
-        'ByRobots\WriteDown\API\MetaBuilder',
-        'ByRobots\WriteDown\API\ResponseBuilder',
-        'ByRobots\WriteDown\Markdown\MarkdownInterface',
-    ];
+    protected $provides = ['api', 'metaBuilder', 'responseBuilder', 'markdown'];
 
     /**
      * Register providers into the container.
@@ -27,19 +22,17 @@ class APIServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->getContainer()
-            ->add('ByRobots\WriteDown\API\Interfaces\APIInterface', 'ByRobots\WriteDown\API\API')
-            ->withArgument('Doctrine\ORM\EntityManagerInterface')
-            ->withArgument('ByRobots\WriteDown\API\ResponseBuilder')
-            ->withArgument('ByRobots\WriteDown\Validator\ValidatorInterface');
+            ->add('api', 'ByRobots\WriteDown\API\API')
+            ->withArgument('entityManager')
+            ->withArgument('responseBuilder')
+            ->withArgument('validation');
+
+        $this->getContainer()->add('metaBuilder', MetaBuilder::class);
 
         $this->getContainer()
-            ->add('ByRobots\WriteDown\API\MetaBuilder', MetaBuilder::class);
+            ->add('responseBuilder', ResponseBuilder::class)
+            ->withArgument('metaBuilder');
 
-        $this->getContainer()
-            ->add('ByRobots\WriteDown\API\ResponseBuilder', ResponseBuilder::class)
-            ->withArgument('ByRobots\WriteDown\API\MetaBuilder');
-
-        $this->getContainer()
-            ->add('ByRobots\WriteDown\Markdown\MarkdownInterface', Markdown::class);
+        $this->getContainer()->add('markdown', Markdown::class);
     }
 }
