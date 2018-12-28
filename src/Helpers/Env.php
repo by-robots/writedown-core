@@ -1,4 +1,5 @@
 <?php
+
 if (!function_exists('env')) {
     /**
      * Load an environment variable. If it doesn't exists return $default.
