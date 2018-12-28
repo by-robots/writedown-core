@@ -2,14 +2,9 @@
 
 namespace ByRobots\WriteDown\Http\Controllers;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use ByRobots\WriteDown\API\Interfaces\APIInterface;
-use ByRobots\WriteDown\Auth\Interfaces\AuthInterface;
-use ByRobots\WriteDown\CSRF\CSRFInterface;
 use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
-use ByRobots\WriteDown\Markdown\MarkdownInterface;
-use ByRobots\WriteDown\Sessions\SessionInterface;
+use ByRobots\WriteDown\WriteDown;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * @codeCoverageIgnore
@@ -24,34 +19,9 @@ abstract class Controller implements ControllerInterface
     protected $request;
 
     /**
-     * @var \Psr\Http\Message\ResponseInterface
+     * @var \ByRobots\WriteDown\WriteDown
      */
-    protected $response;
-
-    /**
-     * @var \ByRobots\WriteDown\Sessions\SessionInterface
-     */
-    protected $session;
-
-    /**
-     * @var \ByRobots\WriteDown\API\Interfaces\APIInterface
-     */
-    protected $api;
-
-    /**
-     * @var \ByRobots\WriteDown\CSRF\CSRFInterface
-     */
-    protected $csrf;
-
-    /**
-     * @var \ByRobots\WriteDown\Auth\Interfaces\AuthInterface
-     */
-    protected $auth;
-
-    /**
-     * @var \ByRobots\WriteDown\Markdown\MarkdownInterface
-     */
-    protected $markdown;
+    protected $writedown;
 
     /**
      * @inheritDoc
@@ -64,52 +34,8 @@ abstract class Controller implements ControllerInterface
     /**
      * @inheritDoc
      */
-    public function setResponse(ResponseInterface $response)
+    public function setWritedown(WriteDown $writedown)
     {
-        $this->response = $response;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setSession(SessionInterface $session)
-    {
-        $this->session = $session;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setAPI(APIInterface $api)
-    {
-        $this->api = $api;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setCSRF(CSRFInterface $csrf)
-    {
-        $this->csrf = $csrf;
-
-        if (is_null($this->csrf->get())) {
-            $this->csrf->generate();
-        }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setAuth(AuthInterface $auth)
-    {
-        $this->auth = $auth;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setMarkdown(MarkdownInterface $markdown)
-    {
-        $this->markdown = $markdown;
+        $this->writedown = $writedown;
     }
 }
