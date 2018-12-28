@@ -7,6 +7,7 @@ use ByRobots\WriteDown\Validator\ByRobots;
 use ByRobots\WriteDown\Validator\Rules\Exists;
 use ByRobots\WriteDown\Validator\Rules\Unique;
 use ByRobots\WriteDown\Validator\Rules\ValidSlug;
+use ByRobots\WriteDown\Validator\ValidatorInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class ValidationServiceProvider extends AbstractServiceProvider
@@ -16,24 +17,21 @@ class ValidationServiceProvider extends AbstractServiceProvider
      *
      * @var array
      */
-    protected $provides = [
-        'ByRobots\WriteDown\Validator\ValidatorInterface',
-    ];
+    protected $provides = ['validation'];
 
     /**
      * Register providers into the container.
      */
     public function register()
     {
-        $this->getContainer()
-                ->add('ByRobots\WriteDown\Validator\ValidatorInterface', ByRobots::class);
+        $this->getContainer()->add('validation', ByRobots::class);
 
         $this->getContainer()
-                ->inflector('ByRobots\WriteDown\Validator\ValidatorInterface')
-                ->invokeMethod('addRules', [[
-                    new Exists($this->getContainer()->get('Doctrine\ORM\EntityManagerInterface')),
-                    new Unique($this->getContainer()->get('Doctrine\ORM\EntityManagerInterface')),
-                    new ValidSlug(new GenerateSlug),
-            ]]);
+            ->inflector(ValidatorInterface::class)
+            ->invokeMethod('addRules', [[
+                new Exists($this->getContainer()->get('entityManager')),
+                new Unique($this->getContainer()->get('entityManager')),
+                new ValidSlug(new GenerateSlug),
+        ]]);
     }
 }

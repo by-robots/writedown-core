@@ -20,37 +20,28 @@ class HTTPServiceProvider extends AbstractServiceProvider
      *
      * @var array
      */
-    protected $provides = [
-        'Psr\Http\Message\ResponseInterface',
-        'Psr\Http\Message\RequestInterface',
-        'ByRobots\WriteDown\CSRF\CSRFInterface',
-        'ByRobots\WriteDown\Sessions\SessionInterface',
-        'Zend\Diactoros\Response\EmitterInterface',
-    ];
+    protected $provides = ['response', 'request', 'csrf', 'session', 'emitter'];
 
     /**
      * Register providers into the container.
      */
     public function register()
     {
-        $this->getContainer()
-            ->add('Psr\Http\Message\ResponseInterface', Response::class);
+        $this->getContainer()->add('response', Response::class);
 
-        $this->getContainer()->add('Psr\Http\Message\RequestInterface', function() {
+        $this->getContainer()->add('request', function() {
             return ServerRequestFactory::fromGlobals(
                 $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
             );
         });
 
-        $this->getContainer()
-            ->add('Zend\Diactoros\Response\EmitterInterface', SapiEmitter::class);
+        $this->getContainer()->add('emitter', SapiEmitter::class);
 
         $this->getContainer()
-            ->share('ByRobots\WriteDown\CSRF\CSRFInterface', Hash::class)
-            ->withArgument('ByRobots\WriteDown\Sessions\SessionInterface')
+            ->share('csrf', Hash::class)
+            ->withArgument('session')
             ->withArgument(new Token);
 
-        $this->getContainer()
-            ->share('ByRobots\WriteDown\Sessions\SessionInterface', AuraSession::class);
+        $this->getContainer()->share('session', AuraSession::class);
     }
 }

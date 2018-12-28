@@ -15,10 +15,7 @@ class MiscServiceProvider extends AbstractServiceProvider
      *
      * @var array
      */
-    protected $provides = [
-        'Doctrine\ORM\EntityManagerInterface',
-        'ByRobots\WriteDown\Auth\Interfaces\AuthInterface'
-    ];
+    protected $provides = ['entityManager', 'auth'];
 
     /**
      * Register providers into the container.
@@ -26,22 +23,22 @@ class MiscServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->getContainer()->inflector(ControllerInterface::class)
-            ->invokeMethod('setRequest', ['Psr\Http\Message\RequestInterface'])
-            ->invokeMethod('setResponse', ['Psr\Http\Message\ResponseInterface'])
-            ->invokeMethod('setSession', ['ByRobots\WriteDown\Sessions\SessionInterface'])
-            ->invokeMethod('setAPI', ['ByRobots\WriteDown\API\Interfaces\APIInterface'])
-            ->invokeMethod('setCSRF', ['ByRobots\WriteDown\CSRF\CSRFInterface'])
-            ->invokeMethod('setAuth', ['ByRobots\WriteDown\Auth\Interfaces\AuthInterface'])
-            ->invokeMethod('setMarkdown', ['ByRobots\WriteDown\Markdown\MarkdownInterface']);
+            ->invokeMethod('setRequest', ['request'])
+            ->invokeMethod('setResponse', ['response'])
+            ->invokeMethod('setSession', ['session'])
+            ->invokeMethod('setAPI', ['api'])
+            ->invokeMethod('setCSRF', ['csrf'])
+            ->invokeMethod('setAuth', ['auth'])
+            ->invokeMethod('setMarkdown', ['markdown']);
 
-        $this->getContainer()->add('Doctrine\ORM\EntityManagerInterface', function() {
+        $this->getContainer()->add('entityManager', function() {
             $configBuilder = new DoctrineConfigBuilder;
             $database      = new DoctrineDriver($configBuilder->generate());
 
             return $database->getManager();
         });
 
-        $this->getContainer()->add('ByRobots\WriteDown\Auth\Interfaces\AuthInterface', Auth::class)
-            ->withArgument('Doctrine\ORM\EntityManagerInterface');
+        $this->getContainer()->add('auth', Auth::class)
+            ->withArgument('entityManager');
     }
 }
