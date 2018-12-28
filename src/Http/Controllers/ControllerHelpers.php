@@ -1,6 +1,6 @@
 <?php
 
-namespace ByRobots\WriteDown\Http;
+namespace ByRobots\WriteDown\Http\Controllers;
 
 /**
  * Some helpful shortcuts.
