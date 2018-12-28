@@ -103,7 +103,7 @@ class WriteDown
     public function init()
     {
         $response = $this->getRouter()
-            ->dispatch($this->request(), $this->response());
+            ->dispatch($this->getService('request'));
 
         $this->emitter()->emit($response);
     }
