@@ -23,7 +23,7 @@ class MiscServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->getContainer()->inflector(ControllerInterface::class)
-           ->invokeMethod('setRequest',  ['Psr\Http\Message\RequestInterface']);
+           ->invokeMethod('setRequest',  ['request']);
 
         $this->getContainer()->add('entityManager', function() {
             $configBuilder = new DoctrineConfigBuilder;
