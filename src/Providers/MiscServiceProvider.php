@@ -2,10 +2,11 @@
 
 namespace ByRobots\WriteDown\Providers;
 
-use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\Auth\Auth;
 use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 use ByRobots\WriteDown\Database\DoctrineDriver;
+use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class MiscServiceProvider extends AbstractServiceProvider
 {
