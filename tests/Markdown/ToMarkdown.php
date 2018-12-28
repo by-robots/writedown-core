@@ -13,6 +13,6 @@ class ToMarkdown extends TestCase
     {
         $sentence = $this->faker->sentence;
 
-        $this->assertEquals($sentence, $this->writedown->markdown()->htmlToMarkdown('<p>' . $sentence . '</p>'));
+        $this->assertEquals($sentence, $this->writedown->getService('markdown')->htmlToMarkdown('<p>' . $sentence . '</p>'));
     }
 }

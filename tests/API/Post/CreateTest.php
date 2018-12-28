@@ -16,7 +16,7 @@ class CreateTest extends TestCase
         $publishAt = new \DateTime('now');
         $slug      = $this->faker->slug;
         $title     = $this->faker->title;
-        $post      = $this->writedown->api()->post()->create([
+        $post      = $this->writedown->getService('api')->post()->create([
             'body'       => $body,
             'publish_at' => $publishAt,
             'slug'       => $slug,
@@ -37,7 +37,7 @@ class CreateTest extends TestCase
     public function testValidationNoTitle()
     {
         // Attempt to create a post without a title.
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'body' => $this->faker->paragraph,
             'slug' => $this->faker->slug,
         ]);
@@ -52,7 +52,7 @@ class CreateTest extends TestCase
      */
     public function testValidationNoBody()
     {
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'slug'  => $this->faker->slug,
             'title' => $this->faker->sentence,
         ]);
@@ -66,7 +66,7 @@ class CreateTest extends TestCase
      */
     public function testOnlyFillable()
     {
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'body'         => $this->faker->paragraph,
             'not_fillable' => $this->faker->word,
             'title'        => $this->faker->sentence,
@@ -81,7 +81,7 @@ class CreateTest extends TestCase
      */
     public function testSlugGenerated()
     {
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'body'  => $this->faker->paragraph,
             'title' => $this->faker->sentence,
         ]);
@@ -96,7 +96,7 @@ class CreateTest extends TestCase
      */
     public function testSlugGeneratedWhenAttributeEmpty()
     {
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'body'  => $this->faker->paragraph,
             'slug'  => '',
             'title' => $this->faker->sentence,
@@ -113,7 +113,7 @@ class CreateTest extends TestCase
     public function testSlugNotOverwritten()
     {
         $expected = $this->faker->slug;
-        $result   = $this->writedown->api()->post()->create([
+        $result   = $this->writedown->getService('api')->post()->create([
             'body'  => $this->faker->paragraph,
             'slug'  => $expected,
             'title' => $this->faker->sentence,
@@ -134,7 +134,7 @@ class CreateTest extends TestCase
         $post = $this->resources->post();
 
         // Now try to create another post with the same slug
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'body'  => $this->faker->paragraph,
             'slug'  => $post->slug,
             'title' => $this->faker->sentence,
@@ -154,7 +154,7 @@ class CreateTest extends TestCase
         $post = $this->resources->post();
 
         // Now try to create another post with the same title.
-        $result = $this->writedown->api()->post()->create([
+        $result = $this->writedown->getService('api')->post()->create([
             'body'  => $this->faker->paragraph,
             'title' => $post->title,
         ]);

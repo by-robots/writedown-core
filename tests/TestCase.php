@@ -80,7 +80,7 @@ abstract class TestCase extends BaseTestCase
         putenv('ROOT_PATH=' . realpath(__DIR__ . '/..'));
 
         $this->faker     = Factory::create();
-        $this->resources = new CreatesResources($this->writedown->database(), $this->faker);
+        $this->resources = new CreatesResources($this->writedown->getService('entityManager'), $this->faker);
     }
 
     /**

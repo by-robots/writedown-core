@@ -34,7 +34,7 @@ abstract class Controller implements ControllerInterface
     /**
      * @inheritDoc
      */
-    public function setWritedown(WriteDown $writedown)
+    public function setWriteDown(WriteDown $writedown)
     {
         $this->writedown = $writedown;
     }

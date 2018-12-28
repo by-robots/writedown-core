@@ -22,7 +22,7 @@ class VerifyToken extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->auth = new Provider($this->writedown->database());
+        $this->auth = new Provider($this->writedown->getService('entityManager'));
     }
 
     /**
@@ -32,7 +32,7 @@ class VerifyToken extends TestCase
     {
         // Create a new user, ensure we know the password
         $token = bin2hex(random_bytes(64));
-        $this->writedown->api()->user()->create([
+        $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $this->faker->word,
             'token'    => $token,
@@ -47,7 +47,7 @@ class VerifyToken extends TestCase
      */
     public function testBadToken()
     {
-        $this->writedown->api()->user()->create([
+        $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $this->faker->word,
             'token'    => bin2hex(random_bytes(64)),

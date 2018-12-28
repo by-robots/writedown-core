@@ -14,16 +14,16 @@ class DeleteTest extends TestCase
         // Create everything and link a post to a tag
         $post = $this->resources->post();
         $tag  = $this->resources->tag();
-        $this->writedown->api()->postTag()->create([
+        $this->writedown->getService('api')->postTag()->create([
             'post_id' => $post->id,
             'tag_id'  => $tag->id,
         ]);
 
         // Delete it
-        $result = $this->writedown->api()->postTag()->delete($post->id, $tag->id);
+        $result = $this->writedown->getService('api')->postTag()->delete($post->id, $tag->id);
 
         // Try and retrieve from the database so we can be sure
-        $databaseResult = $this->writedown->database()
+        $databaseResult = $this->writedown->getService('entityManager')
             ->getRepository('ByRobots\WriteDown\Database\Entities\PostTag')
             ->findOneBy([
                 'post_id' => $post->id,
@@ -41,7 +41,7 @@ class DeleteTest extends TestCase
     public function testMissingRelationship()
     {
         // Delete a relationship that doesn't exist
-        $result = $this->writedown->api()->postTag()->delete(mt_rand(1000, 9999), mt_rand(1000, 9999));
+        $result = $this->writedown->getService('api')->postTag()->delete(mt_rand(1000, 9999), mt_rand(1000, 9999));
 
         // API says no
         $this->assertFalse($result['success']);

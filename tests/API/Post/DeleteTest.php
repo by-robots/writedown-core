@@ -13,10 +13,10 @@ class DeleteTest extends TestCase
     {
         // Make a post, then request it's deletion
         $post   = $this->resources->post();
-        $result = $this->writedown->api()->post()->delete($post->id);
+        $result = $this->writedown->getService('api')->post()->delete($post->id);
 
         // Query the database and try to retrieve the post
-        $databaseResult = $this->writedown->database()
+        $databaseResult = $this->writedown->getService('entityManager')
             ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post->id]);
 
@@ -30,7 +30,7 @@ class DeleteTest extends TestCase
      */
     public function testMissing()
     {
-        $result = $this->writedown->api()->post()->delete(mt_rand(1000, 9999));
+        $result = $this->writedown->getService('api')->post()->delete(mt_rand(1000, 9999));
 
         $this->assertFalse($result['success']);
         $this->assertEquals(['Not found.'], $result['data']);
@@ -46,16 +46,16 @@ class DeleteTest extends TestCase
         $tag  = $this->resources->tag();
 
         // Add the tag to the post
-        $result = $this->writedown->api()->postTag()->create([
+        $result = $this->writedown->getService('api')->postTag()->create([
             'post_id' => $post->id,
             'tag_id'  => $tag->id,
         ]);
 
         // Now delete the post
-        $this->writedown->api()->post()->delete($post->id);
+        $this->writedown->getService('api')->post()->delete($post->id);
 
         // Check the relationship no longer exists
-        $databaseResult = $this->writedown->database()
+        $databaseResult = $this->writedown->getService('entityManager')
             ->getRepository('ByRobots\WriteDown\Database\Entities\PostTag')
             ->findOneBy(['post_id' => $post->id, 'tag_id' => $tag->id]);
 

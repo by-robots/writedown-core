@@ -13,10 +13,10 @@ class DeleteTest extends TestCase
     {
         // Make a user, then request it's deletion
         $user   = $this->resources->user();
-        $result = $this->writedown->api()->user()->delete($user->id);
+        $result = $this->writedown->getService('api')->user()->delete($user->id);
 
         // Try and retrieve the user from the database
-        $databaseResult = $this->writedown->database()
+        $databaseResult = $this->writedown->getService('entityManager')
             ->getRepository('ByRobots\WriteDown\Database\Entities\User')
             ->findOneBy(['id' => $user->id]);
 
@@ -30,7 +30,7 @@ class DeleteTest extends TestCase
      */
     public function testMissing()
     {
-        $result = $this->writedown->api()->user()->delete(mt_rand(1000, 9999));
+        $result = $this->writedown->getService('api')->user()->delete(mt_rand(1000, 9999));
 
         $this->assertFalse($result['success']);
         $this->assertEquals(['Not found.'], $result['data']);

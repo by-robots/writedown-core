@@ -22,7 +22,7 @@ class UniqueSlug extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->uniqueSlug = new Provider($this->writedown->database());
+        $this->uniqueSlug = new Provider($this->writedown->getService('entityManager'));
     }
 
     /**

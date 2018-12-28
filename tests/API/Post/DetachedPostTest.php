@@ -15,7 +15,7 @@ class DetachedPostTest extends TestCase
         $this->resources->detachedPost();
 
         // Request posts
-        $result = $this->writedown->api()->post()->index();
+        $result = $this->writedown->getService('api')->post()->index();
 
         // Check that an empty array is returned
         $this->assertEquals(
@@ -33,7 +33,7 @@ class DetachedPostTest extends TestCase
         $this->resources->detachedPost();
 
         // Request posts
-        $result = $this->writedown->api()->post()->index(['where' => [
+        $result = $this->writedown->getService('api')->post()->index(['where' => [
             'e.detached = :detached' => ['detached' => true],
         ]]);
 
@@ -52,7 +52,7 @@ class DetachedPostTest extends TestCase
         $this->resources->detachedPost();
 
         // Request posts
-        $result = $this->writedown->api()->post()->index(['where' => [
+        $result = $this->writedown->getService('api')->post()->index(['where' => [
             'e.detached = :detached OR e.detached = :attached' => [
                 'attached' => false,
                 'detached' => true,

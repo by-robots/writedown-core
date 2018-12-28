@@ -22,5 +22,5 @@ interface ControllerInterface
      *
      * @param \ByRobots\WriteDown\WriteDown $writedown
      */
-    public function setWritedown(WriteDown $writedown);
+    public function setWriteDown(WriteDown $writedown);
 }

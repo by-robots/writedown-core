@@ -12,13 +12,13 @@ class User extends TestCase
     public function testRetrievesUser()
     {
         $token = bin2hex(random_bytes(64));
-        $user  = $this->writedown->api()->user()->create([
+        $user  = $this->writedown->getService('api')->user()->create([
             'email'    => $this->faker->email,
             'password' => $this->faker->word,
             'token'    => $token,
         ]);
 
         // Attempt to login with the correct details and check that it passes
-        $this->assertEquals($user['data']->id, $this->writedown->auth()->user($token)->id);
+        $this->assertEquals($user['data']->id, $this->writedown->getService('auth')->user($token)->id);
     }
 }

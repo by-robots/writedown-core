@@ -14,12 +14,12 @@ class UpdateTest extends TestCase
         // Create a post, then update it.
         $post     = $this->resources->post();
         $newTitle = $this->faker->sentence;
-        $result   = $this->writedown->api()->post()->update($post->id, [
+        $result   = $this->writedown->getService('api')->post()->update($post->id, [
             'title' => $newTitle,
         ]);
 
         // Re-retrieve the post from the database and check the change was saved
-        $databaseResult = $this->writedown->database()
+        $databaseResult = $this->writedown->getService('entityManager')
             ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['id' => $post->id]);
 
@@ -35,7 +35,7 @@ class UpdateTest extends TestCase
     public function testMissing()
     {
         // Attempt to update a post that doesn't exist
-        $result = $this->writedown->api()->post()->update(mt_rand(1000, 9999), [
+        $result = $this->writedown->getService('api')->post()->update(mt_rand(1000, 9999), [
             'title' => $this->faker->sentence,
         ]);
 
@@ -50,7 +50,7 @@ class UpdateTest extends TestCase
     public function testOnlyFillable()
     {
         $post   = $this->resources->post();
-        $result = $this->writedown->api()->post()->update($post->id, [
+        $result = $this->writedown->getService('api')->post()->update($post->id, [
             'not_fillable' => $this->faker->word,
         ]);
 
@@ -70,7 +70,7 @@ class UpdateTest extends TestCase
 
         // Attempt to update $secondPost via the API, setting it's slug to that
         // to that of $firstPost
-        $result = $this->writedown->api()->post()->update($secondPost->id, [
+        $result = $this->writedown->getService('api')->post()->update($secondPost->id, [
             'slug' => $firstPost->slug,
         ]);
 
@@ -85,7 +85,7 @@ class UpdateTest extends TestCase
     public function testEmptyTitle()
     {
         $post   = $this->resources->post();
-        $result = $this->writedown->api()->post()->update($post->id, [
+        $result = $this->writedown->getService('api')->post()->update($post->id, [
             'title' => '',
         ]);
 

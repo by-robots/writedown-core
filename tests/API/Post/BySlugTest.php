@@ -15,7 +15,7 @@ class BySlugTest extends TestCase
         $post = $this->resources->post();
 
         // Attempt to retrieve it
-        $result = $this->writedown->api()->post()->bySlug($post->slug);
+        $result = $this->writedown->getService('api')->post()->bySlug($post->slug);
 
         // Check it
         $this->assertEquals($post->id, $result['data']->id);
@@ -28,7 +28,7 @@ class BySlugTest extends TestCase
     public function testPostNotFound()
     {
         // Attempt to retrieve a non-existent post
-        $result = $this->writedown->api()->post()
+        $result = $this->writedown->getService('api')->post()
             ->bySlug('SGV5IGJhYnksIHdhbm5hIGtpbGwgYWxsIGh1bWFucz8=');
 
         // An error should be returned

@@ -13,7 +13,7 @@ class IndexTest extends TestCase
     public function testNoUsers()
     {
         // Request users
-        $result = $this->writedown->api()->user()->index();
+        $result = $this->writedown->getService('api')->user()->index();
 
         // Check that an empty array is returned
         $this->assertEquals(
@@ -32,7 +32,7 @@ class IndexTest extends TestCase
         $user = $this->resources->user();
 
         // Request the user index
-        $result = $this->writedown->api()->user()->index();
+        $result = $this->writedown->getService('api')->user()->index();
 
         // Check that the result contains one entry
         $this->assertTrue($result['success']);
@@ -51,7 +51,7 @@ class IndexTest extends TestCase
         }
 
         // Request the post index
-        $result = $this->writedown->api()->user()->index();
+        $result = $this->writedown->getService('api')->user()->index();
 
         // Check that the result contains one entry
         $this->assertTrue($result['success']);

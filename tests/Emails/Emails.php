@@ -22,7 +22,7 @@ class Emails extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->emails = new Provider($this->writedown->database());
+        $this->emails = new Provider($this->writedown->getService('entityManager'));
     }
 
     /**
