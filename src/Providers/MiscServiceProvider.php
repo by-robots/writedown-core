@@ -6,7 +6,6 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\Auth\Auth;
 use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 use ByRobots\WriteDown\Database\DoctrineDriver;
-use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
 
 class MiscServiceProvider extends AbstractServiceProvider
 {
