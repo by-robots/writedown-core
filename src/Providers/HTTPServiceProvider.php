@@ -2,12 +2,12 @@
 
 namespace ByRobots\WriteDown\Providers;
 
-use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\Auth\Token;
 use ByRobots\WriteDown\CSRF\Hash;
 use ByRobots\WriteDown\Sessions\AuraSession;
-use Zend\Diactoros\ServerRequestFactory;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 use Zend\Diactoros\Response\SapiEmitter;
+use Zend\Diactoros\ServerRequestFactory;
 
 /**
  * @codeCoverageIgnore

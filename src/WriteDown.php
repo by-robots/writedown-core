@@ -8,6 +8,7 @@ use League\Route\RouteCollection;
 use ByRobots\WriteDown\Providers\APIServiceProvider;
 use ByRobots\WriteDown\Providers\HTTPServiceProvider;
 use ByRobots\WriteDown\Providers\MiscServiceProvider;
+use Zend\Diactoros\Response;
 
 class WriteDown
 {
@@ -103,7 +104,7 @@ class WriteDown
     public function init()
     {
         $response = $this->getRouter()
-            ->dispatch($this->getService('request'));
+            ->dispatch($this->getService('request'), new Response);
 
         $this->emitter()->emit($response);
     }
