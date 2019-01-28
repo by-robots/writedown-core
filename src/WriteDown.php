@@ -2,12 +2,9 @@
 
 namespace ByRobots\WriteDown;
 
-use ByRobots\WriteDown\Providers\ValidationServiceProvider;
+use ByRobots\WriteDown\Providers\WriteDownServiceProvider;
 use Interop\Container\ContainerInterface;
 use League\Route\RouteCollection;
-use ByRobots\WriteDown\Providers\APIServiceProvider;
-use ByRobots\WriteDown\Providers\HTTPServiceProvider;
-use ByRobots\WriteDown\Providers\MiscServiceProvider;
 use Zend\Diactoros\Response;
 
 class WriteDown
@@ -25,18 +22,6 @@ class WriteDown
      * @var \League\Route\RouteCollectionInterface
      */
     private $router;
-
-    /**
-     * WriteDown's core services.
-     *
-     * @var array
-     */
-    private $services = [
-        APIServiceProvider::class,
-        HTTPServiceProvider::class,
-        MiscServiceProvider::class,
-        ValidationServiceProvider::class,
-    ];
 
     /**
      * Start the app up.
@@ -59,9 +44,7 @@ class WriteDown
      */
     private function loadServices()
     {
-        foreach ($this->services as $service) {
-            $this->getContainer()->addServiceProvider($service);
-        }
+        $this->getContainer()->addServiceProvider(WriteDownServiceProvider::class);
     }
 
     /**
