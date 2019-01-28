@@ -2,10 +2,11 @@
 
 namespace ByRobots\WriteDown\Providers;
 
-use League\Container\ServiceProvider\AbstractServiceProvider;
 use ByRobots\WriteDown\API\MetaBuilder;
 use ByRobots\WriteDown\API\ResponseBuilder;
+use ByRobots\WriteDown\Emails\Emails;
 use ByRobots\WriteDown\Markdown\Markdown;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class APIServiceProvider extends AbstractServiceProvider
 {
@@ -14,7 +15,9 @@ class APIServiceProvider extends AbstractServiceProvider
      *
      * @var array
      */
-    protected $provides = ['api', 'metaBuilder', 'responseBuilder', 'markdown'];
+    protected $provides = [
+        'api', 'emails', 'metaBuilder', 'responseBuilder', 'markdown',
+    ];
 
     /**
      * Register providers into the container.
@@ -26,6 +29,8 @@ class APIServiceProvider extends AbstractServiceProvider
             ->withArgument('entityManager')
             ->withArgument('responseBuilder')
             ->withArgument('validation');
+
+        $this->getContainer()->add('emails', Emails::class);
 
         $this->getContainer()->add('metaBuilder', MetaBuilder::class);
 

@@ -49,6 +49,7 @@ class CRU implements CRUInterface
     public function index(array $filters = []) : array
     {
         $entities = $this->db->getRepository($this->entityRepo)->all($filters);
+
         return $this->response->build(
             $entities,
             true,
@@ -62,12 +63,16 @@ class CRU implements CRUInterface
      */
     public function read($entityID) : array
     {
-        $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['id' => $entityID]);
+        $entity = $this->db
+            ->getRepository($this->entityRepo)
+            ->findOneBy(['id' => $entityID]);
+
         if (!$entity) {
             return $this->response->build(['Not found.'], false);
         }
 
-        return $this->response->build($entity, true, $this->db->getRepository($this->entityRepo));
+        return $this->response
+            ->build($entity, true, $this->db->getRepository($this->entityRepo));
     }
 
     /**
@@ -101,7 +106,10 @@ class CRU implements CRUInterface
      */
     public function update($entityID, array $attributes) : array
     {
-        $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['id' => $entityID]);
+        $entity = $this->db
+            ->getRepository($this->entityRepo)
+            ->findOneBy(['id' => $entityID]);
+
         if (!$entity) {
             return $this->response->build(['Not found.'], false);
         }

@@ -29,12 +29,16 @@ class User extends CRUD implements CRUInterface
      *
      * @return void
      */
-    public function __construct(EntityManager $db, ResponseBuilder $response, ValidatorInterface $validator, EmailInterface $emails)
-    {
-        $this->db         = $db;
-        $this->response   = $response;
-        $this->validator  = $validator;
-        $this->emails     = $emails;
+    public function __construct(
+        EntityManager $db,
+        ResponseBuilder $response,
+        ValidatorInterface $validator,
+        EmailInterface $emails
+    ) {
+        $this->db        = $db;
+        $this->response  = $response;
+        $this->validator = $validator;
+        $this->emails    = $emails;
 
         // Set additional CRUD settings
         $this->entityRepo = 'ByRobots\WriteDown\Database\Entities\User';

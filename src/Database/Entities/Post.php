@@ -46,9 +46,14 @@ class Post extends Base
     protected $rules = [
         'title' => ['present', 'not_empty'],
         'body'  => ['present', 'not_empty'],
-        'slug'  => ['present', 'not_empty', 'valid_slug', 'unique_in_database' => [
-            'repository' => 'ByRobots\WriteDown\Database\Entities\Post',
-        ]],
+        'slug'  => [
+            'present',
+            'not_empty',
+            'valid_slug',
+            'unique_in_database' => [
+                'repository' => 'ByRobots\WriteDown\Database\Entities\Post',
+            ],
+        ],
     ];
 
     /**
@@ -56,8 +61,9 @@ class Post extends Base
      *
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'publish_at',
-        'detached'];
+    protected $fillable = [
+        'title', 'slug', 'excerpt', 'body', 'publish_at', 'detached',
+    ];
 
     /**
      * On deletion remove any post_tag entries relating to this post.

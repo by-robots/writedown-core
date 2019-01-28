@@ -75,7 +75,12 @@ class ByRobots implements ValidatorInterface
             $this->setData($data);
         }
 
-        // Run the validation
+        // If there are no rules or data throw an exception. Something has gone
+        // wrong.
+        if (is_null($this->data) or is_null($this->rules)) {
+            throw new \Exception('Validation rules, data or both are missing.');
+        }
+
         $result        = $this->validator->validate($this->data, $this->rules);
         $this->success = $result;
         return $this->success();
@@ -86,10 +91,6 @@ class ByRobots implements ValidatorInterface
      */
     public function success() : bool
     {
-        if (is_null($this->success)) {
-            throw new \Exception('No validation processed.');
-        }
-
         return $this->success;
     }
 
@@ -98,10 +99,6 @@ class ByRobots implements ValidatorInterface
      */
     public function errors() : array
     {
-        if (is_null($this->success)) {
-            throw new \Exception('No validation processed.');
-        }
-
         $errors = $this->validator->errors();
         return is_array($errors) ? $errors : [];
     }

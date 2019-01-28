@@ -28,6 +28,8 @@ class CSRFMiddleware
     /**
      * Validate the CSRF token of the request.
      *
+     * TODO: Return an appropriate HTTP status code.
+     *
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @param \Psr\Http\Message\ResponseInterface      $response
      * @param callable                                 $next
@@ -35,8 +37,11 @@ class CSRFMiddleware
      * @return mixed
      * @throws \Exception
      */
-    public function validate(ServerRequestInterface $request, ResponseInterface $response, callable $next)
-    {
+    public function validate(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ) {
         switch ($request->getMethod()) {
             case 'POST':
                 $body = $request->getParsedBody();

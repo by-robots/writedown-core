@@ -50,18 +50,17 @@ interface ValidatorInterface
     /**
      * Check if the last validation was successful.
      *
-     * An exception should be thrown if not validation has occurred.
-     *
-     * @return boolean
-     * @throws \Exception
+     * @return boolean|null TRUE if validation was successful, FALSE if not and
+     *                      NULL if none has occured.
      */
     public function success() : bool;
 
     /**
-     * Retrieve errors.
+     * Retrieve errors. Will return an empty array in the case of no errors. An
+     * empty array doe snot mean validation has occured and should not be used
+     * to check if it has.
      *
      * @return array
-     * @throws \Exception
      */
     public function errors() : array;
 

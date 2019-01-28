@@ -14,7 +14,10 @@ class CRUD extends CRU implements EndpointInterface
      */
     public function delete($entityID) : array
     {
-        $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['id' => $entityID]);
+        $entity = $this->db
+            ->getRepository($this->entityRepo)
+            ->findOneBy(['id' => $entityID]);
+
         if (!$entity) {
             return $this->response->build(['Not found.'], false);
         }

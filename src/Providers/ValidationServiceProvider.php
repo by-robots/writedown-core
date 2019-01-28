@@ -26,12 +26,13 @@ class ValidationServiceProvider extends AbstractServiceProvider
     {
         $this->getContainer()->add('validation', ByRobots::class);
 
+        // Add custom validation rules.
         $this->getContainer()
             ->inflector(ValidatorInterface::class)
             ->invokeMethod('addRules', [[
                 new Exists($this->getContainer()->get('entityManager')),
                 new Unique($this->getContainer()->get('entityManager')),
-                new ValidSlug(new GenerateSlug),
-        ]]);
+                new ValidSlug($this->getContainer()->get('slugger')),
+            ]]);
     }
 }

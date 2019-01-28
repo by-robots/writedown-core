@@ -7,6 +7,7 @@ use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 use ByRobots\WriteDown\Database\DoctrineDriver;
 use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use ByRobots\WriteDown\Slugs\Slugger;
 
 class MiscServiceProvider extends AbstractServiceProvider
 {
@@ -15,24 +16,30 @@ class MiscServiceProvider extends AbstractServiceProvider
      *
      * @var array
      */
-    protected $provides = ['entityManager', 'auth'];
+    protected $provides = ['auth', 'entityManager', 'slugger'];
 
     /**
      * Register providers into the container.
      */
     public function register()
     {
-        $this->getContainer()->inflector(ControllerInterface::class)
-           ->invokeMethod('setRequest',  ['request']);
-
-        $this->getContainer()->add('entityManager', function() {
-            $configBuilder = new DoctrineConfigBuilder;
-            $database      = new DoctrineDriver($configBuilder->generate());
-
-            return $database->getManager();
-        });
-
-        $this->getContainer()->add('auth', Auth::class)
+        $this->getContainer()
+            ->add('auth', Auth::class)
             ->withArgument('entityManager');
+
+        $this->getContainer()
+            ->add('entityManager', function() {
+                $configBuilder = new DoctrineConfigBuilder;
+                $database      = new DoctrineDriver($configBuilder->generate());
+                return $database->getManager();
+            });
+
+        $this->getContainer()
+            ->add('slugger', Slugger::class)
+            ->withArgument('entityManager');
+
+        $this->getContainer()
+            ->inflector(ControllerInterface::class)
+           ->invokeMethod('setRequest',  ['request']);
     }
 }

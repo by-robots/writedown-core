@@ -60,11 +60,16 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
         $filters = $this->mergeFilters($filters);
 
         // Build the start of the query
-        $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('e')->from($this->entity, 'e');
+        $query = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('e')
+            ->from($this->entity, 'e');
 
         // Apply filters
-        return $this->filter->build($query, $filters)->getQuery()->getResult();
+        return $this->filter
+            ->build($query, $filters)
+            ->getQuery()
+            ->getResult();
     }
 
     /**
@@ -72,9 +77,12 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      */
     public function getCount() : int
     {
-        return $this->getEntityManager()->createQueryBuilder()
-            ->select('count(e.id)')->from($this->entity, 'e')
-            ->getQuery()->getSingleScalarResult();
+        return $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('count(e.id)')
+            ->from($this->entity, 'e')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     /**

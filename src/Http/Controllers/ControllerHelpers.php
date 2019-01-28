@@ -14,6 +14,8 @@ trait ControllerHelpers
      */
     public function loggedInAs()
     {
-        return $this->auth->user($this->session->get('auth_token'));
+        return $this->auth->user(
+            $this->session->get('auth_token')
+        );
     }
 }

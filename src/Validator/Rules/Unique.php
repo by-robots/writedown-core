@@ -15,9 +15,7 @@ class Unique extends AbstractRule
     /**
      * @inheritDoc
      */
-    protected $messages = [
-        'en' => 'is not unique',
-    ];
+    protected $messages = ['en' => 'is not unique'];
 
     /**
      * The EntityManager object.
@@ -42,7 +40,8 @@ class Unique extends AbstractRule
     public function validate($field, array $input, array $params = null): bool
     {
         $column = !empty($params['column']) ? $params['column'] : $field;
-        $result = $this->db->getRepository($params['repository'])
+        $result = $this->db
+            ->getRepository($params['repository'])
             ->findOneBy([$column => $input[$field]]);
 
         // No match, all good
@@ -56,7 +55,6 @@ class Unique extends AbstractRule
             return true;
         }
 
-        // We have a collision
         return false;
     }
 }
