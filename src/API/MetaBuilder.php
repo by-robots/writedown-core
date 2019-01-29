@@ -27,8 +27,7 @@ class MetaBuilder
             'current_page' => $filters['pagination']['current_page'],
             'per_page'     => $filters['pagination']['per_page'],
             'total_pages'  => $repository->getCount() == 0 ?
-                0 :
-                ceil($repository->getCount() / $filters['pagination']['per_page']),
+                0 : ceil($repository->getCount() / $filters['pagination']['per_page']),
         ];
     }
 }
