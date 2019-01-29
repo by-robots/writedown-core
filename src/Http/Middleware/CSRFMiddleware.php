@@ -28,8 +28,6 @@ class CSRFMiddleware
     /**
      * Validate the CSRF token of the request.
      *
-     * TODO: Return an appropriate HTTP status code.
-     *
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @param \Psr\Http\Message\ResponseInterface      $response
      * @param callable                                 $next

@@ -35,7 +35,7 @@ class API implements APIInterface
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager             $database
+     * @param \Doctrine\ORM\EntityManager                      $database
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
      *
