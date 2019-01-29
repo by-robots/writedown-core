@@ -105,7 +105,7 @@ class WriteDownServiceProvider extends AbstractServiceProvider
     {
         $this->getContainer()
             ->inflector(ControllerInterface::class)
-           ->invokeMethod('setRequest',  ['request']);
+            ->invokeMethod('setRequest',  ['request']);
     }
 
     private function emails()
@@ -121,7 +121,7 @@ class WriteDownServiceProvider extends AbstractServiceProvider
     private function entityManager()
     {
         $this->getContainer()
-            ->add('entityManager', function () {
+            ->add('entityManager', function() {
                 $configBuilder = new DoctrineConfigBuilder;
                 $database      = new DoctrineDriver($configBuilder->generate());
                 return $database->getManager();
@@ -140,7 +140,7 @@ class WriteDownServiceProvider extends AbstractServiceProvider
 
     private function request()
     {
-        $this->getContainer()->add('request', function () {
+        $this->getContainer()->add('request', function() {
             return ServerRequestFactory::fromGlobals(
                 $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
             );
