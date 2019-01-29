@@ -105,7 +105,7 @@ class WriteDownServiceProvider extends AbstractServiceProvider
     {
         $this->getContainer()
             ->inflector(ControllerInterface::class)
-            ->invokeMethod('setRequest',  ['request']);
+            ->invokeMethod('setRequest', ['request']);
     }
 
     private function emails()
