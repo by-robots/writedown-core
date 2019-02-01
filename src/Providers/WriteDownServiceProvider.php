@@ -10,7 +10,7 @@ use ByRobots\WriteDown\Auth\Token;
 use ByRobots\WriteDown\CSRF\Hash;
 use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 use ByRobots\WriteDown\Database\DoctrineDriver;
-use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
+use ByRobots\WriteDown\Http\ControllerInterface;
 use ByRobots\WriteDown\Markdown\Markdown;
 use ByRobots\WriteDown\Sessions\AuraSession;
 use ByRobots\WriteDown\Slugs\Slugger;
