@@ -37,7 +37,7 @@ class ConfigBuilder extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown() : void
     {
         if ($this->oldDriver) {
             putenv('DB_DRIVER=' . $this->oldDriver);

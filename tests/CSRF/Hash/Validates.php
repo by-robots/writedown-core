@@ -17,7 +17,7 @@ class Validates extends TestCase
     /**
      * Set-up the tests.
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->csrf = new Hash(new SessionStub, new Token);
@@ -47,11 +47,10 @@ class Validates extends TestCase
 
     /**
      * When no taken is set, isValid should throw an exception.
-     *
-     * @expectedException \Exception
      */
     public function testNoTokenGenerated()
     {
+        $this->expectException(\Exception::class);
         $this->csrf->isValid('SSBBbSBUaGUgT25lIFdobyBLbm9ja3M=');
     }
 }

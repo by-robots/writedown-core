@@ -19,7 +19,7 @@ class Emails extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->emails = new Provider($this->writedown->getService('entityManager'));

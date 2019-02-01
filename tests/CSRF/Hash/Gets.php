@@ -17,7 +17,7 @@ class Gets extends TestCase
     /**
      * Set-up the tests.
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->csrf = new Hash(new SessionStub, new Token);

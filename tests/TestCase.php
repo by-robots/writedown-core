@@ -32,8 +32,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Make ByRobots\WriteDown.
-     *
-     * @return void
      */
     protected function makeWritedown()
     {
@@ -43,8 +41,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Deletes the test database if it exists.
-     *
-     * @return void
      */
     public function tearDownDatabase()
     {
@@ -69,10 +65,8 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Set-up for testing.
-     *
-     * @return void
      */
-    public function setUp()
+    public function setUp() : void
     {
         $this->makeWritedown();
         $this->setUpDatabase();
@@ -85,10 +79,8 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Tidy-up after ourselves.
-     *
-     * @return void
      */
-    public function tearDown()
+    public function tearDown() : void
     {
         \Mockery::close();
         $this->tearDownDatabase();
