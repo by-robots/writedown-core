@@ -2,7 +2,6 @@
 
 namespace ByRobots\WriteDown\Http\Controllers;
 
-use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
 use ByRobots\WriteDown\WriteDown;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -11,8 +10,6 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 abstract class Controller implements ControllerInterface
 {
-    use ControllerHelpers;
-
     /**
      * @var \Psr\Http\Message\ServerRequestInterface
      */
