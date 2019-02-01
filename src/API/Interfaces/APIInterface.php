@@ -19,11 +19,9 @@ interface APIInterface
     /**
      * Work with users.
      *
-     * @param \ByRobots\WriteDown\Emails\EmailInterface $emails
-     *
      * @return \ByRobots\WriteDown\API\Interfaces\CRUInterface
      */
-    public function user(EmailInterface $emails = null) : CRUInterface;
+    public function user() : CRUInterface;
 
     /**
      * Work with tags.

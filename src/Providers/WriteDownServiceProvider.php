@@ -10,7 +10,6 @@ use ByRobots\WriteDown\Auth\Token;
 use ByRobots\WriteDown\CSRF\Hash;
 use ByRobots\WriteDown\Database\DoctrineConfigBuilder;
 use ByRobots\WriteDown\Database\DoctrineDriver;
-use ByRobots\WriteDown\Emails\Emails;
 use ByRobots\WriteDown\Http\Interfaces\ControllerInterface;
 use ByRobots\WriteDown\Markdown\Markdown;
 use ByRobots\WriteDown\Sessions\AuraSession;
@@ -41,7 +40,6 @@ class WriteDownServiceProvider extends AbstractServiceProvider
         'api',
         'auth',
         'csrf',
-        'emails',
         'emitter',
         'entityManager',
         'markdown',
@@ -62,7 +60,6 @@ class WriteDownServiceProvider extends AbstractServiceProvider
         $this->auth();
         $this->controller();
         $this->csrf();
-        $this->emails();
         $this->emitter();
         $this->entityManager();
         $this->markdown();
@@ -106,11 +103,6 @@ class WriteDownServiceProvider extends AbstractServiceProvider
         $this->getContainer()
             ->inflector(ControllerInterface::class)
             ->invokeMethod('setRequest', ['request']);
-    }
-
-    private function emails()
-    {
-        $this->getContainer()->add('emails', Emails::class);
     }
 
     private function emitter()

@@ -66,13 +66,9 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function user(EmailInterface $emails = null) : CRUInterface
+    public function user() : CRUInterface
     {
-        if (!$emails) {
-            $emails = new Emails($this->db);
-        }
-
-        return new User($this->db, $this->response, $this->validator, $emails);
+        return new User($this->db, $this->response, $this->validator);
     }
 
     /**
