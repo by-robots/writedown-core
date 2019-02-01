@@ -66,7 +66,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Set-up for testing.
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->makeWritedown();
         $this->setUpDatabase();
@@ -80,7 +80,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Tidy-up after ourselves.
      */
-    public function tearDown() : void
+    public function tearDown(): void
     {
         \Mockery::close();
         $this->tearDownDatabase();

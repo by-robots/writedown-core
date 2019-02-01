@@ -20,7 +20,7 @@ class ValidatesToken extends TestCase
      */
     private $provider;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         $this->csrf     = new Hash(new SessionStub, new Token);

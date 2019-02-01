@@ -17,7 +17,7 @@ class Validates extends TestCase
     /**
      * Set-up the tests.
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         $this->csrf = new Hash(new SessionStub, new Token);
