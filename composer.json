@@ -7,7 +7,7 @@
         "byrobots/validation": "dev-master",
         "container-interop/container-interop": "^1.2",
         "doctrine/orm": "^2.6",
-        "league/commonmark": "^0.17",
+        "league/commonmark": "^0.18",
         "league/container": "^2.4",
         "league/html-to-markdown": "^4.6",
         "league/route": "^3.0",
