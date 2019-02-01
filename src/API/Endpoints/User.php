@@ -17,7 +17,6 @@ class User extends CRUD implements CRUInterface
      * @param \Doctrine\ORM\EntityManager                      $db
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
-     * @param \ByRobots\WriteDown\Emails\EmailInterface        $emails
      *
      * @return void
      */
