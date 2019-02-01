@@ -11,5 +11,5 @@ interface TransformerInterface
      *
      * @return \stdClass
      */
-    public function transform($entity) : \stdClass;
+    public function transform($entity):\stdClass;
 }

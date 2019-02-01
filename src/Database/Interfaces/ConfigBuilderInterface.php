@@ -10,5 +10,5 @@ interface ConfigBuilderInterface
      * @return array
      * @throws \Exception
      */
-    public function generate() : array;
+    public function generate():array;
 }

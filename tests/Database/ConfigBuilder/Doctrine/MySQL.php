@@ -52,7 +52,7 @@ class MySQL extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->oldDatabase) {
             putenv('DB_DATABASE=' . $this->oldDatabase);

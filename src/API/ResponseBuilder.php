@@ -54,7 +54,7 @@ class ResponseBuilder
      *
      * @return array
      */
-    public function build($data, $success = true, ObjectRepository $repository = null, array $filters = []) : array
+    public function build($data, $success = true, ObjectRepository $repository = null, array $filters = []):array
     {
         return [
             'data'    => $success ? $this->formatData($data) : $data,

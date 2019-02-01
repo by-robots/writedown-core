@@ -41,8 +41,11 @@ class AuthenticatedMiddleware
      * @return mixed
      * @throws \Exception
      */
-    public function validate(ServerRequestInterface $request, ResponseInterface $response, callable $next)
-    {
+    public function validate(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ) {
         if (
             !$this->sessions->get('auth_token') or
             !$this->auth->verifyToken($this->sessions->get('auth_token'))

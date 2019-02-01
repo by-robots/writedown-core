@@ -51,7 +51,7 @@ class Post extends CRUD implements PostEndpointInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes) : array
+    public function create(array $attributes):array
     {
         // If no slug has been set generate it with the post's title
         if (
@@ -68,13 +68,17 @@ class Post extends CRUD implements PostEndpointInterface
     /**
      * @inheritDoc
      */
-    public function bySlug($slug) : array
+    public function bySlug($slug):array
     {
-        $entity = $this->db->getRepository($this->entityRepo)->findOneBy(['slug' => $slug]);
+        $entity = $this->db
+            ->getRepository($this->entityRepo)
+            ->findOneBy(['slug' => $slug]);
+
         if (!$entity) {
             return $this->response->build(['Not found.'], false);
         }
 
-        return $this->response->build($entity, true, $this->db->getRepository($this->entityRepo));
+        return $this->response
+            ->build($entity, true, $this->db->getRepository($this->entityRepo));
     }
 }

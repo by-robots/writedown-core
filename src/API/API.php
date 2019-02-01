@@ -2,18 +2,16 @@
 
 namespace ByRobots\WriteDown\API;
 
+use ByRobots\WriteDown\API\Endpoints\Post;
 use ByRobots\WriteDown\API\Endpoints\PostTag;
 use ByRobots\WriteDown\API\Endpoints\Tag;
-use ByRobots\WriteDown\Slugs\Slugger;
-use Doctrine\ORM\EntityManager;
-use ByRobots\WriteDown\API\Endpoints\Post;
 use ByRobots\WriteDown\API\Endpoints\User;
 use ByRobots\WriteDown\API\Interfaces\APIInterface;
 use ByRobots\WriteDown\API\Interfaces\CRUInterface;
 use ByRobots\WriteDown\API\Interfaces\PostEndpointInterface;
-use ByRobots\WriteDown\Emails\EmailInterface;
-use ByRobots\WriteDown\Emails\Emails;
+use ByRobots\WriteDown\Slugs\Slugger;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
+use Doctrine\ORM\EntityManager;
 
 class API implements APIInterface
 {
@@ -35,7 +33,7 @@ class API implements APIInterface
     /**
      * Set-up.
      *
-     * @param \Doctrine\ORM\EntityManager             $database
+     * @param \Doctrine\ORM\EntityManager                      $database
      * @param \ByRobots\WriteDown\API\ResponseBuilder          $response
      * @param \ByRobots\WriteDown\Validator\ValidatorInterface $validator
      *
@@ -54,7 +52,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function post(Slugger $slugger = null) : PostEndpointInterface
+    public function post(Slugger $slugger = null):PostEndpointInterface
     {
         if (!$slugger) {
             $slugger = new Slugger($this->db);
@@ -66,19 +64,15 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function user(EmailInterface $emails = null) : CRUInterface
+    public function user():CRUInterface
     {
-        if (!$emails) {
-            $emails = new Emails($this->db);
-        }
-
-        return new User($this->db, $this->response, $this->validator, $emails);
+        return new User($this->db, $this->response, $this->validator);
     }
 
     /**
      * @inheritDoc
      */
-    public function tag() : CRUInterface
+    public function tag():CRUInterface
     {
         return new Tag($this->db, $this->response, $this->validator);
     }
@@ -86,7 +80,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function postTag() : CRUInterface
+    public function postTag():CRUInterface
     {
         return new PostTag($this->db, $this->response, $this->validator);
     }

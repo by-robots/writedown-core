@@ -54,27 +54,35 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function all(array $filters = []) : array
+    public function all(array $filters = []):array
     {
         // Build the filters
         $filters = $this->mergeFilters($filters);
 
         // Build the start of the query
-        $query = $this->getEntityManager()->createQueryBuilder()
-            ->select('e')->from($this->entity, 'e');
+        $query = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('e')
+            ->from($this->entity, 'e');
 
         // Apply filters
-        return $this->filter->build($query, $filters)->getQuery()->getResult();
+        return $this->filter
+            ->build($query, $filters)
+            ->getQuery()
+            ->getResult();
     }
 
     /**
      * @inheritDoc
      */
-    public function getCount() : int
+    public function getCount():int
     {
-        return $this->getEntityManager()->createQueryBuilder()
-            ->select('count(e.id)')->from($this->entity, 'e')
-            ->getQuery()->getSingleScalarResult();
+        return $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('count(e.id)')
+            ->from($this->entity, 'e')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     /**
@@ -85,7 +93,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      *
      * @return array
      */
-    private function mergeFilters(array $supplied) : array
+    private function mergeFilters(array $supplied):array
     {
         $filters = [];
         $filters['where'] = isset($supplied['where'])

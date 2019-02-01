@@ -37,7 +37,7 @@ class Tag extends CRUD implements CRUInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes) : array
+    public function create(array $attributes):array
     {
         return parent::create($attributes);
     }

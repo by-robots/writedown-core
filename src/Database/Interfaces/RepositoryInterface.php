@@ -12,7 +12,7 @@ interface RepositoryInterface
      *
      * @return array
      */
-    public function all(array $filters = []) : array;
+    public function all(array $filters = []):array;
 
     /**
      * Get the total rows for the repository.
@@ -20,5 +20,5 @@ interface RepositoryInterface
      * @return int
      * @throws \Exception
      */
-    public function getCount() : int;
+    public function getCount():int;
 }

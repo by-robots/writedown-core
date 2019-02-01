@@ -14,7 +14,7 @@ interface CRUInterface
      *
      * @return array
      */
-    public function index(array $filters = []) : array;
+    public function index(array $filters = []):array;
 
     /**
      * Retrieve a single entity by it's ID.
@@ -23,7 +23,7 @@ interface CRUInterface
      *
      * @return array
      */
-    public function read($entityID) : array;
+    public function read($entityID):array;
 
     /**
      * Create a new entity.
@@ -32,7 +32,7 @@ interface CRUInterface
      *
      * @return array
      */
-    public function create(array $attributes) : array;
+    public function create(array $attributes):array;
 
     /**
      * Update an entity.
@@ -42,5 +42,5 @@ interface CRUInterface
      *
      * @return array
      */
-    public function update($entityID, array $attributes) : array;
+    public function update($entityID, array $attributes):array;
 }
