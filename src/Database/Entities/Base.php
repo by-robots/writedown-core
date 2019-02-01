@@ -96,7 +96,7 @@ class Base
      *
      * @return array
      */
-    public function updateRules() : array
+    public function updateRules():array
     {
         $updateRules = $this->rules;
 

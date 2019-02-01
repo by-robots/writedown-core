@@ -11,7 +11,7 @@ interface MarkdownInterface
      *
      * @return string
      */
-    public function htmlToMarkdown($html) : string;
+    public function htmlToMarkdown($html):string;
 
     /**
      * Take Markdown, make HTML.
@@ -20,5 +20,5 @@ interface MarkdownInterface
      *
      * @return string
      */
-    public function markdownToHtml($markdown) : string;
+    public function markdownToHtml($markdown):string;
 }

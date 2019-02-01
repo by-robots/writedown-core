@@ -46,7 +46,7 @@ class CRU implements CRUInterface
     /**
      * @inheritDoc
      */
-    public function index(array $filters = []) : array
+    public function index(array $filters = []):array
     {
         $entities = $this->db->getRepository($this->entityRepo)->all($filters);
 
@@ -61,7 +61,7 @@ class CRU implements CRUInterface
     /**
      * @inheritDoc
      */
-    public function read($entityID) : array
+    public function read($entityID):array
     {
         $entity = $this->db
             ->getRepository($this->entityRepo)
@@ -78,7 +78,7 @@ class CRU implements CRUInterface
     /**
      * @inheritDoc
      */
-    public function create(array $attributes) : array
+    public function create(array $attributes):array
     {
         // Create the entity by looping through the attributes and populating
         // fillable ones
@@ -104,7 +104,7 @@ class CRU implements CRUInterface
     /**
      * @inheritDoc
      */
-    public function update($entityID, array $attributes) : array
+    public function update($entityID, array $attributes):array
     {
         $entity = $this->db
             ->getRepository($this->entityRepo)

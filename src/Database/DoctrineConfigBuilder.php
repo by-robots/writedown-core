@@ -9,7 +9,7 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
     /**
      * @inheritDoc
      */
-    public function generate() : array
+    public function generate():array
     {
         $driver = env('DB_DRIVER');
         switch ($driver) {
@@ -28,7 +28,7 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
      *
      * @return array
      */
-    private function sqlite() : array
+    private function sqlite():array
     {
         return [
             'driver' => 'pdo_sqlite',
@@ -41,7 +41,7 @@ class DoctrineConfigBuilder implements ConfigBuilderInterface
      *
      * @return array
      */
-    private function mysql() : array
+    private function mysql():array
     {
         return [
             'dbname'   => getenv('DB_DATABASE'),

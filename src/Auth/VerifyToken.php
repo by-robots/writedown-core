@@ -33,7 +33,7 @@ class VerifyToken implements VerifyTokenInterface
      *
      * @return bool
      */
-    public function verify($token) : bool
+    public function verify($token):bool
     {
         // Get the user by the email address
         $user = $this->database

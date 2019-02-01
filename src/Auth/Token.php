@@ -14,7 +14,7 @@ class Token implements TokenInterface
      * @return string
      * @throws \Exception
      */
-    public function generate($length = 64) : string
+    public function generate($length = 64):string
     {
         return bin2hex(random_bytes($length));
     }

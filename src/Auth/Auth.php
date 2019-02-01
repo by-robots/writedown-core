@@ -51,7 +51,7 @@ class Auth implements AuthInterface
     /**
      * @inheritDoc
      */
-    public function generate($length = 64) : string
+    public function generate($length = 64):string
     {
         return $this->token->generate();
     }
@@ -67,7 +67,7 @@ class Auth implements AuthInterface
     /**
      * @inheritDoc
      */
-    public function verifyToken($token) : bool
+    public function verifyToken($token):bool
     {
         return $this->verifyToken->verify($token);
     }

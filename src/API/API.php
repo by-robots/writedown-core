@@ -54,7 +54,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function post(Slugger $slugger = null) : PostEndpointInterface
+    public function post(Slugger $slugger = null):PostEndpointInterface
     {
         if (!$slugger) {
             $slugger = new Slugger($this->db);
@@ -66,7 +66,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function user() : CRUInterface
+    public function user():CRUInterface
     {
         return new User($this->db, $this->response, $this->validator);
     }
@@ -74,7 +74,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function tag() : CRUInterface
+    public function tag():CRUInterface
     {
         return new Tag($this->db, $this->response, $this->validator);
     }
@@ -82,7 +82,7 @@ class API implements APIInterface
     /**
      * @inheritDoc
      */
-    public function postTag() : CRUInterface
+    public function postTag():CRUInterface
     {
         return new PostTag($this->db, $this->response, $this->validator);
     }

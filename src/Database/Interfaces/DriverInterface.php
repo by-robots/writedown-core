@@ -11,5 +11,5 @@ interface DriverInterface
      *
      * @return \Doctrine\ORM\EntityManagerInterface
      */
-    public function getManager() : EntityManagerInterface;
+    public function getManager():EntityManagerInterface;
 }

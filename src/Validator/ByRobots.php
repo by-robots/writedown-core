@@ -64,7 +64,7 @@ class ByRobots implements ValidatorInterface
     /**
      * @inheritDoc
      */
-    public function validate($rules = null, $data = null) : bool
+    public function validate($rules = null, $data = null):bool
     {
         // If $rules or $data is provided here then squirrel it away
         if (!is_null($rules)) {
@@ -89,7 +89,7 @@ class ByRobots implements ValidatorInterface
     /**
      * @inheritDoc
      */
-    public function success() : bool
+    public function success():bool
     {
         return $this->success;
     }
@@ -97,7 +97,7 @@ class ByRobots implements ValidatorInterface
     /**
      * @inheritDoc
      */
-    public function errors() : array
+    public function errors():array
     {
         $errors = $this->validator->errors();
         return is_array($errors) ? $errors : [];

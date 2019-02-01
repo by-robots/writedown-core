@@ -12,7 +12,7 @@ interface CSRFInterface
      * @return bool
      * @throws \Exception
      */
-    public function isValid($value) : bool;
+    public function isValid($value):bool;
 
     /**
      * Generate a token.

@@ -17,7 +17,7 @@ class MetaBuilder
      *
      * @return array
      */
-    public function build(ObjectRepository $repository, array $filters) : array
+    public function build(ObjectRepository $repository, array $filters):array
     {
         if (!isset($filters['pagination'])) {
             return [];

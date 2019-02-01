@@ -15,7 +15,7 @@ class CRUD extends CRU implements EndpointInterface
     /**
      * @inheritDoc
      */
-    public function delete($entityID) : array
+    public function delete($entityID):array
     {
         $entity = $this->db
             ->getRepository($this->entityRepo)

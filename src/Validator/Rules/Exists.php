@@ -37,7 +37,7 @@ class Exists extends AbstractRule
     /**
      * @inheritDoc
      */
-    public function validate($field, array $input, array $params = null) : bool
+    public function validate($field, array $input, array $params = null):bool
     {
         $column = !empty($params['column']) ? $params['column'] : 'id';
         $result = $this->db

@@ -54,7 +54,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function all(array $filters = []) : array
+    public function all(array $filters = []):array
     {
         // Build the filters
         $filters = $this->mergeFilters($filters);
@@ -75,7 +75,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getCount() : int
+    public function getCount():int
     {
         return $this->getEntityManager()
             ->createQueryBuilder()
@@ -93,7 +93,7 @@ class BaseRepository extends EntityRepository implements RepositoryInterface
      *
      * @return array
      */
-    private function mergeFilters(array $supplied) : array
+    private function mergeFilters(array $supplied):array
     {
         $filters = [];
         $filters['where'] = isset($supplied['where'])

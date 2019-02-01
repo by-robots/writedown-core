@@ -15,7 +15,7 @@ class Filter implements FilterInterface
     /**
      * @inheritDoc
      */
-    public function build(QueryBuilder $query, array $filters) : QueryBuilder
+    public function build(QueryBuilder $query, array $filters):QueryBuilder
     {
         $this->query = $query;
 

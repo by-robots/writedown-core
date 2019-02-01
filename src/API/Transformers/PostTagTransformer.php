@@ -9,7 +9,7 @@ class PostTagTransformer implements TransformerInterface
     /**
      * @inheritDoc
      */
-    public function transform($entity) : \stdClass
+    public function transform($entity):\stdClass
     {
         return new \stdClass;
     }

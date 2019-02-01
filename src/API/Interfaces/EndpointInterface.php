@@ -11,5 +11,5 @@ interface EndpointInterface extends CRUInterface
      *
      * @return array
      */
-    public function delete($entityID) : array;
+    public function delete($entityID):array;
 }
