@@ -2,18 +2,16 @@
 
 namespace ByRobots\WriteDown\API;
 
+use ByRobots\WriteDown\API\Endpoints\Post;
 use ByRobots\WriteDown\API\Endpoints\PostTag;
 use ByRobots\WriteDown\API\Endpoints\Tag;
-use ByRobots\WriteDown\Slugs\Slugger;
-use Doctrine\ORM\EntityManager;
-use ByRobots\WriteDown\API\Endpoints\Post;
 use ByRobots\WriteDown\API\Endpoints\User;
 use ByRobots\WriteDown\API\Interfaces\APIInterface;
 use ByRobots\WriteDown\API\Interfaces\CRUInterface;
 use ByRobots\WriteDown\API\Interfaces\PostEndpointInterface;
-use ByRobots\WriteDown\Emails\EmailInterface;
-use ByRobots\WriteDown\Emails\Emails;
+use ByRobots\WriteDown\Slugs\Slugger;
 use ByRobots\WriteDown\Validator\ValidatorInterface;
+use Doctrine\ORM\EntityManager;
 
 class API implements APIInterface
 {
