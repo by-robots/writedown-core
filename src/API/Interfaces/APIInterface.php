@@ -2,7 +2,6 @@
 
 namespace ByRobots\WriteDown\API\Interfaces;
 
-use ByRobots\WriteDown\Emails\EmailInterface;
 use ByRobots\WriteDown\Slugs\Slugger;
 
 interface APIInterface
