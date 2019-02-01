@@ -1,6 +1,6 @@
 <?php
 
-namespace ByRobots\WriteDown\Http\Interfaces;
+namespace ByRobots\WriteDown\Http;
 
 use ByRobots\WriteDown\WriteDown;
 use Psr\Http\Message\ServerRequestInterface;
