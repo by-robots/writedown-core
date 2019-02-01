@@ -15,9 +15,7 @@ class Exists extends AbstractRule
     /**
      * @inheritDoc
      */
-    protected $messages = [
-        'en' => 'does not exist in %s',
-    ];
+    protected $messages = ['en' => 'does not exist in %s'];
 
     /**
      * The EntityManager object.
@@ -39,10 +37,11 @@ class Exists extends AbstractRule
     /**
      * @inheritDoc
      */
-    public function validate($field, array $input, array $params = null) : bool
+    public function validate($field, array $input, array $params = null):bool
     {
         $column = !empty($params['column']) ? $params['column'] : 'id';
-        $result = $this->db->getRepository($params['repository'])
+        $result = $this->db
+            ->getRepository($params['repository'])
             ->findOneBy([$column => $input[$field]]);
 
         return $result ? true : false;

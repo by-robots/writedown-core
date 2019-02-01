@@ -33,9 +33,14 @@ class User extends Base
      * @var array
      */
     protected $rules = [
-        'email' => ['present', 'not_empty', 'valid_email', 'unique_in_database' => [
-            'repository' => 'ByRobots\WriteDown\Database\Entities\User',
-        ]],
+        'email' => [
+            'present',
+            'not_empty',
+            'valid_email',
+            'unique_in_database' => [
+                'repository' => 'ByRobots\WriteDown\Database\Entities\User',
+            ],
+        ],
         'password' => ['present', 'not_empty'],
     ];
 

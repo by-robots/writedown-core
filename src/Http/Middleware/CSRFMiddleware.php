@@ -35,8 +35,11 @@ class CSRFMiddleware
      * @return mixed
      * @throws \Exception
      */
-    public function validate(ServerRequestInterface $request, ResponseInterface $response, callable $next)
-    {
+    public function validate(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ) {
         switch ($request->getMethod()) {
             case 'POST':
                 $body = $request->getParsedBody();

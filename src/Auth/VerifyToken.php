@@ -33,10 +33,11 @@ class VerifyToken implements VerifyTokenInterface
      *
      * @return bool
      */
-    public function verify($token) : bool
+    public function verify($token):bool
     {
         // Get the user by the email address
-        $user = $this->database->getRepository('ByRobots\WriteDown\Database\Entities\User')
+        $user = $this->database
+            ->getRepository('ByRobots\WriteDown\Database\Entities\User')
             ->findOneBy(['token' => $token]);
 
         return !$user ? false : true;

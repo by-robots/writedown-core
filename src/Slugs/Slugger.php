@@ -36,7 +36,7 @@ class Slugger implements GenerateSlugInterface
     /**
      * @inheritDoc
      */
-    public function generateSlug($input) : string
+    public function generateSlug($input):string
     {
         return $this->generateSlug->slug($input);
     }
@@ -44,7 +44,7 @@ class Slugger implements GenerateSlugInterface
     /**
      * @inheritDoc
      */
-    public function isUnique($slug) : bool
+    public function isUnique($slug):bool
     {
         return $this->uniqueSlug->isUnique($slug);
     }
@@ -52,7 +52,7 @@ class Slugger implements GenerateSlugInterface
     /**
      * @inheritDoc
      */
-    public function uniqueSlug($title) : string
+    public function uniqueSlug($title):string
     {
         $index = 0;
 

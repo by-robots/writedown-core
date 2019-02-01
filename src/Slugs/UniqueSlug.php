@@ -34,7 +34,8 @@ class UniqueSlug
      */
     public function isUnique($slug)
     {
-        return !$this->db->getRepository('ByRobots\WriteDown\Database\Entities\Post')
+        return !$this->db
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['slug' => $slug]) ? true : false;
     }
 
@@ -48,7 +49,8 @@ class UniqueSlug
      */
     public function isUniqueExcept($slug, $postID)
     {
-        $result = $this->db->getRepository('ByRobots\WriteDown\Database\Entities\Post')
+        $result = $this->db
+            ->getRepository('ByRobots\WriteDown\Database\Entities\Post')
             ->findOneBy(['slug' => $slug]);
 
         if (!$result) {

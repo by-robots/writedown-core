@@ -15,5 +15,5 @@ interface FilterInterface
      * @return \Doctrine\ORM\QueryBuilder
      * @throws \Exception
      */
-    public function build(QueryBuilder $query, array $filters) : QueryBuilder;
+    public function build(QueryBuilder $query, array $filters):QueryBuilder;
 }

@@ -3,7 +3,7 @@
 namespace ByRobots\WriteDown\Validator\Rules;
 
 use ByRobots\Validation\AbstractRule;
-use ByRobots\WriteDown\Slugs\GenerateSlug;
+use ByRobots\WriteDown\Slugs\Slugger;
 
 class ValidSlug extends AbstractRule
 {
@@ -15,9 +15,7 @@ class ValidSlug extends AbstractRule
     /**
      * @inheritDoc
      */
-    protected $messages = [
-        'en' => 'is not valid',
-    ];
+    protected $messages = ['en' => 'is not valid'];
 
     /**
      * Generates slugs.
@@ -29,9 +27,9 @@ class ValidSlug extends AbstractRule
     /**
      * Set-up the rule.
      *
-     * @param \ByRobots\WriteDown\Slugs\GenerateSlug $slugger
+     * @param \ByRobots\WriteDown\Slugs\Slugger $slugger
      */
-    public function __construct(GenerateSlug $slugger)
+    public function __construct(Slugger $slugger)
     {
         $this->slugger = $slugger;
     }
@@ -41,6 +39,6 @@ class ValidSlug extends AbstractRule
      */
     public function validate($field, array $input, array $params = null): bool
     {
-        return $input[$field] === $this->slugger->slug($input[$field]);
+        return $input[$field] === $this->slugger->generateSlug($input[$field]);
     }
 }

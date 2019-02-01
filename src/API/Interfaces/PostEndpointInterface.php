@@ -11,5 +11,5 @@ interface PostEndpointInterface extends EndpointInterface
      *
      * @return array
      */
-    public function bySlug($slug) : array;
+    public function bySlug($slug):array;
 }

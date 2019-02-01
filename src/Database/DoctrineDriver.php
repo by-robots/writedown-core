@@ -34,7 +34,7 @@ class DoctrineDriver implements DriverInterface
     /**
      * @inheritDoc
      */
-    public function getManager() : EntityManagerInterface
+    public function getManager():EntityManagerInterface
     {
         return $this->manager;
     }

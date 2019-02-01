@@ -12,5 +12,5 @@ interface PostTagEndpointInterface extends CRUInterface
      *
      * @return array
      */
-    public function delete($postID, $tagID) : array;
+    public function delete($postID, $tagID):array;
 }

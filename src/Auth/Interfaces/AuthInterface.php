@@ -12,7 +12,7 @@ interface AuthInterface
      * @return string
      * @throws \Exception
      */
-    public function generate($length = 64) : string;
+    public function generate($length = 64):string;
 
     /**
      * Verify an email and password match.
@@ -31,7 +31,7 @@ interface AuthInterface
      *
      * @return bool
      */
-    public function verifyToken($token) : bool;
+    public function verifyToken($token):bool;
 
     /**
      * Retrieve the logged in user.
