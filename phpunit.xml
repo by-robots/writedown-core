@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
+<phpunit
+    backupGlobals="false"
     backupStaticAttributes="false"
     bootstrap="vendor/autoload.php"
     colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
+    executionOrder="random"
     processIsolation="false"
-    stopOnFailure="false">
-
+    resolveDependencies="true"
+    stopOnFailure="false"
+>
     <testsuites>
         <testsuite name="Many Pies Test Suite">
             <directory suffix=".php">./tests/</directory>
