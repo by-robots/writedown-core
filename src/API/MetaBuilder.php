@@ -29,8 +29,7 @@ class MetaBuilder
             'current_page' => $filters['pagination']['current_page'] ?? 1,
             'per_page'     => $filters['pagination']['per_page']     ?? $resultCount,
             'total_pages'  => $resultCount == 0 ?
-                0 :
-                (isset($filters['pagination']['per_page']) ?
+                0 : (isset($filters['pagination']['per_page']) ?
                     ceil($resultCount / $filters['pagination']['per_page']) : 1),
         ];
     }
