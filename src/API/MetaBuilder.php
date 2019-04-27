@@ -23,11 +23,15 @@ class MetaBuilder
             return [];
         }
 
+        $resultCount = $repository->getCount();
+
         return [
-            'current_page' => $filters['pagination']['current_page'],
-            'per_page'     => $filters['pagination']['per_page'],
-            'total_pages'  => $repository->getCount() == 0 ?
-                0 : ceil($repository->getCount() / $filters['pagination']['per_page']),
+            'current_page' => $filters['pagination']['current_page'] ?? 1,
+            'per_page'     => $filters['pagination']['per_page']     ?? $resultCount,
+            'total_pages'  => $resultCount == 0 ?
+                0 :
+                (isset($filters['pagination']['per_page']) ?
+                    ceil($resultCount / $filters['pagination']['per_page']) : 1),
         ];
     }
 }
