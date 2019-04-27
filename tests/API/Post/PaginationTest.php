@@ -57,4 +57,26 @@ class PaginationTest extends TestCase
         $this->assertEquals(2, $result['meta']['current_page']);
         $this->assertEquals(2, $result['meta']['total_pages']);
     }
+
+    /**
+     * It should be possible to disable pagination.
+     */
+    public function testDisablePagination()
+    {
+        // Create the the max item of posts, plus one extra.
+        $postCount = env('MAX_ITEMS') + 1;
+        for ($i = 0; $i < $postCount; $i++) {
+            $this->resources->post();
+        }
+
+        // Request an index with empty pagination data
+        $result = $this->writedown->getService('api')->post()->index(['pagination' => []]);
+
+        // Check the response - all 15 tags should be returned
+        $this->assertTrue($result['success']);
+        $this->assertEquals($postCount, count($result['data']));
+        $this->assertEquals($postCount, $result['meta']['per_page']);
+        $this->assertEquals(1, $result['meta']['current_page']);
+        $this->assertEquals(1, $result['meta']['total_pages']);
+    }
 }
